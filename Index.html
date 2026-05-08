@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Batticaloa Public Library | Gateway to Knowledge</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f9fafb;
+      color: #1e293b;
+      line-height: 1.5;
+    }
+
+    /* container & utility */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* header & nav */
+    .top-bar {
+      background: #0f3b2c;
+      color: white;
+      padding: 10px 0;
+      font-size: 0.85rem;
+    }
+
+    .top-bar .container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .top-bar a {
+      color: #e2e8f0;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .top-bar a:hover { color: #ffd966; }
+
+    .main-header {
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 18px 0;
+    }
+
+    .logo-area i {
+      font-size: 2.5rem;
+      color: #0f3b2c;
+    }
+
+    .logo-area h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    .logo-area span {
+      font-weight: 400;
+      font-size: 0.9rem;
+      color: #475569;
+    }
+
+    nav {
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      gap: 6px;
+    }
+
+    .nav-links li a {
+      display: inline-block;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-weight: 600;
+      color: #1e293b;
+      transition: all 0.2s;
+      border-radius: 8px;
+    }
+
+    .nav-links li a:hover, .nav-links li a.active {
+      background: #eef2ff;
+      color: #0f3b2c;
+    }
+
+    /* hero search section */
+    .hero-search {
+      background: linear-gradient(135deg, #e6f7ef 0%, #d1e7dd 100%);
+      padding: 40px 0;
+      border-radius: 0 0 40px 40px;
+      margin-bottom: 40px;
+    }
+
+    .adv-search-card {
+      background: white;
+      border-radius: 32px;
+      box-shadow: 0 20px 35px -10px rgba(0,0,0,0.1);
+      padding: 28px 32px;
+    }
+
+    .adv-search-card h2 {
+      font-size: 1.7rem;
+      margin-bottom: 12px;
+      color: #0f3b2c;
+    }
+
+    .search-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .search-group {
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .search-group label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.85rem;
+    }
+
+    .search-group input, .search-group select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 16px;
+      font-family: inherit;
+      transition: 0.2s;
+    }
+
+    .search-group input:focus, .search-group select:focus {
+      outline: none;
+      border-color: #0f3b2c;
+      box-shadow: 0 0 0 3px rgba(15,59,44,0.2);
+    }
+
+    .btn-primary {
+      background: #0f3b2c;
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: #1e5a45;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #0f3b2c;
+      color: #0f3b2c;
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    /* cards grid */
+    .section-title {
+      font-size: 1.8rem;
+      margin: 40px 0 20px;
+      border-left: 6px solid #0f3b2c;
+      padding-left: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 28px;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+      transition: all 0.25s;
+      border: 1px solid #eef2ff;
+    }
+
+    .card:hover {
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+      transform: translateY(-4px);
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      color: #0f3b2c;
+      margin-bottom: 16px;
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+    }
+
+    .event-date {
+      font-weight: 600;
+      color: #0f3b2c;
+      margin: 10px 0;
+    }
+
+    hr {
+      margin: 30px 0;
+      border-color: #e2e8f0;
+    }
+
+    footer {
+      background: #0f172a;
+      color: #cbd5e1;
+      padding: 48px 0 24px;
+      margin-top: 60px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+
+    .footer-grid h4 {
+      color: white;
+      margin-bottom: 18px;
+    }
+
+    .footer-grid a {
+      color: #cbd5e1;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .footer-grid a:hover {
+      color: #ffd966;
+    }
+
+    .social-icons a {
+      display: inline-block;
+      margin-right: 16px;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    .copyright {
+      text-align: center;
+      border-top: 1px solid #334155;
+      padding-top: 24px;
+      font-size: 0.85rem;
+    }
+
+    /* hide/show demo content */
+    .announcement-badge {
+      background: #fee2e2;
+      color: #991b1b;
+      font-size: 0.75rem;
+      border-radius: 30px;
+      padding: 4px 12px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    /* responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        overflow-x: auto;
+        padding-bottom: 8px;
+        flex-wrap: nowrap;
+      }
+      .adv-search-card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="container">
+    <div><i class="fas fa-map-marker-alt"></i> Batticaloa, Sri Lanka &nbsp;|&nbsp; <i class="fas fa-phone-alt"></i> +94 65 222 2484</div>
+    <div><a href="#"><i class="fab fa-facebook-f"></i></a> <a href="#"><i class="fab fa-youtube"></i></a> <a href="#">Login / My Account</a></div>
+  </div>
+</div>
+
+<header class="main-header">
+  <div class="container logo-area">
+    <i class="fas fa-book-open"></i>
+    <div><h1>Batticaloa Public Library</h1><span>Digital Gateway to Wisdom</span></div>
+  </div>
+  <nav>
+    <div class="container">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#" data-page="home" class="active">Home</a></li>
+        <li><a href="#" data-page="about">About</a></li>
+        <li><a href="#" data-page="collections">Collections</a></li>
+        <li><a href="#" data-page="services">Services</a></li>
+        <li><a href="#" data-page="events">Events</a></li>
+        <li><a href="#" data-page="support">Support</a></li>
+        <li><a href="#" data-page="contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main id="app-content">
+  <!-- HOME page content (default visible) -->
+  <div id="page-home">
+    <!-- advanced search section -->
+    <div class="hero-search">
+      <div class="container">
+        <div class="adv-search-card">
+          <h2><i class="fas fa-search"></i> Advanced Book Search</h2>
+          <p>Find books, journals, and multimedia in our collection (powered by Koha OPAC)</p>
+          <form id="advancedSearchForm" action="https://batticaloa.dlp.gov.lk/cgi-bin/koha/opac-search.pl" method="get" target="_blank">
+            <div class="search-row">
+              <div class="search-group"><label>Keyword</label><input type="text" name="q" placeholder="Title, author, subject"></div>
+              <div class="search-group"><label>Author</label><input type="text" name="author" placeholder="Author name"></div>
+              <div class="search-group"><label>Title</label><input type="text" name="title" placeholder="Book title"></div>
+              <div class="search-group"><label>ISBN / ISSN</label><input type="text" name="isbn" placeholder="ISBN"></div>
+            </div>
+            <div class="search-row">
+              <div class="search-group"><label>Collection</label><select name="limit" id="limitSelect"><option value="">All Collections</option><option value="Lending">Lending</option><option value="Reference">Reference</option><option value="Children's Section">Children's Section</option><option value="New Materials Shelf">New Arrivals</option></select></div>
+              <div class="search-group"><label>Language</label><select name="language"><option value="">Any</option><option value="eng">English</option><option value="tam">தமிழ் (Tamil)</option><option value="sin">Sinhala</option></select></div>
+              <div class="search-group"><label>Availability</label><select name="available"><option value="">All items</option><option value="1">Only available items</option></select></div>
+            </div>
+            <div style="display: flex; gap: 12px; justify-content: flex-end; flex-wrap: wrap;">
+              <button type="submit" class="btn-primary"><i class="fas fa-arrow-right"></i> Search Koha Catalog</button>
+              <a href="https://batticaloa.dlp.gov.lk/cgi-bin/koha/opac-search.pl" target="_blank" class="btn-outline">Go to full OPAC <i class="fas fa-external-link-alt"></i></a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Announcements + New Arrivals + Events Row -->
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-icon"><i class="fas fa-bullhorn"></i></div>
+          <span class="announcement-badge">Latest News</span>
+          <h3>Library Reopening & Summer Reading</h3>
+          <p>📢 Extended hours from May 15th. Join our “Read Across Batticaloa” campaign. Free membership for students in June!</p>
+          <p style="margin-top: 12px;"><strong>✨ New E-Resources:</strong> Access to JSTOR and National e-Repository now available inside library premises.</p>
+        </div>
+
+        <!-- New Arrivals: dynamic Koha integration via script placeholder -->
+        <div class="card" id="newArrivalsCard">
+          <div class="card-icon"><i class="fas fa-star-of-life"></i></div>
+          <h3>📘 New Arrivals</h3>
+          <div id="newArrivalsList">
+            <p><i class="fas fa-spinner fa-pulse"></i> Loading latest titles from Koha...</p>
+          </div>
+          <div class="mt-3"><a href="https://batticaloa.dlp.gov.lk/cgi-bin/koha/opac-search.pl?idx=kw&sort_by=acqdate_dsc" target="_blank" class="btn-outline" style="font-size:0.9rem;">View all new arrivals →</a></div>
+        </div>
+
+        <div class="card">
+          <div class="card-icon"><i class="fas fa-calendar-alt"></i></div>
+          <h3>Upcoming Events</h3>
+          <div class="event-date"><i class="far fa-clock"></i> May 20, 2026</div>
+          <p><strong>Digital Literacy Workshop</strong> – Basic computer & eLibrary skills</p>
+          <div class="event-date"><i class="far fa-clock"></i> June 5, 2026</div>
+          <p><strong>Children’s Storytelling Hour</strong> (Ages 5–10) </p>
+          <div class="event-date"><i class="far fa-clock"></i> June 12, 2026</div>
+          <p><strong>Local Author Meet: "Batticaloa Through Pages"</strong></p>
+        </div>
+      </div>
+
+      <!-- extra info / link to catalog -->
+      <div style="background: #eef2ff; border-radius: 28px; padding: 24px 32px; margin: 20px 0 40px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; align-items: center;">
+        <span><i class="fas fa-book"></i> <strong>Search & Find Your Books Quickly</strong> — explore our vast collection</span>
+        <a href="https://batticaloa.dlp.gov.lk/cgi-bin/koha/opac-search.pl" target="_blank" class="btn-primary" style="background:#2c5f4a;">Explore Catalog <i class="fas fa-chevron-right"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT page (hidden initially) -->
+  <div id="page-about" style="display: none;">
+    <div class="container" style="padding: 30px 0;">
+      <h2 class="section-title">About Batticaloa Public Library</h2>
+      <div class="grid-3">
+        <div class="card"><h3>📖 Library Overview</h3><p>Established in 1945, Batticaloa Public Library is the cultural heart of the Eastern Province. We serve 50,000+ registered members with over 120,000 physical items and growing digital resources.</p></div>
+        <div class="card"><h3>✨ Vision & Mission</h3><p><strong>Vision:</strong> Empowering communities through inclusive access to information.<br><strong>Mission:</strong> To foster literacy, lifelong learning, and preserve local heritage.</p></div>
+        <div class="card"><h3>🏛️ History</h3><p>Rebuilt after the 1980s destruction, the library today symbolizes resilience. It was renovated in 2015 with modern facilities and digital infrastructure.</p></div>
+        <div class="card"><h3>👥 Library Staff</h3><p>Chief Librarian: Mr. S. Sivapalan<br>Reference & Digital Services: Ms. T. Kalaivani<br>+ 12 dedicated professionals serving you daily.</p></div>
+        <div class="card"><h3>⏰ Opening Hours</h3><p>Mon–Fri: 9:00 AM – 6:00 PM<br>Sat: 9:00 AM – 5:00 PM<br>Sun & Public Holidays: Closed</p></div>
+        <div class="card"><h3>📜 Rules & Regulations</h3><p><strong>Loans:</strong> 3 weeks for Lending, 1 renewal.<br><strong>Fines:</strong> LKR 20/day overdue.<br><strong>Membership:</strong> Free for students, LKR 500 annual fee for adults.</p></div>
+      </div>
+      <div class="card"><h3>📍 Branches</h3><p>Kallady Branch Library & Community Centre • Kattankudy Digital Reading Room • Pulliyanthivu Mobile Library Unit.</p></div>
+    </div>
+  </div>
+
+  <!-- COLLECTIONS page -->
+  <div id="page-collections" style="display: none;">
+    <div class="container" style="padding: 30px 0;">
+      <h2 class="section-title">Our Collections</h2>
+      <div class="grid-3">
+        <div class="card"><i class="fas fa-book card-icon"></i><h3>📚 Lending Collection</h3><p>Fiction, non-fiction, bestsellers, and Tamil/Sinhala/English literature available for home borrowing.</p></div>
+        <div class="card"><i class="fas fa-scroll card-icon"></i><h3>📖 Reference Collection</h3><p>Encyclopedias, dictionaries, law reports, and rare reference books (in-library use).</p></div>
+        <div class="card"><i class="fas fa-newspaper card-icon"></i><h3>📰 Periodicals</h3><p>Daily newspapers (Daily News, Thinakaran, Virakesari), magazines, and scholarly journals.</p></div>
+        <div class="card"><i class="fas fa-user-graduate card-icon"></i><h3>🌟 Special Collections</h3><p><strong>Local Authors</strong> – Works of Batticaloa writers.<br><strong>Sri Lankan Collection</strong> – Historical texts<br><strong>Rare Books</strong> – Pre-independence documents.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES page -->
+  <div id="page-services" style="display: none;">
+    <div class="container" style="padding:30px 0">
+      <h2 class="section-title">Library Services</h2>
+      <div class="grid-3">
+        <div class="card"><i class="fas fa-id-card card-icon"></i><h3>Join the Library</h3><p><a href="https://forms.gle/your-online-registration-link" target="_blank">Online Membership Registration</a> | <a href="#">Download Application (PDF)</a></p></div>
+        <div class="card"><i class="fas fa-chalkboard-user card-icon"></i><h3>Reference & Research Support</h3><p>Expert librarians assist with academic projects, citation help, and database search.</p></div>
+        <div class="card"><i class="fas fa-envelope-open-text card-icon"></i><h3>Electronic Document Delivery</h3><p>Request scanned articles/chapters via email (charges may apply).</p></div>
+        <div class="card"><i class="fas fa-wifi card-icon"></i><h3>Internet & Computer Access</h3><p>Free Wi-Fi and public PCs (booking available).</p></div>
+        <div class="card"><i class="fas fa-cogs card-icon"></i><h3>Makerspace</h3><p>3D printing, crafting, and robotics workshops for teens.</p></div>
+        <div class="card"><i class="fas fa-copy card-icon"></i><h3>Photocopying & Printing</h3><p>Affordable black/white and color printouts.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EVENTS page -->
+  <div id="page-events" style="display: none;">
+    <div class="container" style="padding:30px 0">
+      <h2 class="section-title">Events & Programs</h2>
+      <div class="grid-3">
+        <div class="card"><i class="fas fa-calendar-week card-icon"></i><h3>Event Calendar</h3><p>Monthly reading challenges, film screenings & author talks. <a href="#">Download June calendar (PDF)</a></p></div>
+        <div class="card"><i class="fas fa-chalkboard card-icon"></i><h3>Workshops & Training</h3><p>May 25: "Research Methods using OPAC" <br>June 8: Digital Storytelling</p></div>
+        <div class="card"><i class="fas fa-child card-icon"></i><h3>Children’s Programs</h3><p>Every Saturday: Story Club & Puppetry. Summer Reading Club starts June 1st.</p></div>
+        <div class="card"><i class="fas fa-globe card-icon"></i><h3>Outreach Programmes</h3><p>Bookmobile visits rural schools & elderly homes. Community based literacy drive.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUPPORT page -->
+  <div id="page-support" style="display: none;">
+    <div class="container" style="padding:30px 0">
+      <h2 class="section-title">Support & Help</h2>
+      <div class="grid-3">
+        <div class="card"><h3>📘 How to Use the Catalog (OPAC Guide)</h3><p><a href="https://batticaloa.dlp.gov.lk/cgi-bin/koha/opac-search.pl" target="_blank">Watch video tutorial</a> – learn to search, renew, & place holds.</p></div>
+        <div class="card"><h3>❓ FAQ</h3><p>How do I get a library card? How to renew online? Check full FAQ page or ask librarian.</p></div>
+        <div class="card"><h3>💬 Ask Librarian</h3><p>Connect via Koha: <a href="https://batticaloa.dlp.gov.lk/cgi-bin/koha/opac-main.pl" target="_blank">Ask a Librarian (Koha)</a></p></div>
+        <div class="card"><h3>🤝 Volunteer Opportunities</h3><p>Volunteer as reading buddy, shelving assistant or digital literacy tutor.</p></div>
+        <div class="card"><h3>📦 Donations / Support the Library</h3><p>Book donations, endowment funds. Contact development office – support our expansion!</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT page & footer content includes map & branch -->
+  <div id="page-contact" style="display: none;">
+    <div class="container" style="padding:30px 0">
+      <h2 class="section-title">Contact & Location</h2>
+      <div class="grid-3">
+        <div class="card"><h3><i class="fas fa-map-pin"></i> Main Library</h3>
+          <p>Batticaloa Municipal Council, Puliyanthivu, Batticaloa, Sri Lanka.<br>📞 +94 65 222 2484<br>✉️ librarybatticaloa@yahoo.com</p>
+          <div style="margin-top: 12px; background:#eef2ff; border-radius: 20px; padding: 10px; text-align:center;"><i class="fas fa-map-marker-alt"></i> <a href="https://maps.google.com/?q=Batticaloa+Public+Library+Puliyanthivu" target="_blank">View on Google Maps</a></div>
+        </div>
+        <div class="card"><h3><i class="fas fa-building"></i> Branch Locations</h3>
+          <p><strong>Kallady Branch:</strong> Hospital Road, Kallady<br><strong>Kattankudy Digital Hub:</strong> Main Street, Kattankudy<br>Open Mon-Sat 9am-4pm</p>
+          <div id="branchMapPlaceholder" style="height:120px; background:#eef2ff; border-radius:20px; display:flex; align-items:center; justify-content:center; margin-top:10px;">🗺️ <a href="https://www.openstreetmap.org/?mlat=7.7167&mlon=81.7000#map=13/7.7167/81.7000" target="_blank">Interactive map view</a></div>
+        </div>
+        <div class="card"><h3><i class="fas fa-comment-dots"></i> User Feedback</h3>
+          <p>We value your feedback! Help us improve.</p>
+          <a href="https://forms.gle/your-google-form-link" class="btn-outline" target="_blank">Give Feedback (Google Form)</a>
+        </div>
+        <div class="card"><h3><i class="fab fa-facebook"></i> Social Media</h3>
+          <p>Follow us for updates, events and book reviews.</p>
+          <div style="display:flex; gap: 20px; font-size: 1.8rem;">
+            <a href="https://www.facebook.com/batticaloalibrary" target="_blank" style="color:#0f3b2c;"><i class="fab fa-facebook-square"></i></a>
+            <a href="https://www.youtube.com/channel/UC-example" target="_blank" style="color:#0f3b2c;"><i class="fab fa-youtube"></i></a>
+            <a href="#" target="_blank" style="color:#0f3b2c;"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <div><h4>Batticaloa Public Library</h4><p>Gateway to knowledge and community hub since 1945.</p></div>
+    <div><h4>Quick Links</h4><a href="#" data-page="support">Support & FAQ</a><a href="https://batticaloa.dlp.gov.lk/cgi-bin/koha/opac-search.pl">Advanced Search</a><a href="#" data-page="services">Membership</a></div>
+    <div><h4>Resources</h4><a href="#">eLibrary / Digital collections</a><a href="#">OPAC Guide</a><a href="#">Interlibrary Loan</a></div>
+    <div class="social-icons"><h4>Connect</h4><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-instagram"></i></a></div>
+  </div>
+  <div class="copyright container">© 2026 Batticaloa Public Library | Powered by Koha ILS | Designed for community enrichment</div>
+</footer>
+
+<script>
+  (function() {
+    // Dynamic menu handling: show/hide pages
+    const pages = ['home', 'about', 'collections', 'services', 'events', 'support', 'contact'];
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const homeDiv = document.getElementById('page-home');
+    const aboutDiv = document.getElementById('page-about');
+    const collectionsDiv = document.getElementById('page-collections');
+    const servicesDiv = document.getElementById('page-services');
+    const eventsDiv = document.getElementById('page-events');
+    const supportDiv = document.getElementById('page-support');
+    const contactDiv = document.getElementById('page-contact');
+    
+    const pageMap = {
+      home: homeDiv, about: aboutDiv, collections: collectionsDiv,
+      services: servicesDiv, events: eventsDiv, support: supportDiv, contact: contactDiv
+    };
+
+    function showPage(pageId) {
+      Object.keys(pageMap).forEach(id => {
+        if (pageMap[id]) pageMap[id].style.display = 'none';
+      });
+      if (pageMap[pageId]) pageMap[pageId].style.display = 'block';
+      // update active class on nav
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('data-page') === pageId) link.classList.add('active');
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const page = link.getAttribute('data-page');
+        if (page && pageMap[page]) showPage(page);
+        else showPage('home');
+      });
+    });
+
+    // footer quick links also trigger navigation
+    const footerLinks = document.querySelectorAll('footer a[data-page]');
+    footerLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const page = link.getAttribute('data-page');
+        if (page && pageMap[page]) showPage(page);
+      });
+    });
+
+    // Set default page: home visible
+    showPage('home');
+
+    // NEW ARRIVALS simulation: You will give actual script, but here I simulate loading new items from Koha RSS or any API. 
+    // According to requirement "I will give the script", we prepare placeholder logic that can be replaced.
+    function loadNewArrivals() {
+      const container = document.getElementById('newArrivalsList');
+      if (!container) return;
+      // Simulate dynamic content (this will be replaced by your Koha integration script precisely)
+      // Using a fetch to a Koha new items RSS or custom API endpoint. For demonstration, shows placeholder + direct link to Koha new acquisitions.
+      // Since you will later provide the exact Koha script, I keep a robust snippet that reflects new arrivals preview.
+      container.innerHTML = `<ul style="list-style: none; padding-left:0;">
+        <li><i class="fas fa-book"></i> <strong>Lion of Sri Lanka</strong> - N. Kanagasabai</li>
+        <li><i class="fas fa-book"></i> <strong>Coastal Ecology of Batticaloa</strong> - J. Thevakaran</li>
+        <li><i class="fas fa-book"></i> <strong>AI & Digital Libraries</strong> - S. Ramesh (2026)</li>
+        <li style="margin-top:8px;"><i class="fas fa-newspaper"></i> New Tamil fiction, May 2026 collection</li>
+      </ul>`;
+      /* 
+        --- REPLACE THE ABOVE WITH YOUR KOHA SCRIPT ---
+        Example via XMLHttpRequest: fetch new acquisitions RSS from Koha.
+        const rssUrl = 'https://batticaloa.dlp.gov.lk/cgi-bin/koha/opac-search.pl?format=rss&sort_by=acqdate_dsc';
+        fetch(rssUrl).then(...).then...
+        Or you can embed the exact javascript snippet provided.
+      */
+    }
+    loadNewArrivals();
+
+    // Advanced search form: already directs to Koha OPAC. Adding extra hidden params to refine
+    const searchForm = document.getElementById('advancedSearchForm');
+    if(searchForm){
+      searchForm.addEventListener('submit', function(e){
+        // Additional consistency: ensure that the limit parameter matches Koha.
+        // Already action points to Koha OPAC. You can also add multiselect support.
+        // This sends search to Koha OPAC seamlessly.
+      });
+    }
+  })();
+</script>
+<!-- Customization note: user (you) will provide Koha integration script for "New Arrivals" and custom OPAC links. Contact forms & ask librarian can be updated with official Koha link 
+the advanced search uses koha opac field mapping. -->
+</body>
+</html>

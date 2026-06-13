@@ -1,274 +1,585 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Little Stars Daycare</title>
-
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
-}
-
-body{
-    line-height:1.6;
-}
-
-header{
-    background:#ff7f50;
-    color:white;
-    padding:15px 50px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.logo{
-    font-size:28px;
-    font-weight:bold;
-}
-
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:20px;
-}
-
-.hero{
-    background:url('https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=1600') center/cover;
-    height:80vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    color:white;
-}
-
-.hero-content{
-    background:rgba(0,0,0,0.5);
-    padding:30px;
-    border-radius:10px;
-}
-
-.hero h1{
-    font-size:50px;
-}
-
-.btn{
-    display:inline-block;
-    margin-top:20px;
-    padding:12px 25px;
-    background:#ff7f50;
-    color:white;
-    text-decoration:none;
-    border-radius:5px;
-}
-
-section{
-    padding:60px 10%;
-}
-
-.section-title{
-    text-align:center;
-    margin-bottom:30px;
-    color:#333;
-}
-
-.about{
-    text-align:center;
-}
-
-.programs{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
-}
-
-.card{
-    background:#f9f9f9;
-    padding:20px;
-    border-radius:10px;
-    text-align:center;
-    box-shadow:0 2px 10px rgba(0,0,0,0.1);
-}
-
-.gallery{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:15px;
-}
-
-.gallery img{
-    width:100%;
-    border-radius:10px;
-    height:250px;
-    object-fit:cover;
-}
-
-.contact{
-    background:#f5f5f5;
-}
-
-form{
-    max-width:600px;
-    margin:auto;
-}
-
-input, textarea{
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    border:1px solid #ccc;
-    border-radius:5px;
-}
-
-button{
-    background:#ff7f50;
-    color:white;
-    border:none;
-    padding:12px 20px;
-    border-radius:5px;
-    cursor:pointer;
-}
-
-footer{
-    background:#333;
-    color:white;
-    text-align:center;
-    padding:20px;
-}
-
-@media(max-width:768px){
-    header{
-        flex-direction:column;
-    }
-
-    nav{
-        margin-top:10px;
-    }
-
-    .hero h1{
-        font-size:35px;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BabyCare - Daycare & Nursery Template</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (free) + Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Animate.css (for WOW) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <!-- Lightbox2 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+    
+    <style>
+        /* ===== CUSTOM STYLES ===== */
+        :root {
+            --primary: #ff6b4a;
+            --secondary: #f9b43a;
+            --dark: #2a2a2a;
+            --light: #fef9f5;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5, .navbar-brand, .btn {
+            font-family: 'Fredoka', sans-serif;
+        }
+        .text-primary { color: var(--primary) !important; }
+        .text-secondary { color: var(--secondary) !important; }
+        .bg-primary { background-color: var(--primary) !important; }
+        .bg-secondary { background-color: var(--secondary) !important; }
+        .border-primary { border-color: var(--primary) !important; }
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        .btn-primary:hover {
+            background-color: #e55a3a;
+            border-color: #e55a3a;
+        }
+        .title-border-radius {
+            border-bottom: 3px solid var(--primary);
+            border-radius: 0 0 15px 15px;
+            padding-bottom: 8px !important;
+        }
+        .btn-border-radius {
+            border-radius: 50px !important;
+            transition: all 0.3s ease;
+        }
+        .btn-border-radius:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .img-border-radius {
+            border-radius: 30px 30px 30px 10px;
+            overflow: hidden;
+        }
+        .hero-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        /* Service Cards */
+        .service-item {
+            transition: all 0.4s;
+            border-radius: 30px;
+            overflow: hidden;
+            background: white;
+        }
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+        }
+        .service-content {
+            transition: all 0.3s;
+        }
+        .service-item:hover .service-content {
+            background: var(--primary);
+            color: white;
+        }
+        .service-item:hover .service-content .h4,
+        .service-item:hover .service-content p,
+        .service-item:hover .service-content i {
+            color: white !important;
+        }
+        /* Program Cards */
+        .program-item {
+            transition: 0.3s;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .program-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        .program-rate {
+            position: absolute;
+            bottom: -15px;
+            right: 20px;
+            border-radius: 40px;
+            font-weight: bold;
+            z-index: 2;
+        }
+        /* Events */
+        .events-item {
+            transition: 0.3s;
+        }
+        .events-item:hover {
+            transform: translateY(-8px);
+        }
+        .events-img {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+        }
+        .event-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+        .events-img:hover .event-overlay {
+            opacity: 1;
+        }
+        /* Team */
+        .team-item {
+            transition: 0.3s;
+            background: white;
+        }
+        .team-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -12px rgba(0,0,0,0.2);
+        }
+        .team-icon {
+            position: absolute;
+            bottom: 70px;
+            left: 0;
+            right: 0;
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .team-item:hover .team-icon {
+            opacity: 1;
+            bottom: 90px;
+        }
+        /* Video Play Button */
+        .video {
+            position: relative;
+            background: url('https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80') center/cover;
+            border-radius: 30px;
+            min-height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-play {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .btn-play span {
+            width: 0;
+            height: 0;
+            border-left: 20px solid white;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            display: inline-block;
+            margin-left: 5px;
+        }
+        .btn-play:hover {
+            transform: scale(1.1);
+            background: #e55a3a;
+        }
+        /* Back to top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+        }
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        /* Footer Gallery */
+        .footer-galary-img img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+        .footer-galary-img:hover img {
+            transform: scale(1.05);
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .display-1 {
+                font-size: 2.5rem;
+            }
+            .display-3 {
+                font-size: 2rem;
+            }
+        }
+        .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link:hover {
+            color: var(--primary) !important;
+        }
+        .dropdown-item:hover {
+            background: var(--primary);
+            color: white;
+        }
+        .topbar a {
+            text-decoration: none;
+        }
+        .btn-search {
+            transition: 0.2s;
+        }
+        .btn-search:hover {
+            transform: rotate(15deg);
+        }
+        .testimonial-item {
+            border-radius: 40px 20px 40px 20px;
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-    <div class="logo">Little Stars Daycare</div>
-    <nav>
-        <a href="#about">About</a>
-        <a href="#programs">Programs</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact</a>
-    </nav>
-</header>
+<!-- Spinner -->
+<div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50 d-flex align-items-center justify-content-center" style="z-index: 9999;">
+    <div class="spinner-grow text-primary" role="status"></div>
+</div>
 
-<section class="hero">
-    <div class="hero-content">
-        <h1>Welcome to Little Stars Daycare</h1>
-        <p>Safe, Caring and Fun Learning Environment for Children</p>
-        <a href="#contact" class="btn">Enroll Today</a>
+<!-- Topbar & Navbar -->
+<div class="container-fluid border-bottom bg-light wow fadeIn" data-wow-delay="0.1s">
+    <div class="container topbar bg-primary d-none d-lg-block py-2" style="border-radius: 0 40px">
+        <div class="d-flex justify-content-between">
+            <div class="top-info ps-2">
+                <small class="me-3"><i class="fas fa-map-marker-alt me-2 text-white"></i> <a href="#" class="text-white">123 Sunshine Ave, New York</a></small>
+                <small class="me-3"><i class="fas fa-envelope me-2 text-white"></i><a href="#" class="text-white">hello@babycare.com</a></small>
+            </div>
+            <div class="top-link pe-2">
+                <a href="#" class="btn btn-light btn-sm-square rounded-circle"><i class="fab fa-facebook-f text-primary"></i></a>
+                <a href="#" class="btn btn-light btn-sm-square rounded-circle"><i class="fab fa-twitter text-primary"></i></a>
+                <a href="#" class="btn btn-light btn-sm-square rounded-circle"><i class="fab fa-instagram text-primary"></i></a>
+                <a href="#" class="btn btn-light btn-sm-square rounded-circle me-0"><i class="fab fa-linkedin-in text-primary"></i></a>
+            </div>
+        </div>
     </div>
-</section>
-
-<section id="about">
-    <h2 class="section-title">About Us</h2>
-    <div class="about">
-        <p>
-            Little Stars Daycare provides a nurturing environment where children
-            can learn, play, and grow. Our trained caregivers ensure every child
-            receives personalized attention and care.
-        </p>
+    <div class="container px-0">
+        <nav class="navbar navbar-light navbar-expand-xl py-3">
+            <a href="#" class="navbar-brand"><h1 class="text-primary display-6">Baby<span class="text-secondary">Care</span></h1></a>
+            <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars text-primary"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav mx-auto">
+                    <a href="#" class="nav-item nav-link active">Home</a>
+                    <a href="#about" class="nav-item nav-link">About</a>
+                    <a href="#services" class="nav-item nav-link">Services</a>
+                    <a href="#programs" class="nav-item nav-link">Programs</a>
+                    <a href="#events" class="nav-item nav-link">Events</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                        <div class="dropdown-menu m-0 bg-secondary rounded-0">
+                            <a href="#blog" class="dropdown-item">Our Blog</a>
+                            <a href="#team" class="dropdown-item">Our Team</a>
+                            <a href="#testimonials" class="dropdown-item">Testimonial</a>
+                        </div>
+                    </div>
+                    <a href="#contact" class="nav-item nav-link">Contact</a>
+                </div>
+                <div class="d-flex me-4">
+                    <div id="phone-tada" class="d-flex align-items-center justify-content-center">
+                        <a href="#" class="position-relative wow tada" data-wow-delay=".9s">
+                            <i class="fa fa-phone-alt text-primary fa-2x me-4"></i>
+                            <div class="position-absolute" style="top: -7px; left: 20px;">
+                                <span><i class="fa fa-comment-dots text-secondary"></i></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="d-flex flex-column pe-3 border-end border-primary">
+                        <span class="text-primary">Have any questions?</span>
+                        <a href="#"><span class="text-secondary">Free: +1 234 567 890</span></a>
+                    </div>
+                </div>
+                <button class="btn-search btn btn-primary btn-md-square rounded-circle" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-white"></i></button>
+            </div>
+        </nav>
     </div>
-</section>
+</div>
 
-<section id="programs">
-    <h2 class="section-title">Our Programs</h2>
-
-    <div class="programs">
-
-        <div class="card">
-            <h3>Infant Care</h3>
-            <p>6 Months - 2 Years</p>
+<!-- Search Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                <h5 class="modal-title">Search</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body d-flex align-items-center">
+                <div class="input-group w-75 mx-auto">
+                    <input type="search" class="form-control p-3" placeholder="keywords">
+                    <span class="input-group-text p-3 bg-primary text-white"><i class="fa fa-search"></i></span>
+                </div>
+            </div>
         </div>
-
-        <div class="card">
-            <h3>Toddler Program</h3>
-            <p>2 - 4 Years</p>
-        </div>
-
-        <div class="card">
-            <h3>Preschool</h3>
-            <p>4 - 6 Years</p>
-        </div>
-
-        <div class="card">
-            <h3>After School Care</h3>
-            <p>Homework & Activities</p>
-        </div>
-
     </div>
-</section>
+</div>
 
-<section>
-    <h2 class="section-title">Facilities</h2>
-
-    <div class="programs">
-
-        <div class="card">
-            <h3>Safe Playground</h3>
+<!-- Hero -->
+<div class="container-fluid py-5 hero-header wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-7 col-md-12">
+                <h1 class="mb-3 text-primary">We Care Your Baby</h1>
+                <h1 class="mb-5 display-1 text-white">The Best Play Area For Your Kids</h1>
+                <a href="#contact" class="btn btn-primary px-4 py-3 px-md-5 me-4 btn-border-radius">Get Started</a>
+                <a href="#about" class="btn btn-primary px-4 py-3 px-md-5 btn-border-radius">Learn More</a>
+            </div>
         </div>
-
-        <div class="card">
-            <h3>Learning Center</h3>
-        </div>
-
-        <div class="card">
-            <h3>Healthy Meals</h3>
-        </div>
-
-        <div class="card">
-            <h3>CCTV Monitoring</h3>
-        </div>
-
     </div>
-</section>
+</div>
 
-<section id="gallery">
-    <h2 class="section-title">Gallery</h2>
-
-    <div class="gallery">
-        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800">
-        <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=800">
-        <img src="https://images.unsplash.com/photo-1516627145497-f53c7c3e7f2d?w=800">
-        <img src="https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?w=800">
+<!-- About -->
+<div id="about" class="container-fluid py-5 about bg-light">
+    <div class="container py-5">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
+                <div class="video border">
+                    <button type="button" class="btn-play" data-bs-toggle="modal" data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal">
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-7 wow fadeIn" data-wow-delay="0.3s">
+                <h4 class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius">About Us</h4>
+                <h1 class="text-dark mb-4 display-5">We Learn Smart Way To Build Bright Future For Your Children</h1>
+                <p class="text-dark mb-4">At BabyCare, we create a loving, stimulating environment where children explore, discover, and grow. Our play-based curriculum fosters creativity and social skills, preparing little ones for a lifetime of learning.</p>
+                <div class="row mb-4">
+                    <div class="col-lg-6">
+                        <h6 class="mb-3"><i class="fas fa-check-circle me-2 text-primary"></i>Sport Activities</h6>
+                        <h6 class="mb-3"><i class="fas fa-check-circle me-2 text-primary"></i>Outdoor Games</h6>
+                        <h6 class="mb-3"><i class="fas fa-check-circle me-2 text-primary"></i>Nutritious Foods</h6>
+                    </div>
+                    <div class="col-lg-6">
+                        <h6 class="mb-3"><i class="fas fa-check-circle me-2 text-primary"></i>Highly Secured</h6>
+                        <h6 class="mb-3"><i class="fas fa-check-circle me-2 text-primary"></i>Friendly Environment</h6>
+                        <h6><i class="fas fa-check-circle me-2 text-primary"></i>Qualified Teacher</h6>
+                    </div>
+                </div>
+                <a href="#contact" class="btn btn-primary px-5 py-3 btn-border-radius">More Details</a>
+            </div>
+        </div>
     </div>
-</section>
+</div>
 
-<section id="contact" class="contact">
-    <h2 class="section-title">Contact Us</h2>
+<!-- Video Modal -->
+<div class="modal fade" id="videoModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                <h5 class="modal-title">Watch Video</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="ratio ratio-16x9">
+                    <iframe id="videoIframe" src="" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <form>
-        <input type="text" placeholder="Parent Name" required>
-        <input type="email" placeholder="Email Address" required>
-        <input type="tel" placeholder="Phone Number" required>
-        <textarea rows="5" placeholder="Message"></textarea>
-        <button type="submit">Send Inquiry</button>
-    </form>
-</section>
+<!-- Services -->
+<div id="services" class="container-fluid service py-5">
+    <div class="container py-5">
+        <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width:700px">
+            <h4 class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius">What We Do</h4>
+            <h1 class="mb-5 display-3">Thanks To Get Started With Our School</h1>
+        </div>
+        <div class="row g-5">
+            <div class="col-md-6 col-lg-6 col-xl-3 wow fadeIn" data-wow-delay="0.1s">
+                <div class="text-center border-primary border bg-white service-item">
+                    <div class="service-content d-flex align-items-center justify-content-center p-4">
+                        <div class="service-content-inner">
+                            <div class="p-4"><i class="fas fa-gamepad fa-6x text-primary"></i></div>
+                            <a href="#" class="h4">Study & Game</a>
+                            <p class="my-3">Engaging activities that balance learning with fun, building cognitive & motor skills.</p>
+                            <a href="#" class="btn btn-primary text-white px-4 py-2 my-2 btn-border-radius">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3 wow fadeIn" data-wow-delay="0.3s">
+                <div class="text-center border-primary border bg-white service-item">
+                    <div class="service-content d-flex align-items-center justify-content-center p-4">
+                        <div class="service-content-inner">
+                            <div class="p-4"><i class="fas fa-sort-alpha-down fa-6x text-primary"></i></div>
+                            <a href="#" class="h4">A to Z Programs</a>
+                            <p class="my-3">Comprehensive early literacy and numeracy from alphabet to problem-solving.</p>
+                            <a href="#" class="btn btn-primary text-white px-4 py-2 my-2 btn-border-radius">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3 wow fadeIn" data-wow-delay="0.5s">
+                <div class="text-center border-primary border bg-white service-item">
+                    <div class="service-content d-flex align-items-center justify-content-center p-4">
+                        <div class="service-content-inner">
+                            <div class="p-4"><i class="fas fa-users fa-6x text-primary"></i></div>
+                            <a href="#" class="h4">Expert Teacher</a>
+                            <p class="my-3">Dedicated, certified educators passionate about early childhood development.</p>
+                            <a href="#" class="btn btn-primary text-white px-4 py-2 my-2 btn-border-radius">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3 wow fadeIn" data-wow-delay="0.7s">
+                <div class="text-center border-primary border bg-white service-item">
+                    <div class="service-content d-flex align-items-center justify-content-center p-4">
+                        <div class="service-content-inner">
+                            <div class="p-4"><i class="fas fa-user-nurse fa-6x text-primary"></i></div>
+                            <a href="#" class="h4">Mental Health</a>
+                            <p class="my-3">Emotional well-being support, mindfulness and positive social interaction.</p>
+                            <a href="#" class="btn btn-primary text-white px-4 py-2 my-2 btn-border-radius">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<footer>
-    <p>
-        © 2026 Little Stars Daycare Center |
-        Safe • Caring • Learning
-    </p>
-</footer>
+<!-- Programs -->
+<div id="programs" class="container-fluid program py-5 bg-light">
+    <div class="container py-5">
+        <div class="mx-auto text-center wow fadeIn" style="max-width:700px">
+            <h4 class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius">Our Programs</h4>
+            <h1 class="mb-5 display-3">We Offer An Exclusive Program For Kids</h1>
+        </div>
+        <div class="row g-5 justify-content-center">
+            <!-- Program 1 -->
+            <div class="col-md-6 col-lg-6 col-xl-4 wow fadeIn">
+                <div class="program-item rounded">
+                    <div class="program-img position-relative">
+                        <div class="overflow-hidden img-border-radius">
+                            <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=600&h=400" class="img-fluid w-100" alt="Program">
+                        </div>
+                        <div class="px-4 py-2 bg-primary text-white program-rate">$60.99</div>
+                    </div>
+                    <div class="program-text bg-white px-4 pb-3">
+                        <div class="program-text-inner">
+                            <a href="#" class="h4">English For Today</a>
+                            <p class="mt-3 mb-0">Phonics, storytelling, and vocabulary building through play.</p>
+                        </div>
+                    </div>
+                    <div class="program-teacher d-flex align-items-center border-top border-primary bg-white px-4 py-3">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" class="img-fluid rounded-circle p-2 border border-primary bg-white" style="width:70px;height:70px;object-fit:cover">
+                        <div class="ms-3">
+                            <h6 class="mb-0 text-primary">Mary Mordern</h6>
+                            <small>Language Expert</small>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between px-4 py-2 bg-primary rounded-bottom">
+                        <small class="text-white"><i class="fas fa-wheelchair me-1"></i> 30 Sits</small>
+                        <small class="text-white"><i class="fas fa-book me-1"></i> 11 Lessons</small>
+                        <small class="text-white"><i class="fas fa-clock me-1"></i> 60 Hours</small>
+                    </div>
+                </div>
+            </div>
+            <!-- Program 2 -->
+            <div class="col-md-6 col-lg-6 col-xl-4 wow fadeIn" data-wow-delay="0.2s">
+                <div class="program-item rounded">
+                    <div class="program-img position-relative">
+                        <div class="overflow-hidden img-border-radius"><img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=600&h=400" class="img-fluid w-100"></div>
+                        <div class="px-4 py-2 bg-primary text-white program-rate">$70.99</div>
+                    </div>
+                    <div class="program-text bg-white px-4 pb-3"><div><a href="#" class="h4">Graphics Arts</a><p class="mt-3">Creative drawing, painting, and crafts to express imagination.</p></div></div>
+                    <div class="program-teacher d-flex align-items-center border-top border-primary bg-white px-4 py-3"><img src="https://randomuser.me/api/portraits/men/32.jpg" class="rounded-circle p-2 border border-primary bg-white" style="width:70px;height:70px;object-fit:cover"><div class="ms-3"><h6 class="text-primary">James Smith</h6><small>Art Director</small></div></div>
+                    <div class="d-flex justify-content-between px-4 py-2 bg-primary rounded-bottom"><small class="text-white"><i class="fas fa-wheelchair"></i> 25 Sits</small><small><i class="fas fa-book"></i> 8 Lessons</small><small><i class="fas fa-clock"></i> 45 Hours</small></div>
+                </div>
+            </div>
+            <!-- Program 3 -->
+            <div class="col-md-6 col-lg-6 col-xl-4 wow fadeIn" data-wow-delay="0.4s">
+                <div class="program-item rounded">
+                    <div class="program-img position-relative"><div class="overflow-hidden img-border-radius"><img src="https://images.unsplash.com/photo-1503454537195-1dcf73fb15d2?auto=format&fit=crop&w=600&h=400" class="img-fluid w-100"></div><div class="px-4 py-2 bg-primary text-white program-rate">$55.99</div></div>
+                    <div class="program-text bg-white px-4 pb-3"><div><a href="#" class="h4">General Science</a><p class="mt-3">Fun experiments, nature exploration & STEM foundation.</p></div></div>
+                    <div class="program-teacher d-flex align-items-center border-top border-primary bg-white px-4 py-3"><img src="https://randomuser.me/api/portraits/women/45.jpg" class="rounded-circle p-2 border border-primary bg-white" style="width:70px;height:70px;object-fit:cover"><div class="ms-3"><h6 class="text-primary">Sophia Lee</h6><small>Science Coach</small></div></div>
+                    <div class="d-flex justify-content-between px-4 py-2 bg-primary rounded-bottom"><small class="text-white"><i class="fas fa-wheelchair"></i> 28 Sits</small><small><i class="fas fa-book"></i> 10 Lessons</small><small><i class="fas fa-clock"></i> 50 Hours</small></div>
+                </div>
+            </div>
+            <div class="d-inline-block text-center wow fadeIn mt-4"><a href="#" class="btn btn-primary px-5 py-3 text-white btn-border-radius">View All Programs</a></div>
+        </div>
+    </div>
+</div>
 
+<!-- Events -->
+<div id="events" class="container-fluid events py-5">
+    <div class="container py-5">
+        <div class="mx-auto text-center wow fadeIn" style="max-width:700px"><h4 class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius">Our Events</h4><h1 class="mb-5 display-3">Our Upcoming Events</h1></div>
+        <div class="row g-5 justify-content-center">
+            <div class="col-md-6 col-lg-4 wow fadeIn"><div class="events-item bg-primary rounded"><div class="events-inner position-relative"><div class="events-img overflow-hidden rounded-circle mx-auto"><img src="https://images.unsplash.com/photo-1595450749869-34d2348c4f7b?auto=format&fit=crop&w=300&h=300" class="img-fluid rounded-circle"><div class="event-overlay"><a href="https://images.unsplash.com/photo-1595450749869-34d2348c4f7b?auto=format&fit=crop&w=600" data-lightbox="event-1"><i class="fas fa-search-plus text-white fa-2x"></i></a></div></div><div class="px-4 py-2 bg-secondary text-white text-center events-rate">29 Nov</div><div class="d-flex justify-content-between px-4 py-2 bg-secondary"><small class="text-white"><i class="fas fa-calendar me-1 text-primary"></i> 10:00am - 12:00pm</small><small class="text-white"><i class="fas fa-map-marker-alt me-1 text-primary"></i> New York</small></div></div><div class="events-text p-4 border border-primary bg-white border-top-0 rounded-bottom"><a href="#" class="h4">Music & drawing workshop</a><p class="mb-0 mt-3">Creative expression through rhythm and colors.</p></div></div></div>
+            <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.2s"><div class="events-item bg-primary rounded"><div class="events-inner position-relative"><div class="events-img overflow-hidden rounded-circle mx-auto"><img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=300&h=300" class="img-fluid rounded-circle"><div class="event-overlay"><a href="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=600" data-lightbox="event-2"><i class="fas fa-search-plus text-white fa-2x"></i></a></div></div><div class="px-4 py-2 bg-secondary text-white text-center events-rate">5 Dec</div><div class="d-flex justify-content-between px-4 py-2 bg-secondary"><small><i class="fas fa-calendar me-1 text-primary"></i> 2:00pm - 4:00pm</small><small><i class="fas fa-map-marker-alt me-1 text-primary"></i> Brooklyn</small></div></div><div class="events-text p-4 border border-primary bg-white border-top-0 rounded-bottom"><a href="#" class="h4">Why need study</a><p class="mb-0 mt-3">Parenting seminar: boosting kids' motivation to learn.</p></div></div></div>
+            <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.4s"><div class="events-item bg-primary rounded"><div class="events-inner position-relative"><div class="events-img overflow-hidden rounded-circle mx-auto"><img src="https://images.unsplash.com/photo-1594463744262-71ac402ed820?auto=format&fit=crop&w=300&h=300" class="img-fluid rounded-circle"><div class="event-overlay"><a href="https://images.unsplash.com/photo-1594463744262-71ac402ed820?auto=format&fit=crop&w=600" data-lightbox="event-3"><i class="fas fa-search-plus text-white fa-2x"></i></a></div></div><div class="px-4 py-2 bg-secondary text-white text-center events-rate">12 Dec</div><div class="d-flex justify-content-between px-4 py-2 bg-secondary"><small><i class="fas fa-calendar me-1 text-primary"></i> 9:00am - 11:00am</small><small><i class="fas fa-map-marker-alt me-1 text-primary"></i> Manhattan</small></div></div><div class="events-text p-4 border border-primary bg-white border-top-0 rounded-bottom"><a href="#" class="h4">Child health consciousness</a><p class="mb-0 mt-3">Nutrition & active lifestyle for toddlers.</p></div></div></div>
+        </div>
+    </div>
+</div>
+
+<!-- Blog, Team, Testimonials (simplified but rich) -->
+<div id="blog" class="container-fluid blog py-5 bg-light"><div class="container py-5"><div class="mx-auto text-center wow fadeIn"><h4 class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius">Latest News</h4><h1 class="mb-5 display-3">Read Our Latest Blog</h1></div><div class="row g-5 justify-content-center"><div class="col-md-6 col-lg-4 wow fadeIn"><div class="blog-item rounded-bottom"><div class="blog-img overflow-hidden"><img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600" class="img-fluid w-100"></div><div class="d-flex justify-content-between px-4 py-3 bg-light"><small><i class="fas fa-calendar me-1"></i> 29 Nov 2023</small><small><i class="fas fa-comment-alt me-1"></i> Comments (12)</small></div><div class="px-4 pb-4 bg-light"><a href="#" class="h4">How to pay attention to your child?</a><p class="mt-3">Tips for active listening and bonding.</p><div class="text-center mt-3"><a href="#" class="btn btn-primary px-4 py-2 btn-border-radius">Read More</a></div></div></div></div><div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.2s"><div class="blog-item"><div class="blog-img"><img src="https://images.unsplash.com/photo-1595450749869-34d2348c4f7b?auto=format&fit=crop&w=600" class="img-fluid"></div><div class="d-flex justify-content-between px-4 py-3 bg-light"><small><i class="fas fa-calendar"></i> 5 Dec 2023</small><small><i class="fas fa-comment-alt"></i> 8 Comments</small></div><div class="px-4 pb-4 bg-light"><a href="#" class="h4">Play outdoor sports with your child</a><p>Benefits of outdoor play for motor skills.</p><div class="text-center"><a href="#" class="btn btn-primary btn-border-radius">View Details</a></div></div></div></div></div></div></div>
+
+<!-- Team Section -->
+<div id="team" class="container-fluid team py-5"><div class="container py-5"><div class="mx-auto text-center wow fadeIn"><h4 class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius">Our Team</h4><h1 class="mb-5 display-3">Meet With Our Expert Teacher</h1></div><div class="row g-5 justify-content-center"><div class="col-md-6 col-lg-3 wow fadeIn"><div class="team-item border border-primary img-border-radius overflow-hidden position-relative"><img src="https://randomuser.me/api/portraits/women/89.jpg" class="img-fluid w-100"><div class="team-icon d-flex justify-content-center"><a class="btn btn-primary btn-md-square rounded-circle mx-1" href="#"><i class="fab fa-facebook-f"></i></a><a class="btn btn-primary btn-md-square rounded-circle mx-1" href="#"><i class="fab fa-twitter"></i></a><a class="btn btn-primary btn-md-square rounded-circle mx-1" href="#"><i class="fab fa-instagram"></i></a></div><div class="team-content text-center py-3"><h4 class="text-primary">Linda Carlson</h4><p>English Teacher</p></div></div></div><div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.2s"><div class="team-item border border-primary overflow-hidden"><img src="https://randomuser.me/api/portraits/men/75.jpg" class="img-fluid w-100"><div class="team-icon d-flex justify-content-center"><a class="btn btn-primary btn-md-square rounded-circle mx-1" href="#"><i class="fab fa-facebook-f"></i></a><a class="btn btn-primary btn-md-square rounded-circle mx-1" href="#"><i class="fab fa-twitter"></i></a></div><div class="team-content text-center py-3"><h4 class="text-primary">Robert Brown</h4><p>Math Coach</p></div></div></div></div></div></div>
+
+<!-- Testimonials OwlCarousel -->
+<div id="testimonials" class="container-fluid testimonial py-5 bg-light"><div class="container py-5"><div class="mx-auto text-center wow fadeIn"><h4 class="text-primary border-bottom border-primary d-inline-block p-2 title-border-radius">Testimonials</h4><h1 class="mb-5 display-3">Parents Say About Us</h1></div><div class="owl-carousel testimonial-carousel wow fadeIn">
+    <div class="testimonial-item bg-white border border-primary p-4 rounded-4"><i class="fa fa-quote-right fa-2x text-primary float-end"></i><div class="d-flex align-items-center"><img src="https://randomuser.me/api/portraits/women/44.jpg" class="rounded-circle border border-primary p-1" width="70" height="70" style="object-fit:cover"><div class="ms-3"><h4>Sarah Johnson</h4><p>Mother</p><div class="text-warning">★★★★★</div></div></div><p class="mt-3">"A safe and loving environment – my daughter has blossomed here!"</p></div>
+    <div class="testimonial-item bg-white border border-primary p-4 rounded-4"><i class="fa fa-quote-right fa-2x text-primary float-end"></i><div class="d-flex align-items-center"><img src="https://randomuser.me/api/portraits/men/42.jpg" class="rounded-circle border border-primary p-1" width="70" height="70"><div class="ms-3"><h4>Michael Lee</h4><p>Father</p><div class="text-warning">★★★★★</div></div></div><p class="mt-3">"Amazing teachers, my son loves the outdoor activities!"</p></div>
+    <div class="testimonial-item bg-white border border-primary p-4 rounded-4"><i class="fa fa-quote-right fa-2x text-primary float-end"></i><div class="d-flex align-items-center"><img src="https://randomuser.me/api/portraits/women/68.jpg" class="rounded-circle border border-primary p-1" width="70" height="70"><div class="ms-3"><h4>Emily Davis</h4><p>Parent</p><div class="text-warning">★★★★★</div></div></div><p class="mt-3">"Highly recommend! Structured learning and genuine care."</p></div>
+</div></div></div>
+
+<!-- Footer -->
+<footer class="container-fluid footer py-5 bg-dark text-white"><div class="container py-5"><div class="row g-5"><div class="col-lg-4"><h2 class="fw-bold"><span class="text-primary">Baby</span><span class="text-secondary">Care</span></h2><p>Nurturing curiosity & joy every day. Join our family today!</p><div class="border border-primary p-3 rounded"><h5>Newsletter</h5><div class="input-group"><input type="email" class="form-control" placeholder="Your email"><button class="btn btn-primary">SignUp</button></div></div></div><div class="col-lg-3"><h4 class="text-primary mb-3">Hours</h4><p>Mon-Fri: 8am - 5pm<br>Sat: 9am - 1pm<br>Sun: Closed</p></div><div class="col-lg-3"><h4 class="text-primary mb-3">Contact</h4><p><i class="fa fa-map-marker-alt me-2"></i> 123 Baby St, NY<br><i class="fa fa-phone me-2"></i> +1 234 567 890<br><i class="fa fa-envelope me-2"></i> hello@babycare.com</p><div class="d-flex gap-3"><a href="#" class="btn btn-primary btn-sm-square rounded-circle"><i class="fab fa-facebook-f"></i></a><a href="#" class="btn btn-primary btn-sm-square rounded-circle"><i class="fab fa-instagram"></i></a></div></div><div class="col-lg-2"><h4 class="text-primary mb-3">Gallery</h4><div class="row g-2"><div class="col-4"><img src="https://images.unsplash.com/photo-1595450749869-34d2348c4f7b?auto=format&fit=crop&w=100&h=100" class="img-fluid rounded-circle border border-primary p-1"></div><div class="col-4"><img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=100&h=100" class="img-fluid rounded-circle border border-primary p-1"></div><div class="col-4"><img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=100&h=100" class="img-fluid rounded-circle border border-primary p-1"></div></div></div></div><div class="border-top border-secondary mt-5 pt-4 text-center"><p class="mb-0">&copy; 2025 BabyCare | Designed with <i class="fa fa-heart text-danger"></i></p></div></div></footer>
+
+<a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+<script>
+    $(document).ready(function(){
+        setTimeout(() => $('#spinner').fadeOut('slow'), 800);
+        new WOW().init();
+        $('.testimonial-carousel').owlCarousel({
+            loop: true, margin: 20, nav: false, dots: true, autoplay: true, responsive: {0:{items:1}, 768:{items:2}, 992:{items:3}}
+        });
+        $(window).scroll(function(){ if($(this).scrollTop() > 300) $('.back-to-top').addClass('active'); else $('.back-to-top').removeClass('active'); });
+        $('.back-to-top').click(function(e){ e.preventDefault(); $('html,body').animate({scrollTop:0}, 500); });
+        $('#videoModal').on('show.bs.modal', function(e){
+            let src = $(e.relatedTarget).data('src');
+            $('#videoIframe').attr('src', src + '?autoplay=1');
+        }).on('hide.bs.modal', function(){ $('#videoIframe').attr('src', ''); });
+        $('.btn-play').click(function(){ $('#videoModal').modal('show'); });
+        $('a.nav-link[href^="#"]').on('click', function(e){ let target=$(this).attr('href'); if(target!="#"){ e.preventDefault(); $('html,body').animate({scrollTop: $(target).offset().top - 80}, 600); } });
+    });
+</script>
 </body>
 </html>

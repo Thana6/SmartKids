@@ -1,22 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BabyCare - Daycare & Nursery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Smart Kids – Daycare & Montessori | Batticaloa</title>
+    <meta name="description" content="Smart Kids Daycare & Montessori Center in Batticaloa – nurturing children with love, safety, and quality early education. Enrol today for a bright future.">
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (Free) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Bootstrap 5 CSS + JS (bundle includes Popper) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Lightbox2 CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
-    <!-- Owl Carousel CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <style>
         * {
             margin: 0;
@@ -24,454 +16,585 @@
             box-sizing: border-box;
         }
         body {
-            font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
+            font-family: 'Jost', sans-serif;
+            color: #444;
+            background: #fff;
+            line-height: 1.5;
         }
-        h1, h2, h3, h4, .navbar-brand, .btn {
+        h1, h2, h3, h4, h5, h6 {
             font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            color: #000;
         }
-        :root {
-            --primary: #ff6b4a;
-            --secondary: #f9b43a;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        .text-primary { color: var(--primary) !important; }
-        .text-secondary { color: var(--secondary) !important; }
-        .bg-primary { background-color: var(--primary) !important; }
-        .bg-secondary { background-color: var(--secondary) !important; }
-        .border-primary { border-color: var(--primary) !important; }
-        .btn-primary {
-            background-color: var(--primary);
-            border-color: var(--primary);
-            transition: 0.3s;
-        }
-        .btn-primary:hover {
-            background-color: #e55a3a;
-            border-color: #e55a3a;
-            transform: translateY(-2px);
-        }
-        .title-border-radius {
-            border-bottom: 3px solid var(--primary);
-            border-radius: 0 0 15px 15px;
-            padding-bottom: 8px !important;
+        .btn {
             display: inline-block;
-        }
-        .btn-border-radius {
-            border-radius: 50px !important;
-        }
-        .hero-header {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=2000&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-        .video {
-            background: url('https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80') center/cover;
-            min-height: 320px;
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .btn-play {
-            width: 80px;
-            height: 80px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
+            background: #E8063C;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
             transition: 0.3s;
             border: none;
+            cursor: pointer;
         }
-        .btn-play span {
-            width: 0;
-            height: 0;
-            border-left: 20px solid white;
-            border-top: 12px solid transparent;
-            border-bottom: 12px solid transparent;
-            display: inline-block;
-            margin-left: 5px;
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #E8063C;
+            color: #E8063C;
         }
-        .btn-play:hover { transform: scale(1.1); background: #e55a3a; }
-        .service-item {
-            transition: all 0.3s;
-            border-radius: 30px;
-            overflow: hidden;
+        .btn-outline:hover {
+            background: #E8063C;
+            color: #fff;
         }
-        .service-item:hover { transform: translateY(-10px); box-shadow: 0 20px 30px rgba(0,0,0,0.1); }
-        .program-item {
-            transition: 0.3s;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        .btn:hover {
+            background: #490D59;
+            color: #fff;
         }
-        .program-item:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .program-rate {
-            position: absolute;
-            bottom: -15px;
-            right: 20px;
-            border-radius: 40px;
-            font-weight: bold;
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
         }
-        .events-img {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto;
+        .section-title span {
+            color: #E8063C;
+            font-weight: 500;
+            letter-spacing: 1px;
+            display: block;
+            font-size: 1rem;
         }
-        .event-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-top: 10px;
+        }
+        /* Header */
+        .top-bar {
+            background: #490D59;
+            color: #fff;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        .top-bar .container {
             display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .top-bar a {
+            color: #FFD600;
+            text-decoration: none;
+            margin-left: 8px;
+        }
+        .top-bar i {
+            margin-right: 6px;
+        }
+        .main-header {
+            padding: 20px 0;
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: 0.3s;
+            flex-wrap: wrap;
+        }
+        .logo img {
+            max-height: 65px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #222;
+        }
+        .nav-links a:hover {
+            color: #E8063C;
+        }
+        .mobile-menu {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+        }
+        /* Hero */
+        .hero {
+            background: linear-gradient(rgba(73,13,89,0.8), rgba(73,13,89,0.9)), url('https://smartkids.org.lk/wp-content/uploads/2025/05/sd.jpg') center/cover no-repeat;
+            padding: 120px 0;
+            text-align: center;
+            color: white;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        /* About */
+        .about {
+            padding: 80px 0;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .about-img img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.1);
+        }
+        .about-content h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .features {
+            display: flex;
+            gap: 30px;
+            margin-top: 25px;
+        }
+        .feature-item {
+            background: #F0F6FA;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            flex: 1;
+        }
+        .feature-item i {
+            font-size: 40px;
+            color: #FFD600;
+            background: #490D59;
+            padding: 12px;
             border-radius: 50%;
         }
-        .events-img:hover .event-overlay { opacity: 1; }
-        .team-item {
-            transition: 0.3s;
+        /* Services */
+        .services {
+            background: #F9F9F9;
+            padding: 80px 0;
         }
-        .team-item:hover { transform: translateY(-8px); box-shadow: 0 15px 25px rgba(0,0,0,0.1); }
-        .back-to-top {
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background: #fff;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 24px;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        .service-card i {
+            font-size: 50px;
+            color: #E8063C;
+            margin-bottom: 20px;
+        }
+        .service-card h3 {
+            margin-bottom: 15px;
+        }
+        /* activities */
+        .activities {
+            padding: 80px 0;
+        }
+        .activity-slider {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding-bottom: 20px;
+        }
+        .activity-card {
+            min-width: 220px;
+            background: #490D59;
+            color: white;
+            padding: 25px;
+            border-radius: 30px;
+            text-align: center;
+        }
+        .activity-card h4 {
+            color: #FFD600;
+            margin: 10px 0;
+        }
+        /* blog */
+        .blog {
+            background: #F0F6FA;
+            padding: 80px 0;
+        }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .blog-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+        .blog-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .blog-card .content {
+            padding: 20px;
+        }
+        .blog-card h4 {
+            margin: 10px 0;
+        }
+        /* classes */
+        .classes {
+            padding: 80px 0;
+        }
+        .class-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .class-item {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: 0.2s;
+        }
+        .class-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .class-info {
+            padding: 20px;
+        }
+        .price {
+            color: #E8063C;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        /* testimonials */
+        .testimonials {
+            background: #490D59;
+            color: white;
+            padding: 80px 0;
+        }
+        .testi-card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 30px;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .testi-card i {
+            font-size: 40px;
+            color: #FFD600;
+            margin-bottom: 20px;
+        }
+        /* footer */
+        footer {
+            background: #111;
+            color: #ccc;
+            padding: 60px 0 30px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-grid h3 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        .footer-grid a {
+            color: #ccc;
+            text-decoration: none;
+        }
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu { display: block; }
+            .about-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2rem; }
+            .section-title h2 { font-size: 1.8rem; }
+        }
+        .whatsapp-float {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: 0.3s;
+            background: #25D366;
+            color: white;
+            border-radius: 50px;
+            padding: 12px 20px;
+            text-decoration: none;
+            font-weight: bold;
             z-index: 99;
-        }
-        .back-to-top.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        #spinner {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: white;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.4s;
-        }
-        .img-border-radius {
-            border-radius: 30px 30px 30px 10px;
-        }
-        @media (max-width: 768px) {
-            .display-1 { font-size: 2.5rem; }
-            .display-3 { font-size: 2rem; }
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
     </style>
 </head>
 <body>
-
-<!-- Spinner (will be hidden by JS after load) -->
-<div id="spinner">
-    <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status"></div>
-</div>
-
-<!-- Topbar + Navbar -->
-<div class="container-fluid border-bottom bg-light">
-    <div class="container topbar bg-primary d-none d-lg-block py-2" style="border-radius: 0 40px">
-        <div class="d-flex justify-content-between">
-            <div class="top-info ps-2">
-                <small class="me-3"><i class="fas fa-map-marker-alt me-2 text-white"></i> <a href="#" class="text-white">123 Sunshine Ave, New York</a></small>
-                <small class="me-3"><i class="fas fa-envelope me-2 text-white"></i><a href="#" class="text-white">hello@babycare.com</a></small>
-            </div>
-            <div class="top-link pe-2">
-                <a href="#" class="btn btn-light btn-sm-square rounded-circle"><i class="fab fa-facebook-f text-primary"></i></a>
-                <a href="#" class="btn btn-light btn-sm-square rounded-circle"><i class="fab fa-twitter text-primary"></i></a>
-                <a href="#" class="btn btn-light btn-sm-square rounded-circle"><i class="fab fa-instagram text-primary"></i></a>
-                <a href="#" class="btn btn-light btn-sm-square rounded-circle me-0"><i class="fab fa-linkedin-in text-primary"></i></a>
-            </div>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div><i class="fas fa-envelope"></i> Email: <a href="mailto:info@smartkids.org.lk">info@smartkids.org.lk</a></div>
+            <div><i class="fas fa-phone-alt"></i> Phone: <a href="tel:+94775511818">+94 77 5511 818</a></div>
+            <div><i class="fas fa-clock"></i> Mon-Fri: 7:00am – 6:00pm | Sat-Sun: Closed</div>
         </div>
     </div>
-    <div class="container px-0">
-        <nav class="navbar navbar-light navbar-expand-xl py-3">
-            <a href="#" class="navbar-brand"><h1 class="text-primary display-6">Baby<span class="text-secondary">Care</span></h1></a>
-            <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars text-primary"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav mx-auto">
-                    <a href="#home" class="nav-item nav-link active">Home</a>
-                    <a href="#about" class="nav-item nav-link">About</a>
-                    <a href="#services" class="nav-item nav-link">Services</a>
-                    <a href="#programs" class="nav-item nav-link">Programs</a>
-                    <a href="#events" class="nav-item nav-link">Events</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                            <a href="#blog" class="dropdown-item">Our Blog</a>
-                            <a href="#team" class="dropdown-item">Our Team</a>
-                            <a href="#testimonials" class="dropdown-item">Testimonial</a>
-                        </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="https://smartkids.org.lk/wp-content/uploads/2025/03/Web-Banner-SK-SVG.svg" alt="Smart Kids Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#classes">Classes</a></li>
+                <li><a href="#blog">Events</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu"><i class="fas fa-bars"></i></div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSebGk4MIHP9v4Wda9Ap1GONbSbELKMC0Apw4gGXzGjABeMPSA/viewform" class="btn" style="padding: 8px 20px;">Apply Today</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>We Prepare Your Child For Life</h1>
+            <p>Montessori is a nurturing and holistic approach to learning. Admissions for 2026 are now open! Safe, creative, and caring environment.</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSebGk4MIHP9v4Wda9Ap1GONbSbELKMC0Apw4gGXzGjABeMPSA/viewform" class="btn">Enrol Your Child</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-img">
+                    <img src="https://smartkids.org.lk/wp-content/uploads/2026/04/DSC04746-scaled.jpg" alt="Kids playing">
+                </div>
+                <div class="about-content">
+                    <span style="color:#E8063C; font-weight:600;">PART OF THE FAMILY</span>
+                    <h2>Your Child Will Take The Lead Learning</h2>
+                    <p>We are delighted to have you join our vibrant community. At Smart Kids, we believe in fostering a love for learning through a fun, safe, and supportive environment. Our dedicated team provides personalised attention to each child.</p>
+                    <div class="features">
+                        <div class="feature-item"><i class="fas fa-tree"></i><h4>15+</h4><p>Outdoor Activities</p></div>
+                        <div class="feature-item"><i class="fas fa-chalkboard-user"></i><h4>08</h4><p>Loving Teachers</p></div>
                     </div>
-                    <a href="#contact" class="nav-item nav-link">Contact</a>
+                    <a href="#" class="btn" style="margin-top:20px">Learn More</a>
                 </div>
-                <div class="d-flex me-4 align-items-center">
-                    <i class="fa fa-phone-alt text-primary fa-2x me-3"></i>
-                    <div class="d-flex flex-column border-start border-primary ps-3">
-                        <span class="text-primary">Have any questions?</span>
-                        <a href="#" class="text-secondary">Free: +1 234 567 890</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <span>WHAT WE OFFER</span>
+                <h2>Enrol Your Child In A Session Now!</h2>
+                <p>Pre-school has an ‘open door policy’ and also offers a free trial session to all children.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card"><i class="fas fa-puzzle-piece"></i><h3>Active Learning</h3><p>Children learn through fun activities and play experiences. This develops creativity and confidence.</p></div>
+                <div class="service-card"><i class="fas fa-hands"></i><h3>Child Care</h3><p>Safe, loving care for every child throughout the day. Trained staff ensure comfort and emotional support.</p></div>
+                <div class="service-card"><i class="fas fa-apple-alt"></i><h3>Healthy Meals</h3><p>Nutritious and balanced meals provided daily, focusing on hygiene and healthy eating habits.</p></div>
+                <div class="service-card"><i class="fas fa-shield-alt"></i><h3>Safety Environment</h3><p>Center designed with safety as top priority – CCTV, constant supervision, child-friendly spaces.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Smart Activities -->
+    <section class="activities">
+        <div class="container">
+            <div class="section-title">
+                <span>Learning Through Fun and Creativity</span>
+                <h2>Smart Activities</h2>
+            </div>
+            <div class="activity-slider">
+                <div class="activity-card"><i class="fas fa-puzzle-piece fa-2x"></i><h4>🧩 Puzzle Solving</h4><p>Problem-solving skills</p></div>
+                <div class="activity-card"><i class="fas fa-palette fa-2x"></i><h4>🎨 Coloring & Drawing</h4><p>Creativity boost</p></div>
+                <div class="activity-card"><i class="fas fa-font fa-2x"></i><h4>🔤 Alphabet Tracing</h4><p>Early writing</p></div>
+                <div class="activity-card"><i class="fas fa-calculator fa-2x"></i><h4>🔢 Number Counting</h4><p>Math foundation</p></div>
+                <div class="activity-card"><i class="fas fa-book-open fa-2x"></i><h4>📖 Storytelling</h4><p>Language skills</p></div>
+                <div class="activity-card"><i class="fas fa-brain fa-2x"></i><h4>🧠 Memory Games</h4><p>Concentration</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Classes -->
+    <section id="classes" class="classes">
+        <div class="container">
+            <div class="section-title">
+                <span>EXTRA CURRICULAR</span>
+                <h2>Special Classes</h2>
+                <p>🌟 Smart Kids starts following special classes 🌟</p>
+            </div>
+            <div class="class-grid">
+                <div class="class-item"><img src="https://smartkids.org.lk/wp-content/uploads/2023/09/2-360x306.jpg" alt="chess"><div class="class-info"><h3>♟️ Chess Class</h3><p>Age 4-10 years | 20 seats</p><p class="price">Rs. 3000 / month</p><a href="#" class="btn-outline btn" style="padding:6px 18px;">Enquire</a></div></div>
+                <div class="class-item"><img src="https://smartkids.org.lk/wp-content/uploads/2023/09/3-360x306.jpg" alt="elocution"><div class="class-info"><h3>🎤 Elocution Class</h3><p>Age 5-10 years | 25 seats</p><p class="price">Rs. 1200 / month</p><a href="#" class="btn-outline btn" style="padding:6px 18px;">Enquire</a></div></div>
+                <div class="class-item"><img src="https://smartkids.org.lk/wp-content/uploads/2023/09/4-360x306.jpg" alt="writing"><div class="class-info"><h3>✍️ Writing Class</h3><p>English, Tamil & Sinhala | Age 3-6</p><p class="price">Rs. 1000 / month</p><a href="#" class="btn-outline btn" style="padding:6px 18px;">Enquire</a></div></div>
+                <div class="class-item"><img src="https://smartkids.org.lk/wp-content/uploads/2023/09/5-360x306.jpg" alt="robotics"><div class="class-info"><h3>🤖 Robotic Class</h3><p>Age 6-10 years | 15 seats</p><p class="price">Rs. 2000 / month</p><a href="#" class="btn-outline btn" style="padding:6px 18px;">Enquire</a></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog / Events -->
+    <section id="blog" class="blog">
+        <div class="container">
+            <div class="section-title">
+                <span>RECENT EVENTS</span>
+                <h2>Smart Kids - Events and Activities</h2>
+            </div>
+            <div class="blog-grid">
+                <div class="blog-card"><img src="https://smartkids.org.lk/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-24-at-21.10.51-1-300x225.jpeg" alt="New Year"><div class="content"><span>April 24, 2026</span><h4>Tamil & Sinhala New Year Celebration 2026</h4><p>Joyful celebration with traditional outfits, games, and cultural activities.</p><a href="#" style="color:#E8063C">Read more →</a></div></div>
+                <div class="blog-card"><img src="https://smartkids.org.lk/wp-content/uploads/2024/06/galler1-4.jpg" alt="Hiring"><div class="content"><span>April 12, 2026</span><h4>Hiring – Trainee Care Givers</h4><p>We are looking for caring individuals to join our team. Apply now!</p><a href="#" style="color:#E8063C">Read more →</a></div></div>
+                <div class="blog-card"><img src="https://smartkids.org.lk/wp-content/uploads/2026/04/652585970_122188586138798840_8114648965250885701_n-1-1-300x225.jpg" alt="Anniversary"><div class="content"><span>March 17, 2026</span><h4>1st Anniversary of SmartKids Center</h4><p>A year of love, learning, and joyful growth. Celebrated with cake cutting and fun.</p><a href="#" style="color:#E8063C">Read more →</a></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timetable / Session Times -->
+    <section style="background:#E8063C10; padding:60px 0;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Daycare - Session Times</h2>
+                <p>We provide full-day care from 7:00 AM to 6:00 PM for children</p>
+            </div>
+            <div style="max-width:600px; margin:auto; background:white; border-radius:30px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.1);">
+                <div style="display:flex; justify-content:space-between; padding:15px 25px; border-bottom:1px solid #eee;"><span>Full-day Care</span><strong>7:00am – 6:00pm</strong></div>
+                <div style="display:flex; justify-content:space-between; padding:15px 25px; border-bottom:1px solid #eee;"><span>Half-day Care</span><strong>7:00am – 2:00pm</strong></div>
+                <div style="display:flex; justify-content:space-between; padding:15px 25px; border-bottom:1px solid #eee;"><span>Morning Care</span><strong>7:00am – 12:00noon</strong></div>
+                <div style="display:flex; justify-content:space-between; padding:15px 25px;"><span>After Care</span><strong>12:00pm – 6:00pm</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title" style="color:white">
+                <span style="color:#FFD600">TESTIMONIALS</span>
+                <h2 style="color:white">Parents Reviews</h2>
+            </div>
+            <div class="testi-card">
+                <i class="fas fa-quote-left"></i>
+                <p>"Smart Kids Day Care offers a safe and nurturing environment. My child has grown so much in confidence and skills. The teachers are amazing!"</p>
+                <h4 style="color:#FFD600">- Praveena Thanistan</h4>
+                <div><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            </div>
+            <div class="testi-card" style="margin-top:30px">
+                <i class="fas fa-quote-left"></i>
+                <p>"என் மகன் மகள் டேகேர் வாழ்க்கையைத் தொடங்கி, இன்று அவன்/அவள் காட்டும் வளர்ச்சியும் மகிழ்ச்சியும் எங்களை மிகவும் பெருமைப்படுத்துகிறது. Smart Kids is a second home!"</p>
+                <h4 style="color:#FFD600">- Thanu Disha</h4>
+                <div><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ / Montessori Guide -->
+    <section style="padding:80px 0">
+        <div class="container">
+            <div class="about-grid">
+                <div><img src="https://smartkids.org.lk/wp-content/uploads/2026/04/IMG_3994-1024x683.jpg" alt="classroom" style="width:100%; border-radius:28px;"></div>
+                <div>
+                    <h2>Guide To Montessori</h2>
+                    <div style="margin-top:20px">
+                        <details style="margin-bottom:15px; background:#f5f5f5; padding:15px; border-radius:16px;"><summary style="font-weight:bold; cursor:pointer;">What is Montessori education?</summary><p>Child-centered learning that encourages independence and hands-on learning at their own pace.</p></details>
+                        <details style="margin-bottom:15px; background:#f5f5f5; padding:15px; border-radius:16px;"><summary style="font-weight:bold; cursor:pointer;">What age group is suitable for preschool?</summary><p>Ideal for children aged 2.5 to 5 years – focusing on early development and social skills.</p></details>
+                        <details style="margin-bottom:15px; background:#f5f5f5; padding:15px; border-radius:16px;"><summary style="font-weight:bold; cursor:pointer;">What do children learn?</summary><p>Letters, numbers, colors, communication, motor and emotional skills through play.</p></details>
+                        <details style="background:#f5f5f5; padding:15px; border-radius:16px;"><summary style="font-weight:bold; cursor:pointer;">Is safety important?</summary><p>Absolutely – secure, clean, supervised environment with CCTV and trained staff.</p></details>
                     </div>
                 </div>
-                <button class="btn btn-primary btn-md-square rounded-circle" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-white"></i></button>
             </div>
-        </nav>
-    </div>
-</div>
+        </div>
+    </section>
 
-<!-- Search Modal -->
-<div class="modal fade" id="searchModal" tabindex="-1">
-    <div class="modal-dialog modal-fullscreen">
-        <div class="modal-content rounded-0">
-            <div class="modal-header">
-                <h5 class="modal-title">Search</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body d-flex align-items-center">
-                <div class="input-group w-75 mx-auto">
-                    <input type="text" class="form-control p-3" placeholder="Keywords...">
-                    <button class="btn btn-primary px-4"><i class="fa fa-search"></i></button>
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <img src="https://smartkids.org.lk/wp-content/uploads/2025/03/Web-Banner-SK-SVG.svg" alt="logo" style="max-width:160px; filter:brightness(0) invert(1);">
+                    <p style="margin-top:15px">Giving your child the best start in life. Safe, fun, and educational environment.</p>
+                </div>
+                <div>
+                    <h3>Get In Touch</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> No 61 A, Lake Road - 1, Batticaloa.</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+94775511818">+94 77 5511 818</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@smartkids.org.lk">info@smartkids.org.lk</a></p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 7am – 6pm | Sat-Sun: Closed</p>
+                </div>
+                <div>
+                    <h3>Useful Links</h3>
+                    <p><a href="#">About Us</a></p>
+                    <p><a href="#">Daycare</a></p>
+                    <p><a href="#">Montessori</a></p>
+                    <p><a href="#">Events</a></p>
+                    <p><a href="#">Contact</a></p>
+                </div>
+                <div>
+                    <h3>Follow Us</h3>
+                    <a href="https://web.facebook.com/profile.php?id=61573965225366" style="margin-right:15px; font-size:24px;"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.youtube.com/@SmartKids0025" style="margin-right:15px; font-size:24px;"><i class="fab fa-youtube"></i></a>
+                    <a href="http://wa.me/+94775511818" style="font-size:24px;"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-
-<!-- Hero Section -->
-<section id="home" class="container-fluid py-5 hero-header">
-    <div class="container py-5">
-        <div class="row g-5">
-            <div class="col-lg-7 col-md-12">
-                <h1 class="mb-3 text-primary">We Care Your Baby</h1>
-                <h1 class="mb-5 display-1 text-white">The Best Play Area For Your Kids</h1>
-                <a href="#contact" class="btn btn-primary px-4 py-3 px-md-5 me-4 btn-border-radius">Get Started</a>
-                <a href="#about" class="btn btn-primary px-4 py-3 px-md-5 btn-border-radius">Learn More</a>
+            <div class="copyright">
+                <p>Copyright © 2025 Smart Kids. All Rights Reserved.</p>
             </div>
         </div>
-    </div>
-</section>
+    </footer>
 
-<!-- About -->
-<section id="about" class="container-fluid py-5 about bg-light">
-    <div class="container py-5">
-        <div class="row g-5 align-items-center">
-            <div class="col-lg-5">
-                <div class="video">
-                    <button type="button" class="btn-play" data-bs-toggle="modal" data-bs-target="#videoModal">
-                        <span></span>
-                    </button>
-                </div>
-            </div>
-            <div class="col-lg-7">
-                <h4 class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius">About Us</h4>
-                <h1 class="text-dark mb-4 display-5">We Learn Smart Way To Build Bright Future For Your Children</h1>
-                <p class="text-dark mb-4">At BabyCare, we create a loving, stimulating environment where children explore, discover, and grow. Our play-based curriculum fosters creativity and social skills, preparing little ones for a lifetime of learning.</p>
-                <div class="row mb-4">
-                    <div class="col-lg-6"><h6><i class="fas fa-check-circle text-primary me-2"></i>Sport Activities</h6><h6><i class="fas fa-check-circle text-primary me-2"></i>Outdoor Games</h6><h6><i class="fas fa-check-circle text-primary me-2"></i>Nutritious Foods</h6></div>
-                    <div class="col-lg-6"><h6><i class="fas fa-check-circle text-primary me-2"></i>Highly Secured</h6><h6><i class="fas fa-check-circle text-primary me-2"></i>Friendly Environment</h6><h6><i class="fas fa-check-circle text-primary me-2"></i>Qualified Teacher</h6></div>
-                </div>
-                <a href="#contact" class="btn btn-primary px-5 py-3 btn-border-radius">More Details</a>
-            </div>
-        </div>
-    </div>
-</section>
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/94775511818" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i> Chat with us</a>
 
-<!-- Video Modal -->
-<div class="modal fade" id="videoModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content rounded-0">
-            <div class="modal-header"><h5>Promo Video</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
-            <div class="modal-body">
-                <div class="ratio ratio-16x9">
-                    <iframe id="videoIframe" src="" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Services -->
-<section id="services" class="container-fluid service py-5">
-    <div class="container py-5">
-        <div class="text-center mb-5"><h4 class="text-primary title-border-radius">What We Do</h4><h1 class="display-3 mt-3">Thanks To Get Started With Our School</h1></div>
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-3"><div class="service-item bg-white border border-primary p-4 text-center rounded-4"><i class="fas fa-gamepad fa-4x text-primary mb-3"></i><h4>Study & Game</h4><p>Engaging activities that balance learning with fun.</p><a href="#" class="btn btn-primary btn-border-radius mt-2">Read More</a></div></div>
-            <div class="col-md-6 col-lg-3"><div class="service-item bg-white border border-primary p-4 text-center rounded-4"><i class="fas fa-sort-alpha-down fa-4x text-primary mb-3"></i><h4>A to Z Programs</h4><p>Literacy and numeracy from alphabet to problem solving.</p><a href="#" class="btn btn-primary btn-border-radius mt-2">Read More</a></div></div>
-            <div class="col-md-6 col-lg-3"><div class="service-item bg-white border border-primary p-4 text-center rounded-4"><i class="fas fa-users fa-4x text-primary mb-3"></i><h4>Expert Teacher</h4><p>Certified educators passionate about child development.</p><a href="#" class="btn btn-primary btn-border-radius mt-2">Read More</a></div></div>
-            <div class="col-md-6 col-lg-3"><div class="service-item bg-white border border-primary p-4 text-center rounded-4"><i class="fas fa-user-nurse fa-4x text-primary mb-3"></i><h4>Mental Health</h4><p>Emotional well-being and positive social interaction.</p><a href="#" class="btn btn-primary btn-border-radius mt-2">Read More</a></div></div>
-        </div>
-    </div>
-</section>
-
-<!-- Programs -->
-<section id="programs" class="container-fluid program py-5 bg-light">
-    <div class="container py-5">
-        <div class="text-center mb-5"><h4 class="text-primary title-border-radius">Our Programs</h4><h1 class="display-3">We Offer An Exclusive Program For Kids</h1></div>
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-4"><div class="program-item bg-white rounded-4"><div class="position-relative"><img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=600&h=400" class="img-fluid w-100"><div class="program-rate bg-primary text-white px-3 py-1 position-absolute">$60.99</div></div><div class="p-4"><h4>English For Today</h4><p>Phonics, storytelling, vocabulary building through play.</p></div><div class="d-flex align-items-center border-top p-3"><img src="https://randomuser.me/api/portraits/women/68.jpg" class="rounded-circle border border-primary p-1" width="60" height="60"><div class="ms-3"><h6 class="text-primary">Mary Mordern</h6><small>Language Expert</small></div></div><div class="d-flex justify-content-between bg-primary text-white px-3 py-2 rounded-bottom"><small><i class="fas fa-wheelchair"></i> 30 sits</small><small><i class="fas fa-book"></i> 11 lessons</small><small><i class="fas fa-clock"></i> 60 hrs</small></div></div></div>
-            <div class="col-md-6 col-lg-4"><div class="program-item bg-white rounded-4"><div class="position-relative"><img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=600&h=400" class="img-fluid w-100"><div class="program-rate bg-primary text-white px-3 py-1 position-absolute">$70.99</div></div><div class="p-4"><h4>Graphics Arts</h4><p>Creative drawing, painting, crafts to express imagination.</p></div><div class="d-flex align-items-center border-top p-3"><img src="https://randomuser.me/api/portraits/men/32.jpg" class="rounded-circle border border-primary p-1" width="60" height="60"><div class="ms-3"><h6 class="text-primary">James Smith</h6><small>Art Director</small></div></div><div class="d-flex justify-content-between bg-primary text-white px-3 py-2 rounded-bottom"><small><i class="fas fa-wheelchair"></i> 25 sits</small><small><i class="fas fa-book"></i> 8 lessons</small><small><i class="fas fa-clock"></i> 45 hrs</small></div></div></div>
-            <div class="col-md-6 col-lg-4"><div class="program-item bg-white rounded-4"><div class="position-relative"><img src="https://images.unsplash.com/photo-1503454537195-1dcf73fb15d2?auto=format&fit=crop&w=600&h=400" class="img-fluid w-100"><div class="program-rate bg-primary text-white px-3 py-1 position-absolute">$55.99</div></div><div class="p-4"><h4>General Science</h4><p>Fun experiments, nature exploration & STEM foundation.</p></div><div class="d-flex align-items-center border-top p-3"><img src="https://randomuser.me/api/portraits/women/45.jpg" class="rounded-circle border border-primary p-1" width="60" height="60"><div class="ms-3"><h6 class="text-primary">Sophia Lee</h6><small>Science Coach</small></div></div><div class="d-flex justify-content-between bg-primary text-white px-3 py-2 rounded-bottom"><small><i class="fas fa-wheelchair"></i> 28 sits</small><small><i class="fas fa-book"></i> 10 lessons</small><small><i class="fas fa-clock"></i> 50 hrs</small></div></div></div>
-        </div>
-        <div class="text-center mt-5"><a href="#" class="btn btn-primary px-5 py-3 btn-border-radius">View All Programs</a></div>
-    </div>
-</section>
-
-<!-- Events -->
-<section id="events" class="container-fluid events py-5">
-    <div class="container py-5">
-        <div class="text-center mb-5"><h4 class="text-primary title-border-radius">Our Events</h4><h1 class="display-3">Our Upcoming Events</h1></div>
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-4"><div class="events-item bg-primary rounded-4 p-3"><div class="text-center"><div class="events-img overflow-hidden rounded-circle mx-auto"><img src="https://images.unsplash.com/photo-1595450749869-34d2348c4f7b?auto=format&fit=crop&w=300&h=300" class="img-fluid rounded-circle"><div class="event-overlay"><a href="https://images.unsplash.com/photo-1595450749869-34d2348c4f7b?auto=format&fit=crop&w=600" data-lightbox="events"><i class="fas fa-search-plus text-white fa-2x"></i></a></div></div><div class="bg-secondary text-white d-inline-block px-3 py-1 rounded-pill mt-2">29 Nov</div><div class="d-flex justify-content-between mt-2 text-white"><small><i class="fas fa-calendar"></i> 10:00am - 12:00pm</small><small><i class="fas fa-map-marker-alt"></i> New York</small></div></div><div class="bg-white p-3 rounded-3 mt-3"><h4>Music & drawing workshop</h4><p>Creative expression through rhythm and colors.</p></div></div></div>
-            <div class="col-md-6 col-lg-4"><div class="events-item bg-primary rounded-4 p-3"><div class="text-center"><div class="events-img overflow-hidden rounded-circle mx-auto"><img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=300&h=300" class="img-fluid rounded-circle"><div class="event-overlay"><a href="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=600" data-lightbox="events"><i class="fas fa-search-plus"></i></a></div></div><div class="bg-secondary text-white d-inline-block px-3 py-1 rounded-pill mt-2">5 Dec</div><div class="d-flex justify-content-between mt-2 text-white"><small><i class="fas fa-calendar"></i> 2:00pm - 4:00pm</small><small><i class="fas fa-map-marker-alt"></i> Brooklyn</small></div></div><div class="bg-white p-3 rounded-3 mt-3"><h4>Why need study</h4><p>Parenting seminar: boosting kids' motivation to learn.</p></div></div></div>
-            <div class="col-md-6 col-lg-4"><div class="events-item bg-primary rounded-4 p-3"><div class="text-center"><div class="events-img overflow-hidden rounded-circle mx-auto"><img src="https://images.unsplash.com/photo-1594463744262-71ac402ed820?auto=format&fit=crop&w=300&h=300" class="img-fluid rounded-circle"><div class="event-overlay"><a href="https://images.unsplash.com/photo-1594463744262-71ac402ed820?auto=format&fit=crop&w=600" data-lightbox="events"><i class="fas fa-search-plus"></i></a></div></div><div class="bg-secondary text-white d-inline-block px-3 py-1 rounded-pill mt-2">12 Dec</div><div class="d-flex justify-content-between mt-2 text-white"><small><i class="fas fa-calendar"></i> 9:00am - 11:00am</small><small><i class="fas fa-map-marker-alt"></i> Manhattan</small></div></div><div class="bg-white p-3 rounded-3 mt-3"><h4>Child health consciousness</h4><p>Nutrition & active lifestyle for toddlers.</p></div></div></div>
-        </div>
-    </div>
-</section>
-
-<!-- Blog -->
-<section id="blog" class="container-fluid blog py-5 bg-light">
-    <div class="container py-5">
-        <div class="text-center mb-5"><h4 class="text-primary title-border-radius">Latest News</h4><h1 class="display-3">Read Our Latest Blog</h1></div>
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-4"><div class="bg-white rounded-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600" class="img-fluid w-100"><div class="p-3"><div class="d-flex justify-content-between text-muted small mb-2"><span><i class="far fa-calendar"></i> 29 Nov 2023</span><span><i class="far fa-comment"></i> 12 comments</span></div><h4>How to pay attention to your child?</h4><p>Tips for active listening and bonding.</p><a href="#" class="btn btn-primary btn-border-radius px-4">Read More</a></div></div></div>
-            <div class="col-md-6 col-lg-4"><div class="bg-white rounded-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1595450749869-34d2348c4f7b?auto=format&fit=crop&w=600" class="img-fluid w-100"><div class="p-3"><div class="d-flex justify-content-between text-muted small mb-2"><span><i class="far fa-calendar"></i> 5 Dec 2023</span><span><i class="far fa-comment"></i> 8 comments</span></div><h4>Play outdoor sports with your child</h4><p>Benefits of outdoor play for motor skills.</p><a href="#" class="btn btn-primary btn-border-radius px-4">Read More</a></div></div></div>
-            <div class="col-md-6 col-lg-4"><div class="bg-white rounded-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=600" class="img-fluid w-100"><div class="p-3"><div class="d-flex justify-content-between text-muted small mb-2"><span><i class="far fa-calendar"></i> 12 Dec 2023</span><span><i class="far fa-comment"></i> 15 comments</span></div><h4>How to make time for your kids?</h4><p>Practical tips for busy parents.</p><a href="#" class="btn btn-primary btn-border-radius px-4">Read More</a></div></div></div>
-        </div>
-    </div>
-</section>
-
-<!-- Team -->
-<section id="team" class="container-fluid team py-5">
-    <div class="container py-5">
-        <div class="text-center mb-5"><h4 class="text-primary title-border-radius">Our Team</h4><h1 class="display-3">Meet With Our Expert Teacher</h1></div>
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-3"><div class="team-item bg-white border border-primary rounded-4 text-center p-3"><img src="https://randomuser.me/api/portraits/women/89.jpg" class="rounded-circle border border-primary p-1" width="150" height="150" style="object-fit:cover"><h4 class="mt-3 text-primary">Linda Carlson</h4><p>English Teacher</p><div class="d-flex justify-content-center gap-2"><a href="#" class="btn btn-sm btn-primary rounded-circle"><i class="fab fa-facebook-f"></i></a><a href="#" class="btn btn-sm btn-primary rounded-circle"><i class="fab fa-twitter"></i></a><a href="#" class="btn btn-sm btn-primary rounded-circle"><i class="fab fa-instagram"></i></a></div></div></div>
-            <div class="col-md-6 col-lg-3"><div class="team-item bg-white border border-primary rounded-4 text-center p-3"><img src="https://randomuser.me/api/portraits/men/75.jpg" class="rounded-circle border border-primary p-1" width="150" height="150" style="object-fit:cover"><h4 class="mt-3 text-primary">Robert Brown</h4><p>Math Coach</p><div class="d-flex justify-content-center gap-2"><a href="#" class="btn btn-sm btn-primary rounded-circle"><i class="fab fa-facebook-f"></i></a><a href="#" class="btn btn-sm btn-primary rounded-circle"><i class="fab fa-twitter"></i></a></div></div></div>
-            <div class="col-md-6 col-lg-3"><div class="team-item bg-white border border-primary rounded-4 text-center p-3"><img src="https://randomuser.me/api/portraits/women/44.jpg" class="rounded-circle border border-primary p-1" width="150" height="150"><h4 class="mt-3 text-primary">Emily White</h4><p>Art Teacher</p><div class="d-flex justify-content-center gap-2"><a href="#" class="btn btn-sm btn-primary rounded-circle"><i class="fab fa-instagram"></i></a></div></div></div>
-            <div class="col-md-6 col-lg-3"><div class="team-item bg-white border border-primary rounded-4 text-center p-3"><img src="https://randomuser.me/api/portraits/men/42.jpg" class="rounded-circle border border-primary p-1" width="150" height="150"><h4 class="mt-3 text-primary">David Miller</h4><p>Sports Coach</p><div class="d-flex justify-content-center gap-2"><a href="#" class="btn btn-sm btn-primary rounded-circle"><i class="fab fa-twitter"></i></a></div></div></div>
-        </div>
-    </div>
-</section>
-
-<!-- Testimonials Carousel -->
-<section id="testimonials" class="container-fluid testimonial py-5 bg-light">
-    <div class="container py-5">
-        <div class="text-center mb-5"><h4 class="text-primary title-border-radius">Testimonials</h4><h1 class="display-3">Parents Say About Us</h1></div>
-        <div class="owl-carousel testimonial-carousel owl-theme">
-            <div class="item"><div class="bg-white border border-primary p-4 rounded-4"><i class="fa fa-quote-right fa-2x text-primary float-end"></i><div class="d-flex"><img src="https://randomuser.me/api/portraits/women/68.jpg" class="rounded-circle border border-primary p-1" width="70"><div class="ms-3"><h4>Sarah Johnson</h4><p>Mother</p><div class="text-warning">★★★★★</div></div></div><p class="mt-3">"A safe and loving environment – my daughter has blossomed here!"</p></div></div>
-            <div class="item"><div class="bg-white border border-primary p-4 rounded-4"><i class="fa fa-quote-right fa-2x text-primary float-end"></i><div class="d-flex"><img src="https://randomuser.me/api/portraits/men/32.jpg" class="rounded-circle border border-primary p-1" width="70"><div class="ms-3"><h4>Michael Lee</h4><p>Father</p><div class="text-warning">★★★★★</div></div></div><p class="mt-3">"Amazing teachers, my son loves the outdoor activities!"</p></div></div>
-            <div class="item"><div class="bg-white border border-primary p-4 rounded-4"><i class="fa fa-quote-right fa-2x text-primary float-end"></i><div class="d-flex"><img src="https://randomuser.me/api/portraits/women/45.jpg" class="rounded-circle border border-primary p-1" width="70"><div class="ms-3"><h4>Emily Davis</h4><p>Parent</p><div class="text-warning">★★★★★</div></div></div><p class="mt-3">"Highly recommend! Structured learning and genuine care."</p></div></div>
-        </div>
-    </div>
-</section>
-
-<!-- Contact & Footer combined -->
-<footer id="contact" class="container-fluid footer bg-dark text-white pt-5">
-    <div class="container">
-        <div class="row g-5">
-            <div class="col-lg-4"><h2 class="fw-bold"><span class="text-primary">Baby</span><span class="text-secondary">Care</span></h2><p>Nurturing curiosity & joy every day. Join our family today!</p><div class="border border-primary p-3 rounded"><h5>Newsletter</h5><div class="input-group"><input type="email" class="form-control" placeholder="Your email"><button class="btn btn-primary">SignUp</button></div></div></div>
-            <div class="col-lg-3"><h4 class="text-primary mb-3">Hours</h4><p>Mon-Fri: 8am - 5pm<br>Sat: 9am - 1pm<br>Sun: Closed</p></div>
-            <div class="col-lg-3"><h4 class="text-primary mb-3">Contact</h4><p><i class="fa fa-map-marker-alt me-2"></i> 123 Baby St, NY<br><i class="fa fa-phone me-2"></i> +1 234 567 890<br><i class="fa fa-envelope me-2"></i> hello@babycare.com</p><div class="d-flex gap-3"><a href="#" class="btn btn-primary btn-sm-square rounded-circle"><i class="fab fa-facebook-f"></i></a><a href="#" class="btn btn-primary btn-sm-square rounded-circle"><i class="fab fa-instagram"></i></a></div></div>
-            <div class="col-lg-2"><h4 class="text-primary mb-3">Gallery</h4><div class="row g-2"><div class="col-4"><img src="https://images.unsplash.com/photo-1595450749869-34d2348c4f7b?auto=format&fit=crop&w=100&h=100" class="img-fluid rounded-circle border border-primary p-1"></div><div class="col-4"><img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=100&h=100" class="img-fluid rounded-circle border border-primary p-1"></div><div class="col-4"><img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=100&h=100" class="img-fluid rounded-circle border border-primary p-1"></div></div></div>
-        </div>
-        <div class="border-top border-secondary mt-5 pt-4 text-center pb-4"><p>&copy; 2025 BabyCare | Designed with <i class="fa fa-heart text-danger"></i></p></div>
-    </div>
-</footer>
-
-<a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
-
-<!-- Required Scripts -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-<script>
-    (function() {
-        // Hide spinner after page fully loaded
-        window.addEventListener('load', function() {
-            var spinner = document.getElementById('spinner');
-            if (spinner) {
-                spinner.style.opacity = '0';
-                setTimeout(function() {
-                    spinner.style.display = 'none';
-                }, 500);
-            }
-        });
-
-        // Initialize Owl Carousel
-        $('.testimonial-carousel').owlCarousel({
-            loop: true,
-            margin: 20,
-            nav: false,
-            dots: true,
-            autoplay: true,
-            autoplayTimeout: 4000,
-            responsive: {
-                0: { items: 1 },
-                768: { items: 2 },
-                992: { items: 3 }
-            }
-        });
-
-        // Back to top button
-        var backBtn = document.querySelector('.back-to-top');
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 300) backBtn.classList.add('active');
-            else backBtn.classList.remove('active');
-        });
-        backBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Smooth scroll for nav links
-        document.querySelectorAll('.nav-link[href^="#"], .dropdown-item[href^="#"]').forEach(anchor => {
+    <script>
+        // simple mobile menu toggle
+        const mobileBtn = document.querySelector('.mobile-menu');
+        const nav = document.querySelector('.nav-links');
+        if(mobileBtn) {
+            mobileBtn.addEventListener('click', () => {
+                if(nav.style.display === 'flex') nav.style.display = 'none';
+                else nav.style.display = 'flex';
+            });
+        }
+        // smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                let targetId = this.getAttribute('href');
-                if (targetId && targetId !== '#') {
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
                     e.preventDefault();
-                    let target = document.querySelector(targetId);
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        // Close mobile menu if open
-                        let bsCollapse = bootstrap.Collapse.getInstance(document.getElementById('navbarCollapse'));
-                        if (bsCollapse) bsCollapse.hide();
-                    }
+                    target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });
-
-        // Video modal dynamic src
-        var videoModal = document.getElementById('videoModal');
-        if (videoModal) {
-            videoModal.addEventListener('show.bs.modal', function(event) {
-                var button = event.relatedTarget;
-                var iframe = document.getElementById('videoIframe');
-                iframe.src = "https://www.youtube.com/embed/DWRcNpR6Kdc?autoplay=1";
-            });
-            videoModal.addEventListener('hide.bs.modal', function() {
-                document.getElementById('videoIframe').src = "";
-            });
-        }
-    })();
-</script>
+    </script>
 </body>
 </html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Little Stars Daycare</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    line-height:1.6;
+}
+
+header{
+    background:#ff7f50;
+    color:white;
+    padding:15px 50px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+.hero{
+    background:url('https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=1600') center/cover;
+    height:80vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+}
+
+.hero-content{
+    background:rgba(0,0,0,0.5);
+    padding:30px;
+    border-radius:10px;
+}
+
+.hero h1{
+    font-size:50px;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 25px;
+    background:#ff7f50;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+}
+
+section{
+    padding:60px 10%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:30px;
+    color:#333;
+}
+
+.about{
+    text-align:center;
+}
+
+.programs{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:#f9f9f9;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:15px;
+}
+
+.gallery img{
+    width:100%;
+    border-radius:10px;
+    height:250px;
+    object-fit:cover;
+}
+
+.contact{
+    background:#f5f5f5;
+}
+
+form{
+    max-width:600px;
+    margin:auto;
+}
+
+input, textarea{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+button{
+    background:#ff7f50;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+footer{
+    background:#333;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+@media(max-width:768px){
+    header{
+        flex-direction:column;
+    }
+
+    nav{
+        margin-top:10px;
+    }
+
+    .hero h1{
+        font-size:35px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Little Stars Daycare</div>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#programs">Programs</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Welcome to Little Stars Daycare</h1>
+        <p>Safe, Caring and Fun Learning Environment for Children</p>
+        <a href="#contact" class="btn">Enroll Today</a>
+    </div>
+</section>
+
+<section id="about">
+    <h2 class="section-title">About Us</h2>
+    <div class="about">
+        <p>
+            Little Stars Daycare provides a nurturing environment where children
+            can learn, play, and grow. Our trained caregivers ensure every child
+            receives personalized attention and care.
+        </p>
+    </div>
+</section>
+
+<section id="programs">
+    <h2 class="section-title">Our Programs</h2>
+
+    <div class="programs">
+
+        <div class="card">
+            <h3>Infant Care</h3>
+            <p>6 Months - 2 Years</p>
+        </div>
+
+        <div class="card">
+            <h3>Toddler Program</h3>
+            <p>2 - 4 Years</p>
+        </div>
+
+        <div class="card">
+            <h3>Preschool</h3>
+            <p>4 - 6 Years</p>
+        </div>
+
+        <div class="card">
+            <h3>After School Care</h3>
+            <p>Homework & Activities</p>
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title">Facilities</h2>
+
+    <div class="programs">
+
+        <div class="card">
+            <h3>Safe Playground</h3>
+        </div>
+
+        <div class="card">
+            <h3>Learning Center</h3>
+        </div>
+
+        <div class="card">
+            <h3>Healthy Meals</h3>
+        </div>
+
+        <div class="card">
+            <h3>CCTV Monitoring</h3>
+        </div>
+
+    </div>
+</section>
+
+<section id="gallery">
+    <h2 class="section-title">Gallery</h2>
+
+    <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800">
+        <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=800">
+        <img src="https://images.unsplash.com/photo-1516627145497-f53c7c3e7f2d?w=800">
+        <img src="https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?w=800">
+    </div>
+</section>
+
+<section id="contact" class="contact">
+    <h2 class="section-title">Contact Us</h2>
+
+    <form>
+        <input type="text" placeholder="Parent Name" required>
+        <input type="email" placeholder="Email Address" required>
+        <input type="tel" placeholder="Phone Number" required>
+        <textarea rows="5" placeholder="Message"></textarea>
+        <button type="submit">Send Inquiry</button>
+    </form>
+</section>
+
+<footer>
+    <p>
+        © 2026 Little Stars Daycare Center |
+        Safe • Caring • Learning
+    </p>
+</footer>
+
+</body>
+</html>

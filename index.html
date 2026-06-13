@@ -3,38 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BabyCare - Daycare & Nursery Template</title>
+    <title>BabyCare - Daycare & Nursery</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 (free) + Bootstrap Icons -->
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- Bootstrap 5 CSS -->
+    <!-- Bootstrap 5 CSS + JS (bundle includes Popper) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Animate.css (for WOW) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <!-- Owl Carousel -->
+    <!-- Lightbox2 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
+    <!-- Owl Carousel CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-    <!-- Lightbox2 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
-    
     <style>
-        /* ===== CUSTOM STYLES ===== */
-        :root {
-            --primary: #ff6b4a;
-            --secondary: #f9b43a;
-            --dark: #2a2a2a;
-            --light: #fef9f5;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         body {
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
         }
-        h1, h2, h3, h4, h5, .navbar-brand, .btn {
+        h1, h2, h3, h4, .navbar-brand, .btn {
             font-family: 'Fredoka', sans-serif;
+        }
+        :root {
+            --primary: #ff6b4a;
+            --secondary: #f9b43a;
         }
         .text-primary { color: var(--primary) !important; }
         .text-secondary { color: var(--secondary) !important; }
@@ -44,82 +42,77 @@
         .btn-primary {
             background-color: var(--primary);
             border-color: var(--primary);
+            transition: 0.3s;
         }
         .btn-primary:hover {
             background-color: #e55a3a;
             border-color: #e55a3a;
+            transform: translateY(-2px);
         }
         .title-border-radius {
             border-bottom: 3px solid var(--primary);
             border-radius: 0 0 15px 15px;
             padding-bottom: 8px !important;
+            display: inline-block;
         }
         .btn-border-radius {
             border-radius: 50px !important;
-            transition: all 0.3s ease;
-        }
-        .btn-border-radius:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        .img-border-radius {
-            border-radius: 30px 30px 30px 10px;
-            overflow: hidden;
         }
         .hero-header {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=2000&q=80');
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=2000&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
-        /* Service Cards */
+        .video {
+            background: url('https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80') center/cover;
+            min-height: 320px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-play {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+        }
+        .btn-play span {
+            width: 0;
+            height: 0;
+            border-left: 20px solid white;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            display: inline-block;
+            margin-left: 5px;
+        }
+        .btn-play:hover { transform: scale(1.1); background: #e55a3a; }
         .service-item {
-            transition: all 0.4s;
+            transition: all 0.3s;
             border-radius: 30px;
             overflow: hidden;
-            background: white;
         }
-        .service-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 35px rgba(0,0,0,0.1);
-        }
-        .service-content {
-            transition: all 0.3s;
-        }
-        .service-item:hover .service-content {
-            background: var(--primary);
-            color: white;
-        }
-        .service-item:hover .service-content .h4,
-        .service-item:hover .service-content p,
-        .service-item:hover .service-content i {
-            color: white !important;
-        }
-        /* Program Cards */
+        .service-item:hover { transform: translateY(-10px); box-shadow: 0 20px 30px rgba(0,0,0,0.1); }
         .program-item {
             transition: 0.3s;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
-        .program-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
+        .program-item:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
         .program-rate {
             position: absolute;
             bottom: -15px;
             right: 20px;
             border-radius: 40px;
             font-weight: bold;
-            z-index: 2;
-        }
-        /* Events */
-        .events-item {
-            transition: 0.3s;
-        }
-        .events-item:hover {
-            transform: translateY(-8px);
         }
         .events-img {
             width: 120px;
@@ -140,66 +133,11 @@
             transition: 0.3s;
             border-radius: 50%;
         }
-        .events-img:hover .event-overlay {
-            opacity: 1;
-        }
-        /* Team */
+        .events-img:hover .event-overlay { opacity: 1; }
         .team-item {
             transition: 0.3s;
-            background: white;
         }
-        .team-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -12px rgba(0,0,0,0.2);
-        }
-        .team-icon {
-            position: absolute;
-            bottom: 70px;
-            left: 0;
-            right: 0;
-            opacity: 0;
-            transition: 0.3s;
-        }
-        .team-item:hover .team-icon {
-            opacity: 1;
-            bottom: 90px;
-        }
-        /* Video Play Button */
-        .video {
-            position: relative;
-            background: url('https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80') center/cover;
-            border-radius: 30px;
-            min-height: 320px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .btn-play {
-            width: 80px;
-            height: 80px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: none;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-        .btn-play span {
-            width: 0;
-            height: 0;
-            border-left: 20px solid white;
-            border-top: 12px solid transparent;
-            border-bottom: 12px solid transparent;
-            display: inline-block;
-            margin-left: 5px;
-        }
-        .btn-play:hover {
-            transform: scale(1.1);
-            background: #e55a3a;
-        }
-        /* Back to top */
+        .team-item:hover { transform: translateY(-8px); box-shadow: 0 15px 25px rgba(0,0,0,0.1); }
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -209,64 +147,46 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 99;
             opacity: 0;
             visibility: hidden;
             transition: 0.3s;
+            z-index: 99;
         }
         .back-to-top.active {
             opacity: 1;
             visibility: visible;
         }
-        /* Footer Gallery */
-        .footer-galary-img img {
+        #spinner {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            transition: 0.3s;
+            height: 100%;
+            background: white;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.4s;
         }
-        .footer-galary-img:hover img {
-            transform: scale(1.05);
+        .img-border-radius {
+            border-radius: 30px 30px 30px 10px;
         }
-        /* Responsive */
         @media (max-width: 768px) {
-            .display-1 {
-                font-size: 2.5rem;
-            }
-            .display-3 {
-                font-size: 2rem;
-            }
-        }
-        .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link:hover {
-            color: var(--primary) !important;
-        }
-        .dropdown-item:hover {
-            background: var(--primary);
-            color: white;
-        }
-        .topbar a {
-            text-decoration: none;
-        }
-        .btn-search {
-            transition: 0.2s;
-        }
-        .btn-search:hover {
-            transform: rotate(15deg);
-        }
-        .testimonial-item {
-            border-radius: 40px 20px 40px 20px;
+            .display-1 { font-size: 2.5rem; }
+            .display-3 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-<!-- Spinner -->
-<div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50 d-flex align-items-center justify-content-center" style="z-index: 9999;">
-    <div class="spinner-grow text-primary" role="status"></div>
+<!-- Spinner (will be hidden by JS after load) -->
+<div id="spinner">
+    <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status"></div>
 </div>
 
-<!-- Topbar & Navbar -->
-<div class="container-fluid border-bottom bg-light wow fadeIn" data-wow-delay="0.1s">
+<!-- Topbar + Navbar -->
+<div class="container-fluid border-bottom bg-light">
     <div class="container topbar bg-primary d-none d-lg-block py-2" style="border-radius: 0 40px">
         <div class="d-flex justify-content-between">
             <div class="top-info ps-2">
@@ -289,7 +209,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav mx-auto">
-                    <a href="#" class="nav-item nav-link active">Home</a>
+                    <a href="#home" class="nav-item nav-link active">Home</a>
                     <a href="#about" class="nav-item nav-link">About</a>
                     <a href="#services" class="nav-item nav-link">Services</a>
                     <a href="#programs" class="nav-item nav-link">Programs</a>
@@ -304,21 +224,14 @@
                     </div>
                     <a href="#contact" class="nav-item nav-link">Contact</a>
                 </div>
-                <div class="d-flex me-4">
-                    <div id="phone-tada" class="d-flex align-items-center justify-content-center">
-                        <a href="#" class="position-relative wow tada" data-wow-delay=".9s">
-                            <i class="fa fa-phone-alt text-primary fa-2x me-4"></i>
-                            <div class="position-absolute" style="top: -7px; left: 20px;">
-                                <span><i class="fa fa-comment-dots text-secondary"></i></span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="d-flex flex-column pe-3 border-end border-primary">
+                <div class="d-flex me-4 align-items-center">
+                    <i class="fa fa-phone-alt text-primary fa-2x me-3"></i>
+                    <div class="d-flex flex-column border-start border-primary ps-3">
                         <span class="text-primary">Have any questions?</span>
-                        <a href="#"><span class="text-secondary">Free: +1 234 567 890</span></a>
+                        <a href="#" class="text-secondary">Free: +1 234 567 890</a>
                     </div>
                 </div>
-                <button class="btn-search btn btn-primary btn-md-square rounded-circle" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-white"></i></button>
+                <button class="btn btn-primary btn-md-square rounded-circle" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-white"></i></button>
             </div>
         </nav>
     </div>
@@ -334,16 +247,16 @@
             </div>
             <div class="modal-body d-flex align-items-center">
                 <div class="input-group w-75 mx-auto">
-                    <input type="search" class="form-control p-3" placeholder="keywords">
-                    <span class="input-group-text p-3 bg-primary text-white"><i class="fa fa-search"></i></span>
+                    <input type="text" class="form-control p-3" placeholder="Keywords...">
+                    <button class="btn btn-primary px-4"><i class="fa fa-search"></i></button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Hero -->
-<div class="container-fluid py-5 hero-header wow fadeIn" data-wow-delay="0.1s">
+<!-- Hero Section -->
+<section id="home" class="container-fluid py-5 hero-header">
     <div class="container py-5">
         <div class="row g-5">
             <div class="col-lg-7 col-md-12">
@@ -354,49 +267,38 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 
 <!-- About -->
-<div id="about" class="container-fluid py-5 about bg-light">
+<section id="about" class="container-fluid py-5 about bg-light">
     <div class="container py-5">
         <div class="row g-5 align-items-center">
-            <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
-                <div class="video border">
-                    <button type="button" class="btn-play" data-bs-toggle="modal" data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal">
+            <div class="col-lg-5">
+                <div class="video">
+                    <button type="button" class="btn-play" data-bs-toggle="modal" data-bs-target="#videoModal">
                         <span></span>
                     </button>
                 </div>
             </div>
-            <div class="col-lg-7 wow fadeIn" data-wow-delay="0.3s">
+            <div class="col-lg-7">
                 <h4 class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius">About Us</h4>
                 <h1 class="text-dark mb-4 display-5">We Learn Smart Way To Build Bright Future For Your Children</h1>
                 <p class="text-dark mb-4">At BabyCare, we create a loving, stimulating environment where children explore, discover, and grow. Our play-based curriculum fosters creativity and social skills, preparing little ones for a lifetime of learning.</p>
                 <div class="row mb-4">
-                    <div class="col-lg-6">
-                        <h6 class="mb-3"><i class="fas fa-check-circle me-2 text-primary"></i>Sport Activities</h6>
-                        <h6 class="mb-3"><i class="fas fa-check-circle me-2 text-primary"></i>Outdoor Games</h6>
-                        <h6 class="mb-3"><i class="fas fa-check-circle me-2 text-primary"></i>Nutritious Foods</h6>
-                    </div>
-                    <div class="col-lg-6">
-                        <h6 class="mb-3"><i class="fas fa-check-circle me-2 text-primary"></i>Highly Secured</h6>
-                        <h6 class="mb-3"><i class="fas fa-check-circle me-2 text-primary"></i>Friendly Environment</h6>
-                        <h6><i class="fas fa-check-circle me-2 text-primary"></i>Qualified Teacher</h6>
-                    </div>
+                    <div class="col-lg-6"><h6><i class="fas fa-check-circle text-primary me-2"></i>Sport Activities</h6><h6><i class="fas fa-check-circle text-primary me-2"></i>Outdoor Games</h6><h6><i class="fas fa-check-circle text-primary me-2"></i>Nutritious Foods</h6></div>
+                    <div class="col-lg-6"><h6><i class="fas fa-check-circle text-primary me-2"></i>Highly Secured</h6><h6><i class="fas fa-check-circle text-primary me-2"></i>Friendly Environment</h6><h6><i class="fas fa-check-circle text-primary me-2"></i>Qualified Teacher</h6></div>
                 </div>
                 <a href="#contact" class="btn btn-primary px-5 py-3 btn-border-radius">More Details</a>
             </div>
         </div>
     </div>
-</div>
+</section>
 
 <!-- Video Modal -->
 <div class="modal fade" id="videoModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content rounded-0">
-            <div class="modal-header">
-                <h5 class="modal-title">Watch Video</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
+            <div class="modal-header"><h5>Promo Video</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
             <div class="modal-body">
                 <div class="ratio ratio-16x9">
                     <iframe id="videoIframe" src="" allowfullscreen></iframe>
@@ -407,179 +309,169 @@
 </div>
 
 <!-- Services -->
-<div id="services" class="container-fluid service py-5">
+<section id="services" class="container-fluid service py-5">
     <div class="container py-5">
-        <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width:700px">
-            <h4 class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius">What We Do</h4>
-            <h1 class="mb-5 display-3">Thanks To Get Started With Our School</h1>
-        </div>
-        <div class="row g-5">
-            <div class="col-md-6 col-lg-6 col-xl-3 wow fadeIn" data-wow-delay="0.1s">
-                <div class="text-center border-primary border bg-white service-item">
-                    <div class="service-content d-flex align-items-center justify-content-center p-4">
-                        <div class="service-content-inner">
-                            <div class="p-4"><i class="fas fa-gamepad fa-6x text-primary"></i></div>
-                            <a href="#" class="h4">Study & Game</a>
-                            <p class="my-3">Engaging activities that balance learning with fun, building cognitive & motor skills.</p>
-                            <a href="#" class="btn btn-primary text-white px-4 py-2 my-2 btn-border-radius">Read More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-6 col-xl-3 wow fadeIn" data-wow-delay="0.3s">
-                <div class="text-center border-primary border bg-white service-item">
-                    <div class="service-content d-flex align-items-center justify-content-center p-4">
-                        <div class="service-content-inner">
-                            <div class="p-4"><i class="fas fa-sort-alpha-down fa-6x text-primary"></i></div>
-                            <a href="#" class="h4">A to Z Programs</a>
-                            <p class="my-3">Comprehensive early literacy and numeracy from alphabet to problem-solving.</p>
-                            <a href="#" class="btn btn-primary text-white px-4 py-2 my-2 btn-border-radius">Read More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-6 col-xl-3 wow fadeIn" data-wow-delay="0.5s">
-                <div class="text-center border-primary border bg-white service-item">
-                    <div class="service-content d-flex align-items-center justify-content-center p-4">
-                        <div class="service-content-inner">
-                            <div class="p-4"><i class="fas fa-users fa-6x text-primary"></i></div>
-                            <a href="#" class="h4">Expert Teacher</a>
-                            <p class="my-3">Dedicated, certified educators passionate about early childhood development.</p>
-                            <a href="#" class="btn btn-primary text-white px-4 py-2 my-2 btn-border-radius">Read More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-6 col-xl-3 wow fadeIn" data-wow-delay="0.7s">
-                <div class="text-center border-primary border bg-white service-item">
-                    <div class="service-content d-flex align-items-center justify-content-center p-4">
-                        <div class="service-content-inner">
-                            <div class="p-4"><i class="fas fa-user-nurse fa-6x text-primary"></i></div>
-                            <a href="#" class="h4">Mental Health</a>
-                            <p class="my-3">Emotional well-being support, mindfulness and positive social interaction.</p>
-                            <a href="#" class="btn btn-primary text-white px-4 py-2 my-2 btn-border-radius">Read More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="text-center mb-5"><h4 class="text-primary title-border-radius">What We Do</h4><h1 class="display-3 mt-3">Thanks To Get Started With Our School</h1></div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3"><div class="service-item bg-white border border-primary p-4 text-center rounded-4"><i class="fas fa-gamepad fa-4x text-primary mb-3"></i><h4>Study & Game</h4><p>Engaging activities that balance learning with fun.</p><a href="#" class="btn btn-primary btn-border-radius mt-2">Read More</a></div></div>
+            <div class="col-md-6 col-lg-3"><div class="service-item bg-white border border-primary p-4 text-center rounded-4"><i class="fas fa-sort-alpha-down fa-4x text-primary mb-3"></i><h4>A to Z Programs</h4><p>Literacy and numeracy from alphabet to problem solving.</p><a href="#" class="btn btn-primary btn-border-radius mt-2">Read More</a></div></div>
+            <div class="col-md-6 col-lg-3"><div class="service-item bg-white border border-primary p-4 text-center rounded-4"><i class="fas fa-users fa-4x text-primary mb-3"></i><h4>Expert Teacher</h4><p>Certified educators passionate about child development.</p><a href="#" class="btn btn-primary btn-border-radius mt-2">Read More</a></div></div>
+            <div class="col-md-6 col-lg-3"><div class="service-item bg-white border border-primary p-4 text-center rounded-4"><i class="fas fa-user-nurse fa-4x text-primary mb-3"></i><h4>Mental Health</h4><p>Emotional well-being and positive social interaction.</p><a href="#" class="btn btn-primary btn-border-radius mt-2">Read More</a></div></div>
         </div>
     </div>
-</div>
+</section>
 
 <!-- Programs -->
-<div id="programs" class="container-fluid program py-5 bg-light">
+<section id="programs" class="container-fluid program py-5 bg-light">
     <div class="container py-5">
-        <div class="mx-auto text-center wow fadeIn" style="max-width:700px">
-            <h4 class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius">Our Programs</h4>
-            <h1 class="mb-5 display-3">We Offer An Exclusive Program For Kids</h1>
+        <div class="text-center mb-5"><h4 class="text-primary title-border-radius">Our Programs</h4><h1 class="display-3">We Offer An Exclusive Program For Kids</h1></div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4"><div class="program-item bg-white rounded-4"><div class="position-relative"><img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=600&h=400" class="img-fluid w-100"><div class="program-rate bg-primary text-white px-3 py-1 position-absolute">$60.99</div></div><div class="p-4"><h4>English For Today</h4><p>Phonics, storytelling, vocabulary building through play.</p></div><div class="d-flex align-items-center border-top p-3"><img src="https://randomuser.me/api/portraits/women/68.jpg" class="rounded-circle border border-primary p-1" width="60" height="60"><div class="ms-3"><h6 class="text-primary">Mary Mordern</h6><small>Language Expert</small></div></div><div class="d-flex justify-content-between bg-primary text-white px-3 py-2 rounded-bottom"><small><i class="fas fa-wheelchair"></i> 30 sits</small><small><i class="fas fa-book"></i> 11 lessons</small><small><i class="fas fa-clock"></i> 60 hrs</small></div></div></div>
+            <div class="col-md-6 col-lg-4"><div class="program-item bg-white rounded-4"><div class="position-relative"><img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=600&h=400" class="img-fluid w-100"><div class="program-rate bg-primary text-white px-3 py-1 position-absolute">$70.99</div></div><div class="p-4"><h4>Graphics Arts</h4><p>Creative drawing, painting, crafts to express imagination.</p></div><div class="d-flex align-items-center border-top p-3"><img src="https://randomuser.me/api/portraits/men/32.jpg" class="rounded-circle border border-primary p-1" width="60" height="60"><div class="ms-3"><h6 class="text-primary">James Smith</h6><small>Art Director</small></div></div><div class="d-flex justify-content-between bg-primary text-white px-3 py-2 rounded-bottom"><small><i class="fas fa-wheelchair"></i> 25 sits</small><small><i class="fas fa-book"></i> 8 lessons</small><small><i class="fas fa-clock"></i> 45 hrs</small></div></div></div>
+            <div class="col-md-6 col-lg-4"><div class="program-item bg-white rounded-4"><div class="position-relative"><img src="https://images.unsplash.com/photo-1503454537195-1dcf73fb15d2?auto=format&fit=crop&w=600&h=400" class="img-fluid w-100"><div class="program-rate bg-primary text-white px-3 py-1 position-absolute">$55.99</div></div><div class="p-4"><h4>General Science</h4><p>Fun experiments, nature exploration & STEM foundation.</p></div><div class="d-flex align-items-center border-top p-3"><img src="https://randomuser.me/api/portraits/women/45.jpg" class="rounded-circle border border-primary p-1" width="60" height="60"><div class="ms-3"><h6 class="text-primary">Sophia Lee</h6><small>Science Coach</small></div></div><div class="d-flex justify-content-between bg-primary text-white px-3 py-2 rounded-bottom"><small><i class="fas fa-wheelchair"></i> 28 sits</small><small><i class="fas fa-book"></i> 10 lessons</small><small><i class="fas fa-clock"></i> 50 hrs</small></div></div></div>
         </div>
-        <div class="row g-5 justify-content-center">
-            <!-- Program 1 -->
-            <div class="col-md-6 col-lg-6 col-xl-4 wow fadeIn">
-                <div class="program-item rounded">
-                    <div class="program-img position-relative">
-                        <div class="overflow-hidden img-border-radius">
-                            <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=600&h=400" class="img-fluid w-100" alt="Program">
-                        </div>
-                        <div class="px-4 py-2 bg-primary text-white program-rate">$60.99</div>
-                    </div>
-                    <div class="program-text bg-white px-4 pb-3">
-                        <div class="program-text-inner">
-                            <a href="#" class="h4">English For Today</a>
-                            <p class="mt-3 mb-0">Phonics, storytelling, and vocabulary building through play.</p>
-                        </div>
-                    </div>
-                    <div class="program-teacher d-flex align-items-center border-top border-primary bg-white px-4 py-3">
-                        <img src="https://randomuser.me/api/portraits/women/68.jpg" class="img-fluid rounded-circle p-2 border border-primary bg-white" style="width:70px;height:70px;object-fit:cover">
-                        <div class="ms-3">
-                            <h6 class="mb-0 text-primary">Mary Mordern</h6>
-                            <small>Language Expert</small>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-between px-4 py-2 bg-primary rounded-bottom">
-                        <small class="text-white"><i class="fas fa-wheelchair me-1"></i> 30 Sits</small>
-                        <small class="text-white"><i class="fas fa-book me-1"></i> 11 Lessons</small>
-                        <small class="text-white"><i class="fas fa-clock me-1"></i> 60 Hours</small>
-                    </div>
-                </div>
-            </div>
-            <!-- Program 2 -->
-            <div class="col-md-6 col-lg-6 col-xl-4 wow fadeIn" data-wow-delay="0.2s">
-                <div class="program-item rounded">
-                    <div class="program-img position-relative">
-                        <div class="overflow-hidden img-border-radius"><img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=600&h=400" class="img-fluid w-100"></div>
-                        <div class="px-4 py-2 bg-primary text-white program-rate">$70.99</div>
-                    </div>
-                    <div class="program-text bg-white px-4 pb-3"><div><a href="#" class="h4">Graphics Arts</a><p class="mt-3">Creative drawing, painting, and crafts to express imagination.</p></div></div>
-                    <div class="program-teacher d-flex align-items-center border-top border-primary bg-white px-4 py-3"><img src="https://randomuser.me/api/portraits/men/32.jpg" class="rounded-circle p-2 border border-primary bg-white" style="width:70px;height:70px;object-fit:cover"><div class="ms-3"><h6 class="text-primary">James Smith</h6><small>Art Director</small></div></div>
-                    <div class="d-flex justify-content-between px-4 py-2 bg-primary rounded-bottom"><small class="text-white"><i class="fas fa-wheelchair"></i> 25 Sits</small><small><i class="fas fa-book"></i> 8 Lessons</small><small><i class="fas fa-clock"></i> 45 Hours</small></div>
-                </div>
-            </div>
-            <!-- Program 3 -->
-            <div class="col-md-6 col-lg-6 col-xl-4 wow fadeIn" data-wow-delay="0.4s">
-                <div class="program-item rounded">
-                    <div class="program-img position-relative"><div class="overflow-hidden img-border-radius"><img src="https://images.unsplash.com/photo-1503454537195-1dcf73fb15d2?auto=format&fit=crop&w=600&h=400" class="img-fluid w-100"></div><div class="px-4 py-2 bg-primary text-white program-rate">$55.99</div></div>
-                    <div class="program-text bg-white px-4 pb-3"><div><a href="#" class="h4">General Science</a><p class="mt-3">Fun experiments, nature exploration & STEM foundation.</p></div></div>
-                    <div class="program-teacher d-flex align-items-center border-top border-primary bg-white px-4 py-3"><img src="https://randomuser.me/api/portraits/women/45.jpg" class="rounded-circle p-2 border border-primary bg-white" style="width:70px;height:70px;object-fit:cover"><div class="ms-3"><h6 class="text-primary">Sophia Lee</h6><small>Science Coach</small></div></div>
-                    <div class="d-flex justify-content-between px-4 py-2 bg-primary rounded-bottom"><small class="text-white"><i class="fas fa-wheelchair"></i> 28 Sits</small><small><i class="fas fa-book"></i> 10 Lessons</small><small><i class="fas fa-clock"></i> 50 Hours</small></div>
-                </div>
-            </div>
-            <div class="d-inline-block text-center wow fadeIn mt-4"><a href="#" class="btn btn-primary px-5 py-3 text-white btn-border-radius">View All Programs</a></div>
-        </div>
+        <div class="text-center mt-5"><a href="#" class="btn btn-primary px-5 py-3 btn-border-radius">View All Programs</a></div>
     </div>
-</div>
+</section>
 
 <!-- Events -->
-<div id="events" class="container-fluid events py-5">
+<section id="events" class="container-fluid events py-5">
     <div class="container py-5">
-        <div class="mx-auto text-center wow fadeIn" style="max-width:700px"><h4 class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius">Our Events</h4><h1 class="mb-5 display-3">Our Upcoming Events</h1></div>
-        <div class="row g-5 justify-content-center">
-            <div class="col-md-6 col-lg-4 wow fadeIn"><div class="events-item bg-primary rounded"><div class="events-inner position-relative"><div class="events-img overflow-hidden rounded-circle mx-auto"><img src="https://images.unsplash.com/photo-1595450749869-34d2348c4f7b?auto=format&fit=crop&w=300&h=300" class="img-fluid rounded-circle"><div class="event-overlay"><a href="https://images.unsplash.com/photo-1595450749869-34d2348c4f7b?auto=format&fit=crop&w=600" data-lightbox="event-1"><i class="fas fa-search-plus text-white fa-2x"></i></a></div></div><div class="px-4 py-2 bg-secondary text-white text-center events-rate">29 Nov</div><div class="d-flex justify-content-between px-4 py-2 bg-secondary"><small class="text-white"><i class="fas fa-calendar me-1 text-primary"></i> 10:00am - 12:00pm</small><small class="text-white"><i class="fas fa-map-marker-alt me-1 text-primary"></i> New York</small></div></div><div class="events-text p-4 border border-primary bg-white border-top-0 rounded-bottom"><a href="#" class="h4">Music & drawing workshop</a><p class="mb-0 mt-3">Creative expression through rhythm and colors.</p></div></div></div>
-            <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.2s"><div class="events-item bg-primary rounded"><div class="events-inner position-relative"><div class="events-img overflow-hidden rounded-circle mx-auto"><img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=300&h=300" class="img-fluid rounded-circle"><div class="event-overlay"><a href="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=600" data-lightbox="event-2"><i class="fas fa-search-plus text-white fa-2x"></i></a></div></div><div class="px-4 py-2 bg-secondary text-white text-center events-rate">5 Dec</div><div class="d-flex justify-content-between px-4 py-2 bg-secondary"><small><i class="fas fa-calendar me-1 text-primary"></i> 2:00pm - 4:00pm</small><small><i class="fas fa-map-marker-alt me-1 text-primary"></i> Brooklyn</small></div></div><div class="events-text p-4 border border-primary bg-white border-top-0 rounded-bottom"><a href="#" class="h4">Why need study</a><p class="mb-0 mt-3">Parenting seminar: boosting kids' motivation to learn.</p></div></div></div>
-            <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.4s"><div class="events-item bg-primary rounded"><div class="events-inner position-relative"><div class="events-img overflow-hidden rounded-circle mx-auto"><img src="https://images.unsplash.com/photo-1594463744262-71ac402ed820?auto=format&fit=crop&w=300&h=300" class="img-fluid rounded-circle"><div class="event-overlay"><a href="https://images.unsplash.com/photo-1594463744262-71ac402ed820?auto=format&fit=crop&w=600" data-lightbox="event-3"><i class="fas fa-search-plus text-white fa-2x"></i></a></div></div><div class="px-4 py-2 bg-secondary text-white text-center events-rate">12 Dec</div><div class="d-flex justify-content-between px-4 py-2 bg-secondary"><small><i class="fas fa-calendar me-1 text-primary"></i> 9:00am - 11:00am</small><small><i class="fas fa-map-marker-alt me-1 text-primary"></i> Manhattan</small></div></div><div class="events-text p-4 border border-primary bg-white border-top-0 rounded-bottom"><a href="#" class="h4">Child health consciousness</a><p class="mb-0 mt-3">Nutrition & active lifestyle for toddlers.</p></div></div></div>
+        <div class="text-center mb-5"><h4 class="text-primary title-border-radius">Our Events</h4><h1 class="display-3">Our Upcoming Events</h1></div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4"><div class="events-item bg-primary rounded-4 p-3"><div class="text-center"><div class="events-img overflow-hidden rounded-circle mx-auto"><img src="https://images.unsplash.com/photo-1595450749869-34d2348c4f7b?auto=format&fit=crop&w=300&h=300" class="img-fluid rounded-circle"><div class="event-overlay"><a href="https://images.unsplash.com/photo-1595450749869-34d2348c4f7b?auto=format&fit=crop&w=600" data-lightbox="events"><i class="fas fa-search-plus text-white fa-2x"></i></a></div></div><div class="bg-secondary text-white d-inline-block px-3 py-1 rounded-pill mt-2">29 Nov</div><div class="d-flex justify-content-between mt-2 text-white"><small><i class="fas fa-calendar"></i> 10:00am - 12:00pm</small><small><i class="fas fa-map-marker-alt"></i> New York</small></div></div><div class="bg-white p-3 rounded-3 mt-3"><h4>Music & drawing workshop</h4><p>Creative expression through rhythm and colors.</p></div></div></div>
+            <div class="col-md-6 col-lg-4"><div class="events-item bg-primary rounded-4 p-3"><div class="text-center"><div class="events-img overflow-hidden rounded-circle mx-auto"><img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=300&h=300" class="img-fluid rounded-circle"><div class="event-overlay"><a href="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=600" data-lightbox="events"><i class="fas fa-search-plus"></i></a></div></div><div class="bg-secondary text-white d-inline-block px-3 py-1 rounded-pill mt-2">5 Dec</div><div class="d-flex justify-content-between mt-2 text-white"><small><i class="fas fa-calendar"></i> 2:00pm - 4:00pm</small><small><i class="fas fa-map-marker-alt"></i> Brooklyn</small></div></div><div class="bg-white p-3 rounded-3 mt-3"><h4>Why need study</h4><p>Parenting seminar: boosting kids' motivation to learn.</p></div></div></div>
+            <div class="col-md-6 col-lg-4"><div class="events-item bg-primary rounded-4 p-3"><div class="text-center"><div class="events-img overflow-hidden rounded-circle mx-auto"><img src="https://images.unsplash.com/photo-1594463744262-71ac402ed820?auto=format&fit=crop&w=300&h=300" class="img-fluid rounded-circle"><div class="event-overlay"><a href="https://images.unsplash.com/photo-1594463744262-71ac402ed820?auto=format&fit=crop&w=600" data-lightbox="events"><i class="fas fa-search-plus"></i></a></div></div><div class="bg-secondary text-white d-inline-block px-3 py-1 rounded-pill mt-2">12 Dec</div><div class="d-flex justify-content-between mt-2 text-white"><small><i class="fas fa-calendar"></i> 9:00am - 11:00am</small><small><i class="fas fa-map-marker-alt"></i> Manhattan</small></div></div><div class="bg-white p-3 rounded-3 mt-3"><h4>Child health consciousness</h4><p>Nutrition & active lifestyle for toddlers.</p></div></div></div>
         </div>
     </div>
-</div>
+</section>
 
-<!-- Blog, Team, Testimonials (simplified but rich) -->
-<div id="blog" class="container-fluid blog py-5 bg-light"><div class="container py-5"><div class="mx-auto text-center wow fadeIn"><h4 class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius">Latest News</h4><h1 class="mb-5 display-3">Read Our Latest Blog</h1></div><div class="row g-5 justify-content-center"><div class="col-md-6 col-lg-4 wow fadeIn"><div class="blog-item rounded-bottom"><div class="blog-img overflow-hidden"><img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600" class="img-fluid w-100"></div><div class="d-flex justify-content-between px-4 py-3 bg-light"><small><i class="fas fa-calendar me-1"></i> 29 Nov 2023</small><small><i class="fas fa-comment-alt me-1"></i> Comments (12)</small></div><div class="px-4 pb-4 bg-light"><a href="#" class="h4">How to pay attention to your child?</a><p class="mt-3">Tips for active listening and bonding.</p><div class="text-center mt-3"><a href="#" class="btn btn-primary px-4 py-2 btn-border-radius">Read More</a></div></div></div></div><div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.2s"><div class="blog-item"><div class="blog-img"><img src="https://images.unsplash.com/photo-1595450749869-34d2348c4f7b?auto=format&fit=crop&w=600" class="img-fluid"></div><div class="d-flex justify-content-between px-4 py-3 bg-light"><small><i class="fas fa-calendar"></i> 5 Dec 2023</small><small><i class="fas fa-comment-alt"></i> 8 Comments</small></div><div class="px-4 pb-4 bg-light"><a href="#" class="h4">Play outdoor sports with your child</a><p>Benefits of outdoor play for motor skills.</p><div class="text-center"><a href="#" class="btn btn-primary btn-border-radius">View Details</a></div></div></div></div></div></div></div>
+<!-- Blog -->
+<section id="blog" class="container-fluid blog py-5 bg-light">
+    <div class="container py-5">
+        <div class="text-center mb-5"><h4 class="text-primary title-border-radius">Latest News</h4><h1 class="display-3">Read Our Latest Blog</h1></div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4"><div class="bg-white rounded-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600" class="img-fluid w-100"><div class="p-3"><div class="d-flex justify-content-between text-muted small mb-2"><span><i class="far fa-calendar"></i> 29 Nov 2023</span><span><i class="far fa-comment"></i> 12 comments</span></div><h4>How to pay attention to your child?</h4><p>Tips for active listening and bonding.</p><a href="#" class="btn btn-primary btn-border-radius px-4">Read More</a></div></div></div>
+            <div class="col-md-6 col-lg-4"><div class="bg-white rounded-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1595450749869-34d2348c4f7b?auto=format&fit=crop&w=600" class="img-fluid w-100"><div class="p-3"><div class="d-flex justify-content-between text-muted small mb-2"><span><i class="far fa-calendar"></i> 5 Dec 2023</span><span><i class="far fa-comment"></i> 8 comments</span></div><h4>Play outdoor sports with your child</h4><p>Benefits of outdoor play for motor skills.</p><a href="#" class="btn btn-primary btn-border-radius px-4">Read More</a></div></div></div>
+            <div class="col-md-6 col-lg-4"><div class="bg-white rounded-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=600" class="img-fluid w-100"><div class="p-3"><div class="d-flex justify-content-between text-muted small mb-2"><span><i class="far fa-calendar"></i> 12 Dec 2023</span><span><i class="far fa-comment"></i> 15 comments</span></div><h4>How to make time for your kids?</h4><p>Practical tips for busy parents.</p><a href="#" class="btn btn-primary btn-border-radius px-4">Read More</a></div></div></div>
+        </div>
+    </div>
+</section>
 
-<!-- Team Section -->
-<div id="team" class="container-fluid team py-5"><div class="container py-5"><div class="mx-auto text-center wow fadeIn"><h4 class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius">Our Team</h4><h1 class="mb-5 display-3">Meet With Our Expert Teacher</h1></div><div class="row g-5 justify-content-center"><div class="col-md-6 col-lg-3 wow fadeIn"><div class="team-item border border-primary img-border-radius overflow-hidden position-relative"><img src="https://randomuser.me/api/portraits/women/89.jpg" class="img-fluid w-100"><div class="team-icon d-flex justify-content-center"><a class="btn btn-primary btn-md-square rounded-circle mx-1" href="#"><i class="fab fa-facebook-f"></i></a><a class="btn btn-primary btn-md-square rounded-circle mx-1" href="#"><i class="fab fa-twitter"></i></a><a class="btn btn-primary btn-md-square rounded-circle mx-1" href="#"><i class="fab fa-instagram"></i></a></div><div class="team-content text-center py-3"><h4 class="text-primary">Linda Carlson</h4><p>English Teacher</p></div></div></div><div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.2s"><div class="team-item border border-primary overflow-hidden"><img src="https://randomuser.me/api/portraits/men/75.jpg" class="img-fluid w-100"><div class="team-icon d-flex justify-content-center"><a class="btn btn-primary btn-md-square rounded-circle mx-1" href="#"><i class="fab fa-facebook-f"></i></a><a class="btn btn-primary btn-md-square rounded-circle mx-1" href="#"><i class="fab fa-twitter"></i></a></div><div class="team-content text-center py-3"><h4 class="text-primary">Robert Brown</h4><p>Math Coach</p></div></div></div></div></div></div>
+<!-- Team -->
+<section id="team" class="container-fluid team py-5">
+    <div class="container py-5">
+        <div class="text-center mb-5"><h4 class="text-primary title-border-radius">Our Team</h4><h1 class="display-3">Meet With Our Expert Teacher</h1></div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3"><div class="team-item bg-white border border-primary rounded-4 text-center p-3"><img src="https://randomuser.me/api/portraits/women/89.jpg" class="rounded-circle border border-primary p-1" width="150" height="150" style="object-fit:cover"><h4 class="mt-3 text-primary">Linda Carlson</h4><p>English Teacher</p><div class="d-flex justify-content-center gap-2"><a href="#" class="btn btn-sm btn-primary rounded-circle"><i class="fab fa-facebook-f"></i></a><a href="#" class="btn btn-sm btn-primary rounded-circle"><i class="fab fa-twitter"></i></a><a href="#" class="btn btn-sm btn-primary rounded-circle"><i class="fab fa-instagram"></i></a></div></div></div>
+            <div class="col-md-6 col-lg-3"><div class="team-item bg-white border border-primary rounded-4 text-center p-3"><img src="https://randomuser.me/api/portraits/men/75.jpg" class="rounded-circle border border-primary p-1" width="150" height="150" style="object-fit:cover"><h4 class="mt-3 text-primary">Robert Brown</h4><p>Math Coach</p><div class="d-flex justify-content-center gap-2"><a href="#" class="btn btn-sm btn-primary rounded-circle"><i class="fab fa-facebook-f"></i></a><a href="#" class="btn btn-sm btn-primary rounded-circle"><i class="fab fa-twitter"></i></a></div></div></div>
+            <div class="col-md-6 col-lg-3"><div class="team-item bg-white border border-primary rounded-4 text-center p-3"><img src="https://randomuser.me/api/portraits/women/44.jpg" class="rounded-circle border border-primary p-1" width="150" height="150"><h4 class="mt-3 text-primary">Emily White</h4><p>Art Teacher</p><div class="d-flex justify-content-center gap-2"><a href="#" class="btn btn-sm btn-primary rounded-circle"><i class="fab fa-instagram"></i></a></div></div></div>
+            <div class="col-md-6 col-lg-3"><div class="team-item bg-white border border-primary rounded-4 text-center p-3"><img src="https://randomuser.me/api/portraits/men/42.jpg" class="rounded-circle border border-primary p-1" width="150" height="150"><h4 class="mt-3 text-primary">David Miller</h4><p>Sports Coach</p><div class="d-flex justify-content-center gap-2"><a href="#" class="btn btn-sm btn-primary rounded-circle"><i class="fab fa-twitter"></i></a></div></div></div>
+        </div>
+    </div>
+</section>
 
-<!-- Testimonials OwlCarousel -->
-<div id="testimonials" class="container-fluid testimonial py-5 bg-light"><div class="container py-5"><div class="mx-auto text-center wow fadeIn"><h4 class="text-primary border-bottom border-primary d-inline-block p-2 title-border-radius">Testimonials</h4><h1 class="mb-5 display-3">Parents Say About Us</h1></div><div class="owl-carousel testimonial-carousel wow fadeIn">
-    <div class="testimonial-item bg-white border border-primary p-4 rounded-4"><i class="fa fa-quote-right fa-2x text-primary float-end"></i><div class="d-flex align-items-center"><img src="https://randomuser.me/api/portraits/women/44.jpg" class="rounded-circle border border-primary p-1" width="70" height="70" style="object-fit:cover"><div class="ms-3"><h4>Sarah Johnson</h4><p>Mother</p><div class="text-warning">★★★★★</div></div></div><p class="mt-3">"A safe and loving environment – my daughter has blossomed here!"</p></div>
-    <div class="testimonial-item bg-white border border-primary p-4 rounded-4"><i class="fa fa-quote-right fa-2x text-primary float-end"></i><div class="d-flex align-items-center"><img src="https://randomuser.me/api/portraits/men/42.jpg" class="rounded-circle border border-primary p-1" width="70" height="70"><div class="ms-3"><h4>Michael Lee</h4><p>Father</p><div class="text-warning">★★★★★</div></div></div><p class="mt-3">"Amazing teachers, my son loves the outdoor activities!"</p></div>
-    <div class="testimonial-item bg-white border border-primary p-4 rounded-4"><i class="fa fa-quote-right fa-2x text-primary float-end"></i><div class="d-flex align-items-center"><img src="https://randomuser.me/api/portraits/women/68.jpg" class="rounded-circle border border-primary p-1" width="70" height="70"><div class="ms-3"><h4>Emily Davis</h4><p>Parent</p><div class="text-warning">★★★★★</div></div></div><p class="mt-3">"Highly recommend! Structured learning and genuine care."</p></div>
-</div></div></div>
+<!-- Testimonials Carousel -->
+<section id="testimonials" class="container-fluid testimonial py-5 bg-light">
+    <div class="container py-5">
+        <div class="text-center mb-5"><h4 class="text-primary title-border-radius">Testimonials</h4><h1 class="display-3">Parents Say About Us</h1></div>
+        <div class="owl-carousel testimonial-carousel owl-theme">
+            <div class="item"><div class="bg-white border border-primary p-4 rounded-4"><i class="fa fa-quote-right fa-2x text-primary float-end"></i><div class="d-flex"><img src="https://randomuser.me/api/portraits/women/68.jpg" class="rounded-circle border border-primary p-1" width="70"><div class="ms-3"><h4>Sarah Johnson</h4><p>Mother</p><div class="text-warning">★★★★★</div></div></div><p class="mt-3">"A safe and loving environment – my daughter has blossomed here!"</p></div></div>
+            <div class="item"><div class="bg-white border border-primary p-4 rounded-4"><i class="fa fa-quote-right fa-2x text-primary float-end"></i><div class="d-flex"><img src="https://randomuser.me/api/portraits/men/32.jpg" class="rounded-circle border border-primary p-1" width="70"><div class="ms-3"><h4>Michael Lee</h4><p>Father</p><div class="text-warning">★★★★★</div></div></div><p class="mt-3">"Amazing teachers, my son loves the outdoor activities!"</p></div></div>
+            <div class="item"><div class="bg-white border border-primary p-4 rounded-4"><i class="fa fa-quote-right fa-2x text-primary float-end"></i><div class="d-flex"><img src="https://randomuser.me/api/portraits/women/45.jpg" class="rounded-circle border border-primary p-1" width="70"><div class="ms-3"><h4>Emily Davis</h4><p>Parent</p><div class="text-warning">★★★★★</div></div></div><p class="mt-3">"Highly recommend! Structured learning and genuine care."</p></div></div>
+        </div>
+    </div>
+</section>
 
-<!-- Footer -->
-<footer class="container-fluid footer py-5 bg-dark text-white"><div class="container py-5"><div class="row g-5"><div class="col-lg-4"><h2 class="fw-bold"><span class="text-primary">Baby</span><span class="text-secondary">Care</span></h2><p>Nurturing curiosity & joy every day. Join our family today!</p><div class="border border-primary p-3 rounded"><h5>Newsletter</h5><div class="input-group"><input type="email" class="form-control" placeholder="Your email"><button class="btn btn-primary">SignUp</button></div></div></div><div class="col-lg-3"><h4 class="text-primary mb-3">Hours</h4><p>Mon-Fri: 8am - 5pm<br>Sat: 9am - 1pm<br>Sun: Closed</p></div><div class="col-lg-3"><h4 class="text-primary mb-3">Contact</h4><p><i class="fa fa-map-marker-alt me-2"></i> 123 Baby St, NY<br><i class="fa fa-phone me-2"></i> +1 234 567 890<br><i class="fa fa-envelope me-2"></i> hello@babycare.com</p><div class="d-flex gap-3"><a href="#" class="btn btn-primary btn-sm-square rounded-circle"><i class="fab fa-facebook-f"></i></a><a href="#" class="btn btn-primary btn-sm-square rounded-circle"><i class="fab fa-instagram"></i></a></div></div><div class="col-lg-2"><h4 class="text-primary mb-3">Gallery</h4><div class="row g-2"><div class="col-4"><img src="https://images.unsplash.com/photo-1595450749869-34d2348c4f7b?auto=format&fit=crop&w=100&h=100" class="img-fluid rounded-circle border border-primary p-1"></div><div class="col-4"><img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=100&h=100" class="img-fluid rounded-circle border border-primary p-1"></div><div class="col-4"><img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=100&h=100" class="img-fluid rounded-circle border border-primary p-1"></div></div></div></div><div class="border-top border-secondary mt-5 pt-4 text-center"><p class="mb-0">&copy; 2025 BabyCare | Designed with <i class="fa fa-heart text-danger"></i></p></div></div></footer>
+<!-- Contact & Footer combined -->
+<footer id="contact" class="container-fluid footer bg-dark text-white pt-5">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-4"><h2 class="fw-bold"><span class="text-primary">Baby</span><span class="text-secondary">Care</span></h2><p>Nurturing curiosity & joy every day. Join our family today!</p><div class="border border-primary p-3 rounded"><h5>Newsletter</h5><div class="input-group"><input type="email" class="form-control" placeholder="Your email"><button class="btn btn-primary">SignUp</button></div></div></div>
+            <div class="col-lg-3"><h4 class="text-primary mb-3">Hours</h4><p>Mon-Fri: 8am - 5pm<br>Sat: 9am - 1pm<br>Sun: Closed</p></div>
+            <div class="col-lg-3"><h4 class="text-primary mb-3">Contact</h4><p><i class="fa fa-map-marker-alt me-2"></i> 123 Baby St, NY<br><i class="fa fa-phone me-2"></i> +1 234 567 890<br><i class="fa fa-envelope me-2"></i> hello@babycare.com</p><div class="d-flex gap-3"><a href="#" class="btn btn-primary btn-sm-square rounded-circle"><i class="fab fa-facebook-f"></i></a><a href="#" class="btn btn-primary btn-sm-square rounded-circle"><i class="fab fa-instagram"></i></a></div></div>
+            <div class="col-lg-2"><h4 class="text-primary mb-3">Gallery</h4><div class="row g-2"><div class="col-4"><img src="https://images.unsplash.com/photo-1595450749869-34d2348c4f7b?auto=format&fit=crop&w=100&h=100" class="img-fluid rounded-circle border border-primary p-1"></div><div class="col-4"><img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=100&h=100" class="img-fluid rounded-circle border border-primary p-1"></div><div class="col-4"><img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=100&h=100" class="img-fluid rounded-circle border border-primary p-1"></div></div></div>
+        </div>
+        <div class="border-top border-secondary mt-5 pt-4 text-center pb-4"><p>&copy; 2025 BabyCare | Designed with <i class="fa fa-heart text-danger"></i></p></div>
+    </div>
+</footer>
 
 <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<!-- Required Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script>
-    $(document).ready(function(){
-        setTimeout(() => $('#spinner').fadeOut('slow'), 800);
-        new WOW().init();
-        $('.testimonial-carousel').owlCarousel({
-            loop: true, margin: 20, nav: false, dots: true, autoplay: true, responsive: {0:{items:1}, 768:{items:2}, 992:{items:3}}
+    (function() {
+        // Hide spinner after page fully loaded
+        window.addEventListener('load', function() {
+            var spinner = document.getElementById('spinner');
+            if (spinner) {
+                spinner.style.opacity = '0';
+                setTimeout(function() {
+                    spinner.style.display = 'none';
+                }, 500);
+            }
         });
-        $(window).scroll(function(){ if($(this).scrollTop() > 300) $('.back-to-top').addClass('active'); else $('.back-to-top').removeClass('active'); });
-        $('.back-to-top').click(function(e){ e.preventDefault(); $('html,body').animate({scrollTop:0}, 500); });
-        $('#videoModal').on('show.bs.modal', function(e){
-            let src = $(e.relatedTarget).data('src');
-            $('#videoIframe').attr('src', src + '?autoplay=1');
-        }).on('hide.bs.modal', function(){ $('#videoIframe').attr('src', ''); });
-        $('.btn-play').click(function(){ $('#videoModal').modal('show'); });
-        $('a.nav-link[href^="#"]').on('click', function(e){ let target=$(this).attr('href'); if(target!="#"){ e.preventDefault(); $('html,body').animate({scrollTop: $(target).offset().top - 80}, 600); } });
-    });
+
+        // Initialize Owl Carousel
+        $('.testimonial-carousel').owlCarousel({
+            loop: true,
+            margin: 20,
+            nav: false,
+            dots: true,
+            autoplay: true,
+            autoplayTimeout: 4000,
+            responsive: {
+                0: { items: 1 },
+                768: { items: 2 },
+                992: { items: 3 }
+            }
+        });
+
+        // Back to top button
+        var backBtn = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) backBtn.classList.add('active');
+            else backBtn.classList.remove('active');
+        });
+        backBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('.nav-link[href^="#"], .dropdown-item[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                let targetId = this.getAttribute('href');
+                if (targetId && targetId !== '#') {
+                    e.preventDefault();
+                    let target = document.querySelector(targetId);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        // Close mobile menu if open
+                        let bsCollapse = bootstrap.Collapse.getInstance(document.getElementById('navbarCollapse'));
+                        if (bsCollapse) bsCollapse.hide();
+                    }
+                }
+            });
+        });
+
+        // Video modal dynamic src
+        var videoModal = document.getElementById('videoModal');
+        if (videoModal) {
+            videoModal.addEventListener('show.bs.modal', function(event) {
+                var button = event.relatedTarget;
+                var iframe = document.getElementById('videoIframe');
+                iframe.src = "https://www.youtube.com/embed/DWRcNpR6Kdc?autoplay=1";
+            });
+            videoModal.addEventListener('hide.bs.modal', function() {
+                document.getElementById('videoIframe').src = "";
+            });
+        }
+    })();
 </script>
 </body>
 </html>

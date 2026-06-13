@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Smart Kids – Daycare Service | Batticaloa</title>
+    <meta name="description" content="Smart Kids Daycare Center in Batticaloa – safe, loving care with CCTV, nutritious meals, flexible hours. Enrol today!">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Jost', sans-serif;
+            color: #444;
+            background: #fff;
+            line-height: 1.5;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            color: #000;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .btn {
+            display: inline-block;
+            background: #E8063C;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #490D59;
+            color: #fff;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-title span {
+            color: #E8063C;
+            font-weight: 500;
+            letter-spacing: 1px;
+            display: block;
+            font-size: 1rem;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-top: 10px;
+        }
+        /* Header */
+        .top-bar {
+            background: #490D59;
+            color: #fff;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .top-bar a {
+            color: #FFD600;
+            text-decoration: none;
+            margin-left: 8px;
+        }
+        .main-header {
+            padding: 20px 0;
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo img {
+            max-height: 65px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #222;
+        }
+        .nav-links a:hover {
+            color: #E8063C;
+        }
+        .mobile-menu {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+        }
+        /* Hero */
+        .hero {
+            background: linear-gradient(rgba(73,13,89,0.85), rgba(73,13,89,0.9)), url('https://smartkids.org.lk/wp-content/uploads/2025/05/sd.jpg') center/cover no-repeat;
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            color: white;
+        }
+        /* Cards */
+        .grid-3, .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background: #fff;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 24px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+        .service-card i {
+            font-size: 50px;
+            color: #E8063C;
+            margin-bottom: 20px;
+        }
+        .daily-routine {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .routine-item {
+            display: flex;
+            gap: 15px;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .routine-item i {
+            width: 40px;
+            color: #E8063C;
+            font-size: 1.3rem;
+        }
+        .bg-light {
+            background: #F0F6FA;
+        }
+        footer {
+            background: #111;
+            color: #ccc;
+            padding: 60px 0 30px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-grid h3 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 30px;
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu { display: block; }
+            .hero h1 { font-size: 2rem; }
+            .section-title h2 { font-size: 1.8rem; }
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            border-radius: 50px;
+            padding: 12px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            z-index: 99;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div><i class="fas fa-envelope"></i> Email: <a href="mailto:info@smartkids.org.lk">info@smartkids.org.lk</a></div>
+            <div><i class="fas fa-phone-alt"></i> Phone: <a href="tel:+94775511818">+94 77 5511 818</a></div>
+            <div><i class="fas fa-clock"></i> Mon-Fri: 7:00am – 6:00pm | Sat-Sun: Closed</div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="https://smartkids.org.lk/wp-content/uploads/2025/03/Web-Banner-SK-SVG.svg" alt="Smart Kids Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#daycare-home">Home</a></li>
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="#routine">Daily Routine</a></li>
+                <li><a href="#cctv">CCTV Access</a></li>
+                <li><a href="#checklist">Checklist</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu"><i class="fas fa-bars"></i></div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSebGk4MIHP9v4Wda9Ap1GONbSbELKMC0Apw4gGXzGjABeMPSA/viewform" class="btn" style="padding: 8px 20px;">Apply Today</a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="daycare-home" class="hero">
+        <div class="container">
+            <h1>Smart Kids Daycare Center</h1>
+            <p style="font-size:1.2rem; margin-top:20px;">Safe, loving, and educational care for your child – from morning to evening.</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSebGk4MIHP9v4Wda9Ap1GONbSbELKMC0Apw4gGXzGjABeMPSA/viewform" class="btn" style="margin-top:25px;">Enrol Now</a>
+        </div>
+    </section>
+
+    <!-- Enrollment Programs -->
+    <section id="programs">
+        <div class="container">
+            <div class="section-title"><span>FLEXIBLE OPTIONS</span><h2>Enrollment Types</h2><p>We offer programs to fit every family's schedule</p></div>
+            <div class="grid-3">
+                <div class="service-card"><i class="fas fa-sun"></i><h3>Full Time</h3><p>7:00am – 6:00pm</p></div>
+                <div class="service-card"><i class="fas fa-sun"></i><h3>Half Time</h3><p>7:00am – 2:00pm</p></div>
+                <div class="service-card"><i class="fas fa-cloud-sun"></i><h3>Morning Care</h3><p>7:00am – 12:00noon</p></div>
+                <div class="service-card"><i class="fas fa-moon"></i><h3>After Care</h3><p>12:00noon – 6:00pm</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Daily Routine -->
+    <section id="routine" class="bg-light">
+        <div class="container">
+            <div class="section-title"><span>STRUCTURED DAY</span><h2>Daily Routine</h2><p>Balanced activities for growth and fun</p></div>
+            <div class="daily-routine">
+                <div class="routine-item"><i class="fas fa-door-open"></i> <span>07:00 AM - Center Opens</span></div>
+                <div class="routine-item"><i class="fas fa-microphone"></i> <span>08:30 AM - Morning Assembly</span></div>
+                <div class="routine-item"><i class="fas fa-utensil-spoon"></i> <span>08:45 AM - Breakfast Time</span></div>
+                <div class="routine-item"><i class="fas fa-book-open"></i> <span>09:30 AM - Study Time</span></div>
+                <div class="routine-item"><i class="fas fa-fill-drip"></i> <span>10:30 AM - Juice Break</span></div>
+                <div class="routine-item"><i class="fas fa-music"></i> <span>11:00 AM - Songs & Dance</span></div>
+                <div class="routine-item"><i class="fas fa-bath"></i> <span>11:30 AM - Bath Time</span></div>
+                <div class="routine-item"><i class="fas fa-mortar-pestle"></i> <span>12:00 PM - Lunch Time</span></div>
+                <div class="routine-item"><i class="fas fa-bed"></i> <span>01:00 PM - Nap Time</span></div>
+                <div class="routine-item"><i class="fas fa-mug-hot"></i> <span>03:30 PM - Tea & Snacks</span></div>
+                <div class="routine-item"><i class="fas fa-tv"></i> <span>04:00 PM - Screen Time</span></div>
+                <div class="routine-item"><i class="fas fa-basketball-ball"></i> <span>04:30 PM - Play Room Activities</span></div>
+                <div class="routine-item"><i class="fas fa-door-closed"></i> <span>06:00 PM - Center Closes</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CCTV Access -->
+    <section id="cctv">
+        <div class="container">
+            <div class="section-title"><span>PARENT PEACE OF MIND</span><h2>CCTV Camera Access</h2><p>Monitor your child anytime via EZVIZ app</p></div>
+            <div style="max-width:800px; margin:0 auto; text-align:center;">
+                <p>Smart Kids is equipped with high-definition CCTV cameras. Parents can view live feed through the EZVIZ mobile app. QR code and product key are provided by management.</p>
+                <div style="margin:30px 0;">
+                    <img src="https://smartkids.org.lk/wp-content/uploads/2026/04/EZVIZ-CCTV-Camera-Access.jpg" alt="CCTV Access" style="max-width:100%; border-radius:24px; box-shadow:0 10px 25px rgba(0,0,0,0.1);">
+                    <p style="margin-top:15px;"><i class="fas fa-qrcode"></i> Scan QR code or contact us for setup: <a href="tel:+94775511818">+94 77 5511 818</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Handover Checklist -->
+    <section id="checklist" class="bg-light">
+        <div class="container">
+            <div class="section-title"><span>WHAT TO BRING</span><h2>Daycare Handover Checklist</h2><p>Prepare your child's first day with ease</p></div>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px;">
+                <div style="background:white; border-radius:24px; padding:25px;">
+                    <h3><i class="fas fa-file-alt"></i> Documents</h3>
+                    <ul style="margin-top:15px; list-style:none;">
+                        <li>✅ Completed Application Form</li><li>✅ Child's Birth Certificate copy</li>
+                        <li>✅ Parent/Guardian ID copy</li><li>✅ Emergency Contact List</li>
+                        <li>✅ Medical Records & Immunizations</li><li>✅ Allergy/Special Needs Info</li>
+                    </ul>
+                </div>
+                <div style="background:white; border-radius:24px; padding:25px;">
+                    <h3><i class="fas fa-baby-carriage"></i> Essential Supplies</h3>
+                    <ul style="margin-top:15px; list-style:none;">
+                        <li>✅ Extra Clothes (5-7 sets)</li><li>✅ Diapers/Wipes (if applicable)</li>
+                        <li>✅ Bottles & Formula Milk</li><li>✅ Sippy Cup / Water Bottle</li>
+                        <li>✅ Comfort item (blanket/toy)</li><li>✅ Pacifier (if used)</li>
+                        <li>✅ Labeled food containers</li>
+                    </ul>
+                </div>
+                <div style="background:white; border-radius:24px; padding:25px;">
+                    <h3><i class="fas fa-notes-medical"></i> Medications & Communication</h3>
+                    <ul style="margin-top:15px; list-style:none;">
+                        <li>✅ Doctor-prescribed medications with instructions</li>
+                        <li>✅ Notebook/Communication Folder</li>
+                        <li>✅ Drop-off/Pick-up authorization list</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / CTA -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title"><h2>Ready to Enrol?</h2><p>Give your child a safe, nurturing start</p></div>
+            <div style="text-align:center;">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSebGk4MIHP9v4Wda9Ap1GONbSbELKMC0Apw4gGXzGjABeMPSA/viewform" class="btn" style="margin-right:15px;">Register Now</a>
+                <a href="https://wa.me/94775511818" class="btn btn-outline" style="background:transparent; border:2px solid #E8063C; color:#E8063C;">WhatsApp Enquiry</a>
+            </div>
+            <div style="margin-top: 50px; display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:30px; text-align:center;">
+                <div><i class="fas fa-phone-alt fa-2x" style="color:#E8063C;"></i><h3>Call Us</h3><p><a href="tel:+94775511818">+94 77 5511 818</a></p></div>
+                <div><i class="fas fa-envelope fa-2x" style="color:#E8063C;"></i><h3>Email</h3><p><a href="mailto:info@smartkids.org.lk">info@smartkids.org.lk</a></p></div>
+                <div><i class="fas fa-map-marker-alt fa-2x" style="color:#E8063C;"></i><h3>Visit Us</h3><p>No 61 A, Lake Road - 1, Batticaloa, Sri Lanka</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div><img src="https://smartkids.org.lk/wp-content/uploads/2025/03/Web-Banner-SK-SVG.svg" alt="logo" style="max-width:160px; filter:brightness(0) invert(1);"><p style="margin-top:15px">Giving your child the best start in life.</p></div>
+                <div><h3>Get In Touch</h3><p><i class="fas fa-map-marker-alt"></i> No 61 A, Lake Road - 1, Batticaloa.</p><p><i class="fas fa-phone"></i> <a href="tel:+94775511818">+94 77 5511 818</a></p><p><i class="fas fa-envelope"></i> <a href="mailto:info@smartkids.org.lk">info@smartkids.org.lk</a></p></div>
+                <div><h3>Follow Us</h3><a href="https://web.facebook.com/profile.php?id=61573965225366" style="margin-right:15px; font-size:24px;"><i class="fab fa-facebook"></i></a><a href="https://www.youtube.com/@SmartKids0025" style="margin-right:15px; font-size:24px;"><i class="fab fa-youtube"></i></a><a href="http://wa.me/+94775511818" style="font-size:24px;"><i class="fab fa-whatsapp"></i></a></div>
+            </div>
+            <div class="copyright"><p>© 2025 Smart Kids Daycare Center. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/94775511818" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i> Chat with us</a>
+
+    <script>
+        // Mobile menu toggle
+        const mobileBtn = document.querySelector('.mobile-menu');
+        const nav = document.querySelector('.nav-links');
+        if(mobileBtn) {
+            mobileBtn.addEventListener('click', () => {
+                if(nav.style.display === 'flex') nav.style.display = 'none';
+                else nav.style.display = 'flex';
+            });
+        }
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

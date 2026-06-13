@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Contact – Smart Kids Daycare & Montessori</title>
+    <meta name="description" content="Get in touch with Smart Kids Daycare & Montessori in Batticaloa. Call, email, or visit us. Emergency contacts, map, and enquiry form.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Jost', sans-serif;
+            color: #444;
+            background: #fff;
+            line-height: 1.5;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            color: #000;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .btn {
+            display: inline-block;
+            background: #E8063C;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #490D59;
+            color: #fff;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-title span {
+            color: #E8063C;
+            font-weight: 500;
+            letter-spacing: 1px;
+            display: block;
+            font-size: 1rem;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-top: 10px;
+        }
+        /* Header */
+        .top-bar {
+            background: #490D59;
+            color: #fff;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .top-bar a {
+            color: #FFD600;
+            text-decoration: none;
+            margin-left: 8px;
+        }
+        .top-bar i {
+            margin-right: 6px;
+        }
+        .main-header {
+            padding: 20px 0;
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo img {
+            max-height: 65px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #222;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #E8063C;
+        }
+        .mobile-menu {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+        }
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(rgba(73,13,89,0.85), rgba(73,13,89,0.9)), url('https://smartkids.org.lk/wp-content/uploads/2025/05/sd.jpg') center/cover no-repeat;
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+        }
+        .page-hero h1 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 15px;
+        }
+        /* Info Boxes */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        .info-card {
+            background: #F0F6FA;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 24px;
+            transition: 0.2s;
+        }
+        .info-card i {
+            font-size: 50px;
+            color: #E8063C;
+            background: white;
+            padding: 20px;
+            border-radius: 60px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+        }
+        .info-card h3 {
+            margin-bottom: 15px;
+        }
+        /* Contact Form & Map */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+            margin: 60px 0;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 18px;
+            border: 1px solid #ddd;
+            border-radius: 40px;
+            font-family: inherit;
+        }
+        .form-group textarea {
+            border-radius: 20px;
+            resize: vertical;
+        }
+        .emergency-table {
+            background: #fff;
+            border-radius: 30px;
+            overflow-x: auto;
+            margin: 60px 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+        .emergency-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .emergency-table th, .emergency-table td {
+            padding: 14px 20px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .emergency-table th {
+            background: #490D59;
+            color: white;
+        }
+        .map-container {
+            margin: 60px 0;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: 0;
+        }
+        /* Footer */
+        footer {
+            background: #111;
+            color: #ccc;
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-grid h3 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        .footer-grid a {
+            color: #ccc;
+            text-decoration: none;
+        }
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            font-size: 14px;
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu { display: block; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .page-hero h1 { font-size: 2rem; }
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            border-radius: 50px;
+            padding: 12px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            z-index: 99;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div><i class="fas fa-envelope"></i> Email: <a href="mailto:info@smartkids.org.lk">info@smartkids.org.lk</a></div>
+            <div><i class="fas fa-phone-alt"></i> Phone: <a href="tel:+94775511818">+94 77 5511 818</a></div>
+            <div><i class="fas fa-clock"></i> Mon-Fri: 7:00am – 6:00pm | Sat-Sun: Closed</div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="https://smartkids.org.lk/wp-content/uploads/2025/03/Web-Banner-SK-SVG.svg" alt="Smart Kids Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#classes">Classes</a></li>
+                <li><a href="index.html#blog">Events</a></li>
+            </ul>
+            <div class="mobile-menu"><i class="fas fa-bars"></i></div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSebGk4MIHP9v4Wda9Ap1GONbSbELKMC0Apw4gGXzGjABeMPSA/viewform" class="btn" style="padding: 8px 20px;">Apply Today</a>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>We’d love to hear from you. Reach out with any questions or to schedule a visit.</p>
+        </div>
+    </section>
+
+    <!-- Contact Info Boxes -->
+    <div class="container">
+        <div class="info-grid">
+            <div class="info-card">
+                <i class="fas fa-phone-alt"></i>
+                <h3>Phone / WhatsApp</h3>
+                <p><a href="tel:+94775511818">+94 77 5511 818</a></p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Address</h3>
+                <p>No 61 A, Lake Road - 1, Batticaloa, Sri Lanka</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p><a href="mailto:info@smartkids.org.lk">info@smartkids.org.lk</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Form + Map -->
+    <div class="container">
+        <div class="contact-grid">
+            <div>
+                <h2 style="margin-bottom: 20px;">Send us a Message</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label>First Name *</label>
+                        <input type="text" name="firstname" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name *</label>
+                        <input type="text" name="lastname" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message *</label>
+                        <textarea name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+                <p id="formStatus" style="margin-top: 15px; font-weight: 500;"></p>
+            </div>
+            <div>
+                <img src="https://smartkids.org.lk/wp-content/uploads/2023/08/con-2-1.png" alt="Contact illustration" style="width: 100%; max-width: 400px; display: block; margin: 0 auto;">
+            </div>
+        </div>
+    </div>
+
+    <!-- Emergency Contact Numbers -->
+    <div class="container">
+        <div class="section-title">
+            <span>EMERGENCY & SUPPORT</span>
+            <h2>Emergency Contact Numbers</h2>
+            <p>🚨 அவசர தொடர்பு எண்கள் | හදිසි ඇමතුම් අංක</p>
+        </div>
+        <div class="emergency-table">
+            <table>
+                <thead>
+                    <tr><th>Office / Service</th><th>Phone Number</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>🏥 General Hospital / பொதுமருத்துவமனை / මහ රෝහල</td><td>📞 065 2222261</td></tr>
+                    <tr><td>🚓 Police Station / காவல் நிலையம் / පොලිස් ස්ථානය</td><td>📞 065 2224422</td></tr>
+                    <tr><td>🚒 Fire Brigade / தீயணைப்பு படை / ගිනි නිවන හමුදාව</td><td>📞 065 2222222</td></tr>
+                    <tr><td>🩺 MOH Office / சுகாதார வைத்திய அதிகாரி / සෞඛ්‍ය වෛද්‍ය නිලධාරී (MOH)</td><td>📞 065 2222278</td></tr>
+                    <tr><td>👨‍⚕️ PHI / பொதுச் சுகாதாரப் பரிசோதகர் / මහජන සෞඛ්‍ය පරීක්ෂක</td><td>📞 075 956 7820</td></tr>
+                    <tr><td>🏢 DS Office / பிரதேச செயலகம் / ප්‍රාදේශීය ලේකම් කාර්යාලය</td><td>📞 065 222 8533</td></tr>
+                    <tr><td>🎓 Pre-School Bureau / முன்பள்ளி அலுவலகம் / පෙර පාසල් කාර්යාලය</td><td>📞 077 248 3301</td></tr>
+                    <tr><td>🚑 Ambulance / ஆம்புலன்ஸ் / ගිලන් රථ සේවාව</td><td>📞 1990</td></tr>
+                    <tr><td>👶 Probation Department / சிறுவர் நன்நடத்தை அலுவலகம் / පරිවාස හා ළමා සුරැකුම්</td><td>📞 011 218 6062</td></tr>
+                    <tr><td>🏛️ Kachcheri (District Secretariat) / மாவட்ட செயலகம் / දිස්ත්‍රික් ලේකම් කාර්යාලය</td><td>📞 065 2224435</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Google Map -->
+    <div class="container">
+        <div class="section-title">
+            <h2>How To Find Us</h2>
+        </div>
+        <div class="map-container">
+            <iframe 
+                loading="lazy"
+                src="https://maps.google.com/maps?q=7.711483,81.68981&z=15&output=embed"
+                title="Smart Kids Location"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <img src="https://smartkids.org.lk/wp-content/uploads/2025/03/Web-Banner-SK-SVG.svg" alt="logo" style="max-width:160px; filter:brightness(0) invert(1);">
+                    <p style="margin-top:15px">Giving your child the best start in life. Safe, fun, and educational environment.</p>
+                </div>
+                <div>
+                    <h3>Get In Touch</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> No 61 A, Lake Road - 1, Batticaloa.</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+94775511818">+94 77 5511 818</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@smartkids.org.lk">info@smartkids.org.lk</a></p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 7am – 6pm | Sat-Sun: Closed</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <p><a href="index.html">Home</a></p>
+                    <p><a href="about.html">About Us</a></p>
+                    <p><a href="index.html#services">Daycare & Montessori</a></p>
+                    <p><a href="index.html#classes">Special Classes</a></p>
+                </div>
+                <div>
+                    <h3>Follow Us</h3>
+                    <a href="https://web.facebook.com/profile.php?id=61573965225366" style="margin-right:15px; font-size:24px;"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.youtube.com/@SmartKids0025" style="margin-right:15px; font-size:24px;"><i class="fab fa-youtube"></i></a>
+                    <a href="http://wa.me/+94775511818" style="font-size:24px;"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>Copyright © 2025 Smart Kids. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/94775511818" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i> Chat with us</a>
+
+    <script>
+        // Mobile menu toggle
+        const mobileBtn = document.querySelector('.mobile-menu');
+        const nav = document.querySelector('.nav-links');
+        if(mobileBtn) {
+            mobileBtn.addEventListener('click', () => {
+                if(nav.style.display === 'flex') nav.style.display = 'none';
+                else nav.style.display = 'flex';
+            });
+        }
+
+        // Simple static form handling (displays a thank you message and prevents actual submission)
+        const form = document.getElementById('contactForm');
+        const statusDiv = document.getElementById('formStatus');
+        if(form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                statusDiv.innerHTML = '✅ Thank you! Your message has been sent. We will get back to you soon.';
+                statusDiv.style.color = '#28a745';
+                form.reset();
+                setTimeout(() => { statusDiv.innerHTML = ''; }, 5000);
+            });
+        }
+    </script>
+</body>
+</html>

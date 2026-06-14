@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Smart Kids – Events & Celebrations | Batticaloa</title>
+    <meta name="description" content="Upcoming events, cultural celebrations, and activities at Smart Kids Daycare & Montessori – join us for fun and learning.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Jost', sans-serif;
+            color: #444;
+            background: #fff;
+            line-height: 1.5;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            color: #000;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .btn {
+            display: inline-block;
+            background: #E8063C;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #E8063C;
+            color: #E8063C;
+        }
+        .btn-outline:hover {
+            background: #E8063C;
+            color: #fff;
+        }
+        .btn:hover {
+            background: #490D59;
+            color: #fff;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-title span {
+            color: #E8063C;
+            font-weight: 500;
+            letter-spacing: 1px;
+            display: block;
+            font-size: 1rem;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-top: 10px;
+        }
+        /* Header */
+        .top-bar {
+            background: #490D59;
+            color: #fff;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .top-bar a {
+            color: #FFD600;
+            text-decoration: none;
+            margin-left: 8px;
+        }
+        .main-header {
+            padding: 20px 0;
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo img {
+            max-height: 65px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #222;
+            transition: 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #E8063C;
+        }
+        .mobile-menu {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+        }
+        /* Hero */
+        .page-hero {
+            background: linear-gradient(rgba(73,13,89,0.85), rgba(73,13,89,0.9)), url('https://smartkids.org.lk/wp-content/uploads/2025/05/sd.jpg') center/cover no-repeat;
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+        }
+        .page-hero h1 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 15px;
+        }
+        /* Event Cards */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+        .event-card {
+            background: #fff;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+        .event-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+        .event-img {
+            height: 220px;
+            overflow: hidden;
+        }
+        .event-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+        .event-card:hover .event-img img {
+            transform: scale(1.05);
+        }
+        .event-content {
+            padding: 25px;
+        }
+        .event-date {
+            background: #E8063C;
+            color: white;
+            display: inline-block;
+            padding: 5px 18px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .event-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+        .event-card p {
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .event-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 0.85rem;
+            color: #777;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            margin-top: 10px;
+        }
+        .event-meta i {
+            margin-right: 6px;
+            color: #E8063C;
+        }
+        .bg-light {
+            background: #F0F6FA;
+        }
+        footer {
+            background: #111;
+            color: #ccc;
+            padding: 60px 0 30px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-grid h3 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 30px;
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu { display: block; }
+            .page-hero h1 { font-size: 2rem; }
+            .section-title h2 { font-size: 1.8rem; }
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            border-radius: 50px;
+            padding: 12px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            z-index: 99;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div><i class="fas fa-envelope"></i> Email: <a href="mailto:info@smartkids.org.lk">info@smartkids.org.lk</a></div>
+            <div><i class="fas fa-phone-alt"></i> Phone: <a href="tel:+94775511818">+94 77 5511 818</a></div>
+            <div><i class="fas fa-clock"></i> Mon-Fri: 7:00am – 6:00pm | Sat-Sun: Closed</div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="https://smartkids.org.lk/wp-content/uploads/2025/03/Web-Banner-SK-SVG.svg" alt="Smart Kids Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="daycare.html">Daycare</a></li>
+                <li><a href="montessori.html">Montessori</a></li>
+                <li><a href="events.html" class="active">Events</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="mobile-menu"><i class="fas fa-bars"></i></div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSebGk4MIHP9v4Wda9Ap1GONbSbELKMC0Apw4gGXzGjABeMPSA/viewform" class="btn" style="padding: 8px 20px;">Join Event</a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Events & Celebrations</h1>
+            <p>Join us for fun‑filled cultural events, concerts, and special days at Smart Kids.</p>
+        </div>
+    </section>
+
+    <!-- Upcoming Events Section -->
+    <div class="container">
+        <div class="section-title">
+            <span>MARK YOUR CALENDAR</span>
+            <h2>Upcoming Events</h2>
+        </div>
+        <div class="events-grid">
+            <!-- Event 1 -->
+            <div class="event-card">
+                <div class="event-img">
+                    <img src="https://smartkids.org.lk/wp-content/uploads/2026/04/599505137_122172525326798840_8656381316126162246_n-1024x683.jpg" alt="Students Gaining Knowledge">
+                </div>
+                <div class="event-content">
+                    <div class="event-date">August 25, 2026 | 6:00 PM</div>
+                    <h3>Students Gaining Knowledge</h3>
+                    <p>Interactive session for parents and children on Montessori learning techniques and child development.</p>
+                    <div class="event-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Smart Kids Center</span>
+                        <span><i class="fas fa-user-friends"></i> Limited seats</span>
+                    </div>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSebGk4MIHP9v4Wda9Ap1GONbSbELKMC0Apw4gGXzGjABeMPSA/viewform" class="btn-outline btn" style="margin-top:15px; padding:6px 20px;">Register</a>
+                </div>
+            </div>
+            <!-- Event 2 -->
+            <div class="event-card">
+                <div class="event-img">
+                    <img src="https://smartkids.org.lk/wp-content/uploads/2026/04/DSC04858-scaled.jpg" alt="Certified Institute Meetup">
+                </div>
+                <div class="event-content">
+                    <div class="event-date">August 23, 2026 | 5:30 PM</div>
+                    <h3>Certified Institute Meetup</h3>
+                    <p>Discussion with school staff, parents, and community members about early childhood education.</p>
+                    <div class="event-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Smart Kids Hall</span>
+                        <span><i class="fas fa-chalkboard-user"></i> Guest speakers</span>
+                    </div>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSebGk4MIHP9v4Wda9Ap1GONbSbELKMC0Apw4gGXzGjABeMPSA/viewform" class="btn-outline btn" style="margin-top:15px; padding:6px 20px;">Register</a>
+                </div>
+            </div>
+            <!-- Event 3 -->
+            <div class="event-card">
+                <div class="event-img">
+                    <img src="https://smartkids.org.lk/wp-content/uploads/2026/04/IMG_3994-1024x683.jpg" alt="Father's Day Sundaes">
+                </div>
+                <div class="event-content">
+                    <div class="event-date">August 22, 2026 | 4:30 PM</div>
+                    <h3>Father's Day Sundaes & Shaving!</h3>
+                    <p>Special celebration for dads – fun activities, ice cream sundaes, and shaving foam games.</p>
+                    <div class="event-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Outdoor Play Area</span>
+                        <span><i class="fas fa-ice-cream"></i> Treats included</span>
+                    </div>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSebGk4MIHP9v4Wda9Ap1GONbSbELKMC0Apw4gGXzGjABeMPSA/viewform" class="btn-outline btn" style="margin-top:15px; padding:6px 20px;">Register</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Past Events Highlights -->
+    <section class="bg-light">
+        <div class="container">
+            <div class="section-title">
+                <span>MEMORIES</span>
+                <h2>Past Events & Celebrations</h2>
+            </div>
+            <div class="events-grid">
+                <!-- Past Event 1 -->
+                <div class="event-card">
+                    <div class="event-img">
+                        <img src="https://smartkids.org.lk/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-24-at-21.10.51-1-1024x768.jpeg" alt="New Year 2026">
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">April 24, 2026</div>
+                        <h3>Tamil & Sinhala New Year 2026</h3>
+                        <p>Children dressed in traditional outfits participated in games, cultural activities, and festive fun.</p>
+                        <div class="event-meta">
+                            <span><i class="fas fa-music"></i> Cultural celebration</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Past Event 2 -->
+                <div class="event-card">
+                    <div class="event-img">
+                        <img src="https://smartkids.org.lk/wp-content/uploads/2026/04/652585970_122188586138798840_8114648965250885701_n-1-1-1024x768.jpg" alt="1st Anniversary">
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">March 17, 2026</div>
+                        <h3>1st Anniversary Celebration</h3>
+                        <p>Marking one year of love, learning, and joyful growth – cake cutting, performances, and family fun.</p>
+                        <div class="event-meta">
+                            <span><i class="fas fa-birthday-cake"></i> Anniversary</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Past Event 3 -->
+                <div class="event-card">
+                    <div class="event-img">
+                        <img src="https://smartkids.org.lk/wp-content/uploads/2026/04/WhatsApp-Image-2026-01-20-at-3.56.16-PM-3-1-1024x768.jpeg" alt="Thai Pongal">
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">January 15, 2026</div>
+                        <h3>Thai Pongal 2026</h3>
+                        <p>Traditional harvest festival with Pongal cooking, kolam drawing, and festive games.</p>
+                        <div class="event-meta">
+                            <span><i class="fas fa-leaf"></i> Harvest festival</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Past Event 4 -->
+                <div class="event-card">
+                    <div class="event-img">
+                        <img src="https://smartkids.org.lk/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-13-at-4.30.59-AM-1024x768.jpeg" alt="Christmas 2025">
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">December 19, 2025</div>
+                        <h3>Oli Vila – Christmas Celebration</h3>
+                        <p>Santa visit, gift sharing, carols, and magical activities for children.</p>
+                        <div class="event-meta">
+                            <span><i class="fas fa-gift"></i> Christmas joy</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Past Event 5 -->
+                <div class="event-card">
+                    <div class="event-img">
+                        <img src="https://smartkids.org.lk/wp-content/uploads/2026/04/536280578_122148499808798840_170087174691399075_n-1024x683.jpg" alt="Green Day">
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">August 20, 2025</div>
+                        <h3>Green Day 2025</h3>
+                        <p>“Think Green, Live Green” – children wore green outfits and participated in nature activities.</p>
+                        <div class="event-meta">
+                            <span><i class="fas fa-tree"></i> Environmental awareness</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Past Event 6 -->
+                <div class="event-card">
+                    <div class="event-img">
+                        <img src="https://smartkids.org.lk/wp-content/uploads/2026/04/WhatsApp-Image-2025-05-06-at-12.25.42-PM-710x1024.jpeg" alt="New Year 2025">
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">April 15, 2025</div>
+                        <h3>Tamil & Sinhala New Year 2025</h3>
+                        <p>First cultural celebration at Smart Kids – traditional games and joyful atmosphere.</p>
+                        <div class="event-meta">
+                            <span><i class="fas fa-drumstick-bite"></i> Traditional feast</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action / Registration -->
+    <div style="background: #490D59; padding: 70px 0; text-align: center; color: white;">
+        <div class="container">
+            <h2 style="color: white;">Be Part of Our Next Event</h2>
+            <p style="margin: 20px 0;">Limited seats available for upcoming celebrations – reserve your spot today.</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSebGk4MIHP9v4Wda9Ap1GONbSbELKMC0Apw4gGXzGjABeMPSA/viewform" class="btn" style="background: #FFD600; color:#000;">Register Now →</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <img src="https://smartkids.org.lk/wp-content/uploads/2025/03/Web-Banner-SK-SVG.svg" alt="logo" style="max-width:160px; filter:brightness(0) invert(1);">
+                    <p style="margin-top:15px">Giving your child the best start in life. Safe, fun, and educational environment.</p>
+                </div>
+                <div>
+                    <h3>Get In Touch</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> No 61 A, Lake Road - 1, Batticaloa.</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+94775511818">+94 77 5511 818</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@smartkids.org.lk">info@smartkids.org.lk</a></p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 7am – 6pm | Sat-Sun: Closed</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <p><a href="index.html">Home</a></p>
+                    <p><a href="about.html">About</a></p>
+                    <p><a href="daycare.html">Daycare</a></p>
+                    <p><a href="montessori.html">Montessori</a></p>
+                    <p><a href="events.html">Events</a></p>
+                    <p><a href="contact.html">Contact</a></p>
+                </div>
+                <div>
+                    <h3>Follow Us</h3>
+                    <a href="https://web.facebook.com/profile.php?id=61573965225366" style="margin-right:15px; font-size:24px;"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.youtube.com/@SmartKids0025" style="margin-right:15px; font-size:24px;"><i class="fab fa-youtube"></i></a>
+                    <a href="http://wa.me/+94775511818" style="font-size:24px;"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="copyright"><p>Copyright © 2025 Smart Kids. All Rights Reserved.</p></div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/94775511818" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i> Chat with us</a>
+
+    <script>
+        // Mobile menu toggle
+        const mobileBtn = document.querySelector('.mobile-menu');
+        const nav = document.querySelector('.nav-links');
+        if(mobileBtn) {
+            mobileBtn.addEventListener('click', () => {
+                if(nav.style.display === 'flex') nav.style.display = 'none';
+                else nav.style.display = 'flex';
+            });
+        }
+    </script>
+</body>
+</html>

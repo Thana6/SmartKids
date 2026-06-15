@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome 6 (Free) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Swiper CSS for modern slider -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
         * {
             margin: 0;
@@ -20,6 +22,7 @@
             color: #444;
             background: #fff;
             line-height: 1.5;
+            overflow-x: hidden;
         }
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Fredoka', sans-serif;
@@ -127,22 +130,86 @@
             font-size: 28px;
             cursor: pointer;
         }
-        /* Hero */
-        .hero {
-            background: linear-gradient(rgba(73,13,89,0.8), rgba(73,13,89,0.9)), url('https://smartkids.org.lk/wp-content/uploads/2025/05/sd.jpg') center/cover no-repeat;
-            padding: 120px 0;
+        /* Hero Swiper Slider with zoom effect */
+        .hero-swiper {
+            width: 100%;
+            height: 85vh;
+            min-height: 550px;
+            position: relative;
+        }
+        .hero-swiper .swiper-slide {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+        /* Ken Burns Zoom Effect */
+        .hero-swiper .swiper-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(73,13,89,0.7), rgba(73,13,89,0.85));
+            z-index: 1;
+        }
+        .hero-swiper .swiper-slide-active .slide-bg {
+            animation: kenBurnsZoom 12s ease-in-out infinite alternate;
+        }
+        .slide-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transform: scale(1);
+            transition: transform 8s ease;
+        }
+        @keyframes kenBurnsZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
             text-align: center;
             color: white;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 0 20px;
         }
-        .hero h1 {
+        .hero-content h1 {
             font-size: 3.5rem;
             color: white;
             margin-bottom: 20px;
         }
-        .hero p {
+        .hero-content p {
             font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
+            margin-bottom: 30px;
+        }
+        .swiper-button-next, .swiper-button-prev {
+            color: #FFD600;
+            background: rgba(0,0,0,0.3);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+        .swiper-button-next:hover, .swiper-button-prev:hover {
+            background: #E8063C;
+            color: white;
+        }
+        .swiper-pagination-bullet {
+            background: #fff;
+            opacity: 0.7;
+        }
+        .swiper-pagination-bullet-active {
+            background: #FFD600;
         }
         /* About */
         .about {
@@ -158,10 +225,6 @@
             width: 100%;
             border-radius: 20px;
             box-shadow: 0 20px 30px -10px rgba(0,0,0,0.1);
-        }
-        .about-content h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
         }
         .features {
             display: flex;
@@ -205,30 +268,35 @@
             color: #E8063C;
             margin-bottom: 20px;
         }
-        .service-card h3 {
-            margin-bottom: 15px;
-        }
-        /* activities */
+        /* Activities - 3 columns 2 rows grid */
         .activities {
             padding: 80px 0;
         }
-        .activity-slider {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            padding-bottom: 20px;
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
         }
         .activity-card {
-            min-width: 220px;
             background: #490D59;
             color: white;
-            padding: 25px;
+            padding: 30px 20px;
             border-radius: 30px;
             text-align: center;
+            transition: transform 0.3s;
+        }
+        .activity-card:hover {
+            transform: translateY(-5px);
+        }
+        .activity-card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #FFD600;
         }
         .activity-card h4 {
             color: #FFD600;
             margin: 10px 0;
+            font-size: 1.2rem;
         }
         /* blog */
         .blog {
@@ -254,16 +322,13 @@
         .blog-card .content {
             padding: 20px;
         }
-        .blog-card h4 {
-            margin: 10px 0;
-        }
-        /* classes */
+        /* Special Classes - 6 items grid */
         .classes {
             padding: 80px 0;
         }
         .class-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
         }
         .class-item {
@@ -286,19 +351,25 @@
             font-weight: bold;
             font-size: 1.3rem;
         }
-        /* testimonials */
+        /* Testimonials - 2 columns */
         .testimonials {
             background: #490D59;
             color: white;
             padding: 80px 0;
         }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
         .testi-card {
             background: rgba(255,255,255,0.1);
             padding: 30px;
             border-radius: 30px;
-            max-width: 600px;
-            margin: 0 auto;
             text-align: center;
+            backdrop-filter: blur(2px);
         }
         .testi-card i {
             font-size: 40px;
@@ -324,6 +395,16 @@
         .footer-grid a {
             color: #ccc;
             text-decoration: none;
+            transition: 0.2s;
+        }
+        .footer-grid a:hover {
+            color: #FFD600;
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 10px;
         }
         .copyright {
             text-align: center;
@@ -332,12 +413,35 @@
             margin-top: 20px;
             font-size: 14px;
         }
+        /* Footer logo fix */
+        .footer-logo img {
+            max-width: 160px;
+            filter: brightness(0) invert(1);
+        }
+        @media (max-width: 992px) {
+            .class-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .activities-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .mobile-menu { display: block; }
             .about-grid { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 2rem; }
+            .hero-content h1 { font-size: 2rem; }
+            .hero-swiper { height: 70vh; min-height: 450px; }
             .section-title h2 { font-size: 1.8rem; }
+            .class-grid {
+                grid-template-columns: 1fr;
+            }
+            .activities-grid {
+                grid-template-columns: 1fr;
+            }
         }
         .whatsapp-float {
             position: fixed;
@@ -371,26 +475,62 @@
                 <img src="https://smartkids.org.lk/wp-content/uploads/2025/03/Web-Banner-SK-SVG.svg" alt="Smart Kids Logo">
             </div>
             <ul class="nav-links">
-                <li><a href="/index.html">Home</a></li>
-                <li><a href="/About.html">About</a></li>
-                <li><a href="/Daycare.html">Daycare</a></li>
-                <li><a href="/Montessori.html">Montessori</a></li>
-                <li><a href="/Events.html">Events</a></li>
-                <li><a href="/Contact.html">Contact</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#daycare">Daycare</a></li>
+                <li><a href="#montessori">Montessori</a></li>
+                <li><a href="#blog">Events</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="mobile-menu"><i class="fas fa-bars"></i></div>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSebGk4MIHP9v4Wda9Ap1GONbSbELKMC0Apw4gGXzGjABeMPSA/viewform" class="btn" style="padding: 8px 20px;">Apply Today</a>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>We Prepare Your Child For Life</h1>
-            <p>Admissions for 2026 are now open! Safe, creative, and caring environment.</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSebGk4MIHP9v4Wda9Ap1GONbSbELKMC0Apw4gGXzGjABeMPSA/viewform" class="btn">Enrol Your Child</a>
+    <!-- Hero Swiper Slider -->
+    <div class="hero-swiper swiper">
+        <div class="swiper-wrapper">
+            <!-- Slide 1 -->
+            <div class="swiper-slide">
+                <div class="slide-bg" style="background-image: url('https://smartkids.org.lk/wp-content/uploads/2025/05/sd.jpg');"></div>
+                <div class="hero-content">
+                    <h1>We Prepare Your Child For Life</h1>
+                    <p>Admissions for 2026 are now open! Safe, creative, and caring environment.</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSebGk4MIHP9v4Wda9Ap1GONbSbELKMC0Apw4gGXzGjABeMPSA/viewform" class="btn">Enrol Your Child</a>
+                </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="swiper-slide">
+                <div class="slide-bg" style="background-image: url('https://smartkids.org.lk/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-06-at-12.25.40-PM-e1775954350490.jpeg');"></div>
+                <div class="hero-content">
+                    <h1>Special Child Session for Brain Growth</h1>
+                    <p>Montessori is a nurturing and holistic approach to learning.</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSebGk4MIHP9v4Wda9Ap1GONbSbELKMC0Apw4gGXzGjABeMPSA/viewform" class="btn">Learn More</a>
+                </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="swiper-slide">
+                <div class="slide-bg" style="background-image: url('https://smartkids.org.lk/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-06-at-12.25.39-PM-1.jpeg');"></div>
+                <div class="hero-content">
+                    <h1>Best Children Study & Future Care</h1>
+                    <p>Child‑centered learning, hands-on activities, and a love for knowledge.</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSebGk4MIHP9v4Wda9Ap1GONbSbELKMC0Apw4gGXzGjABeMPSA/viewform" class="btn">Apply Today</a>
+                </div>
+            </div>
+            <!-- Slide 4 -->
+            <div class="swiper-slide">
+                <div class="slide-bg" style="background-image: url('https://smartkids.org.lk/wp-content/uploads/2026/04/DSC04746-scaled.jpg');"></div>
+                <div class="hero-content">
+                    <h1>Where Learning Meets Joy</h1>
+                    <p>Outdoor activities, loving teachers, and a safe environment for every child.</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSebGk4MIHP9v4Wda9Ap1GONbSbELKMC0Apw4gGXzGjABeMPSA/viewform" class="btn">Join Our Family</a>
+                </div>
+            </div>
         </div>
-    </section>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
 
     <!-- About Section -->
     <section id="about" class="about">
@@ -413,8 +553,8 @@
         </div>
     </section>
 
-    <!-- Services -->
-    <section id="services" class="services">
+    <!-- Services (Daycare) -->
+    <section id="daycare" class="services">
         <div class="container">
             <div class="section-title">
                 <span>WHAT WE OFFER</span>
@@ -430,26 +570,26 @@
         </div>
     </section>
 
-    <!-- Smart Activities -->
+    <!-- Smart Activities - 3 columns, 2 lines (6 items) -->
     <section class="activities">
         <div class="container">
             <div class="section-title">
                 <span>Learning Through Fun and Creativity</span>
                 <h2>Smart Activities</h2>
             </div>
-            <div class="activity-slider">
-                <div class="activity-card"><i class="fas fa-puzzle-piece fa-2x"></i><h4><i class="fas fa-puzzle-piece"></i> Puzzle Solving</h4><p>Problem-solving skills</p></div>
-                <div class="activity-card"><i class="fas fa-palette fa-2x"></i><h4>🎨 Coloring & Drawing</h4><p>Creativity boost</p></div>
-                <div class="activity-card"><i class="fas fa-font fa-2x"></i><h4>🔤 Alphabet Tracing</h4><p>Early writing</p></div>
-                <div class="activity-card"><i class="fas fa-calculator fa-2x"></i><h4>🔢 Number Counting</h4><p>Math foundation</p></div>
-                <div class="activity-card"><i class="fas fa-book-open fa-2x"></i><h4>📖 Storytelling</h4><p>Language skills</p></div>
-                <div class="activity-card"><i class="fas fa-brain fa-2x"></i><h4>🧠 Memory Games</h4><p>Concentration</p></div>
+            <div class="activities-grid">
+                <div class="activity-card"><i class="fas fa-puzzle-piece"></i><h4>🧩 Puzzle Solving</h4><p>Problem-solving skills</p></div>
+                <div class="activity-card"><i class="fas fa-palette"></i><h4>🎨 Coloring & Drawing</h4><p>Creativity boost</p></div>
+                <div class="activity-card"><i class="fas fa-font"></i><h4>🔤 Alphabet Tracing</h4><p>Early writing</p></div>
+                <div class="activity-card"><i class="fas fa-calculator"></i><h4>🔢 Number Counting</h4><p>Math foundation</p></div>
+                <div class="activity-card"><i class="fas fa-book-open"></i><h4>📖 Storytelling</h4><p>Language skills</p></div>
+                <div class="activity-card"><i class="fas fa-brain"></i><h4>🧠 Memory Games</h4><p>Concentration</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Special Classes -->
-    <section id="classes" class="classes">
+    <!-- Special Classes (Montessori) - 6 items -->
+    <section id="montessori" class="classes">
         <div class="container">
             <div class="section-title">
                 <span>EXTRA CURRICULAR</span>
@@ -461,6 +601,9 @@
                 <div class="class-item"><img src="https://smartkids.org.lk/wp-content/uploads/2023/09/3-360x306.jpg" alt="elocution"><div class="class-info"><h3>🎤 Elocution Class</h3><p>Age 5-10 years | 25 seats</p><p class="price">Rs. 1200 / month</p><a href="#" class="btn-outline btn" style="padding:6px 18px;">Enquire</a></div></div>
                 <div class="class-item"><img src="https://smartkids.org.lk/wp-content/uploads/2023/09/4-360x306.jpg" alt="writing"><div class="class-info"><h3>✍️ Writing Class</h3><p>English, Tamil & Sinhala | Age 3-6</p><p class="price">Rs. 1000 / month</p><a href="#" class="btn-outline btn" style="padding:6px 18px;">Enquire</a></div></div>
                 <div class="class-item"><img src="https://smartkids.org.lk/wp-content/uploads/2023/09/5-360x306.jpg" alt="robotics"><div class="class-info"><h3>🤖 Robotic Class</h3><p>Age 6-10 years | 15 seats</p><p class="price">Rs. 2000 / month</p><a href="#" class="btn-outline btn" style="padding:6px 18px;">Enquire</a></div></div>
+                <!-- Two new classes added -->
+                <div class="class-item"><img src="https://smartkids.org.lk/wp-content/uploads/2023/09/3-360x306.jpg" alt="dance"><div class="class-info"><h3>💃 Dance & Movement</h3><p>Age 3-8 years | 20 seats</p><p class="price">Rs. 1500 / month</p><a href="#" class="btn-outline btn" style="padding:6px 18px;">Enquire</a></div></div>
+                <div class="class-item"><img src="https://smartkids.org.lk/wp-content/uploads/2023/09/4-360x306.jpg" alt="art"><div class="class-info"><h3>🎨 Creative Art</h3><p>Age 3-10 years | 15 seats</p><p class="price">Rs. 1200 / month</p><a href="#" class="btn-outline btn" style="padding:6px 18px;">Enquire</a></div></div>
             </div>
         </div>
     </section>
@@ -480,7 +623,7 @@
         </div>
     </section>
 
-    <!-- Timetable / Session Times -->
+    <!-- Session Times -->
     <section style="background:#E8063C10; padding:60px 0;">
         <div class="container">
             <div class="section-title">
@@ -496,30 +639,32 @@
         </div>
     </section>
 
-    <!-- Testimonials -->
+    <!-- Testimonials - 2 columns -->
     <section class="testimonials">
         <div class="container">
             <div class="section-title" style="color:white">
                 <span style="color:#FFD600">TESTIMONIALS</span>
                 <h2 style="color:white">Parents Reviews</h2>
             </div>
-            <div class="testi-card">
-                <i class="fas fa-quote-left"></i>
-                <p>"Smart Kids Day Care offers a safe and nurturing environment. My child has grown so much in confidence and skills. The teachers are amazing!"</p>
-                <h4 style="color:#FFD600">- Praveena Thanistan</h4>
-                <div><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-            </div>
-            <div class="testi-card" style="margin-top:30px">
-                <i class="fas fa-quote-left"></i>
-                <p>"என் மகன் மகள் டேகேர் வாழ்க்கையைத் தொடங்கி, இன்று அவன்/அவள் காட்டும் வளர்ச்சியும் மகிழ்ச்சியும் எங்களை மிகவும் பெருமைப்படுத்துகிறது. Smart Kids is a second home!"</p>
-                <h4 style="color:#FFD600">- Thanu Disha</h4>
-                <div><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <div class="testimonials-grid">
+                <div class="testi-card">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Smart Kids Day Care offers a safe and nurturing environment. My child has grown so much in confidence and skills. The teachers are amazing!"</p>
+                    <h4 style="color:#FFD600">- Praveena Thanistan</h4>
+                    <div><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
+                <div class="testi-card">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"என் மகன் மகள் டேகேர் வாழ்க்கையைத் தொடங்கி, இன்று அவன்/அவள் காட்டும் வளர்ச்சியும் மகிழ்ச்சியும் எங்களை மிகவும் பெருமைப்படுத்துகிறது. Smart Kids is a second home!"</p>
+                    <h4 style="color:#FFD600">- Thanu Disha</h4>
+                    <div><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- FAQ / Montessori Guide -->
-    <section style="padding:80px 0">
+    <section id="contact" style="padding:80px 0">
         <div class="container">
             <div class="about-grid">
                 <div><img src="https://smartkids.org.lk/wp-content/uploads/2026/04/IMG_3994-1024x683.jpg" alt="classroom" style="width:100%; border-radius:28px;"></div>
@@ -536,12 +681,12 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="contact">
+    <!-- Footer with all menu links and fixed logo -->
+    <footer>
         <div class="container">
             <div class="footer-grid">
-                <div>
-                    <img src="https://smartkids.org.lk/wp-content/uploads/2025/03/Web-Banner-SK-SVG.svg" alt="logo" style="max-width:160px; filter:brightness(0) invert(1);">
+                <div class="footer-logo">
+                    <img src="https://smartkids.org.lk/wp-content/uploads/2025/03/Web-Banner-SK-SVG.svg" alt="Smart Kids Logo" style="max-width:160px; filter: brightness(0) invert(1);">
                     <p style="margin-top:15px">Giving your child the best start in life. Safe, fun, and educational environment.</p>
                 </div>
                 <div>
@@ -550,6 +695,18 @@
                     <p><i class="fas fa-phone"></i> <a href="tel:+94775511818">+94 77 5511 818</a></p>
                     <p><i class="fas fa-envelope"></i> <a href="mailto:info@smartkids.org.lk">info@smartkids.org.lk</a></p>
                     <p><i class="fas fa-clock"></i> Mon-Fri: 7am – 6pm | Sat-Sun: Closed</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#daycare">Daycare</a></li>
+                        <li><a href="#montessori">Montessori</a></li>
+                        <li><a href="#blog">Events</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSebGk4MIHP9v4Wda9Ap1GONbSbELKMC0Apw4gGXzGjABeMPSA/viewform">Enrol Now</a></li>
+                    </ul>
                 </div>
                 <div>
                     <h3>Follow Us</h3>
@@ -567,8 +724,51 @@
     <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/94775511818" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i> Chat with us</a>
 
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // simple mobile menu toggle
+        // Initialize Swiper Slider
+        const swiper = new Swiper('.hero-swiper', {
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            effect: 'slide',
+            speed: 1000,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            on: {
+                init: function () {
+                    document.querySelectorAll('.hero-swiper .swiper-slide .slide-bg').forEach(bg => {
+                        bg.style.animation = 'none';
+                    });
+                    const activeSlide = document.querySelector('.hero-swiper .swiper-slide-active');
+                    if (activeSlide) {
+                        const bg = activeSlide.querySelector('.slide-bg');
+                        if (bg) bg.style.animation = 'kenBurnsZoom 12s ease-in-out infinite alternate';
+                    }
+                },
+                slideChangeTransitionEnd: function () {
+                    document.querySelectorAll('.hero-swiper .swiper-slide .slide-bg').forEach(bg => {
+                        bg.style.animation = 'none';
+                    });
+                    const activeSlide = document.querySelector('.hero-swiper .swiper-slide-active');
+                    if (activeSlide) {
+                        const bg = activeSlide.querySelector('.slide-bg');
+                        if (bg) bg.style.animation = 'kenBurnsZoom 12s ease-in-out infinite alternate';
+                    }
+                }
+            }
+        });
+
+        // Mobile menu toggle
         const mobileBtn = document.querySelector('.mobile-menu');
         const nav = document.querySelector('.nav-links');
         if(mobileBtn) {
@@ -577,7 +777,7 @@
                 else nav.style.display = 'flex';
             });
         }
-        // smooth scroll
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const target = document.querySelector(this.getAttribute('href'));

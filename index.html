@@ -12,6 +12,131 @@
     <!-- Swiper CSS for modern slider -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
+        /* ═══════════════════════════════════════════
+                   LOADER – BABY ROUND SPINNER
+                   ═══════════════════════════════════════════ */
+        #loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #490D59 0%, #E8063C 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        #loader-wrapper.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .loader-baby {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            animation: loaderSpin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        }
+        .loader-baby .baby-face {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: #FFD600;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+            color: #490D59;
+            box-shadow: 0 0 0 4px #fff, 0 0 0 8px rgba(255, 214, 0, 0.3);
+            animation: babyPulse 1.2s ease-in-out infinite alternate;
+        }
+        .loader-baby .ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            animation: ringSpin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        }
+        .loader-baby .ring:nth-child(1) {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-top-color: #FFD600;
+            border-right-color: #FFD600;
+            animation-duration: 1.2s;
+        }
+        .loader-baby .ring:nth-child(2) {
+            top: 8px;
+            left: 8px;
+            width: calc(100% - 16px);
+            height: calc(100% - 16px);
+            border-bottom-color: #fff;
+            border-left-color: #fff;
+            animation-duration: 1.6s;
+            animation-direction: reverse;
+        }
+        .loader-baby .ring:nth-child(3) {
+            top: 16px;
+            left: 16px;
+            width: calc(100% - 32px);
+            height: calc(100% - 32px);
+            border-top-color: #FFD600;
+            border-left-color: #FFD600;
+            animation-duration: 2s;
+        }
+        @keyframes loaderSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes ringSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes babyPulse {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            100% { transform: translate(-50%, -50%) scale(1.08); }
+        }
+        .loader-text {
+            margin-top: 30px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: 2px;
+            animation: textFade 1.5s ease-in-out infinite alternate;
+        }
+        .loader-text span {
+            display: inline-block;
+            animation: textBounce 1.5s ease-in-out infinite;
+        }
+        .loader-text span:nth-child(2) { animation-delay: 0.1s; }
+        .loader-text span:nth-child(3) { animation-delay: 0.2s; }
+        .loader-text span:nth-child(4) { animation-delay: 0.3s; }
+        .loader-text span:nth-child(5) { animation-delay: 0.4s; }
+        .loader-text span:nth-child(6) { animation-delay: 0.5s; }
+        .loader-text span:nth-child(7) { animation-delay: 0.6s; }
+        .loader-text span:nth-child(8) { animation-delay: 0.7s; }
+        .loader-text span:nth-child(9) { animation-delay: 0.8s; }
+        .loader-text span:nth-child(10) { animation-delay: 0.9s; }
+        @keyframes textBounce {
+            0%, 80% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+        }
+        @keyframes textFade {
+            0% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        /* ═══════════════════════════════════════════
+                   RESET & BASE
+                   ═══════════════════════════════════════════ */
         * {
             margin: 0;
             padding: 0;
@@ -34,6 +159,57 @@
             margin: 0 auto;
             padding: 0 20px;
         }
+
+        /* ═══════════════════════════════════════════
+                   SCROLL REVEAL
+                   ═══════════════════════════════════════════ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .stagger-children>* {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .stagger-children.visible>*:nth-child(1) { transition-delay: 0.05s; }
+        .stagger-children.visible>*:nth-child(2) { transition-delay: 0.12s; }
+        .stagger-children.visible>*:nth-child(3) { transition-delay: 0.19s; }
+        .stagger-children.visible>*:nth-child(4) { transition-delay: 0.26s; }
+        .stagger-children.visible>*:nth-child(5) { transition-delay: 0.33s; }
+        .stagger-children.visible>*:nth-child(6) { transition-delay: 0.40s; }
+        .stagger-children.visible>* {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ═══════════════════════════════════════════
+                   BUTTONS – Enhanced
+                   ═══════════════════════════════════════════ */
         .btn {
             display: inline-block;
             background: #E8063C;
@@ -42,39 +218,133 @@
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: 0.3s;
             border: none;
             cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #490D59, #E8063C);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+            border-radius: 50px;
+        }
+        .btn:hover::after {
+            opacity: 1;
+        }
+        .btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(232, 6, 60, 0.35);
+            color: #fff;
+        }
+        .btn:active {
+            transform: scale(0.96);
         }
         .btn-outline {
             background: transparent;
             border: 2px solid #E8063C;
             color: #E8063C;
         }
+        .btn-outline::after {
+            background: linear-gradient(135deg, #E8063C, #490D59);
+        }
         .btn-outline:hover {
-            background: #E8063C;
-            color: #fff;
+            color: #fff !important;
+            border-color: #490D59;
         }
-        .btn:hover {
-            background: #490D59;
-            color: #fff;
+
+        /* ═══════════════════════════════════════════
+                   IMAGE HOVER – zoom + overlay
+                   ═══════════════════════════════════════════ */
+        .img-hover {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            cursor: pointer;
         }
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        .section-title span {
-            color: #E8063C;
-            font-weight: 500;
-            letter-spacing: 1px;
+        .img-hover img {
+            width: 100%;
             display: block;
-            font-size: 1rem;
+            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                filter 0.5s ease;
         }
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-top: 10px;
+        .img-hover .img-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(73, 13, 89, 0);
+            border-radius: 20px;
+            transition: background 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
         }
-        /* Header */
+        .img-hover .img-overlay i {
+            font-size: 3rem;
+            color: #FFD600;
+            opacity: 0;
+            transform: scale(0.5) rotate(-20deg);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .img-hover:hover img {
+            transform: scale(1.08);
+            filter: brightness(0.7) saturate(1.1);
+        }
+        .img-hover:hover .img-overlay {
+            background: rgba(73, 13, 89, 0.55);
+        }
+        .img-hover:hover .img-overlay i {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        /* ═══════════════════════════════════════════
+                   ICON HOVER VARIANTS
+                   ═══════════════════════════════════════════ */
+        .icon-rotate {
+            display: inline-block;
+            transition: transform 0.5s ease, color 0.3s ease;
+        }
+        .icon-rotate:hover {
+            transform: rotate(360deg) scale(1.1);
+        }
+        .icon-bounce {
+            display: inline-block;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
+        }
+        .icon-bounce:hover {
+            transform: scale(1.2) translateY(-4px);
+        }
+        .icon-color {
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .icon-color:hover {
+            color: #FFD600 !important;
+            transform: scale(1.1);
+        }
+        .icon-lift {
+            display: inline-block;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .icon-lift:hover {
+            transform: translateY(-3px) scale(1.08);
+        }
+
+        /* ═══════════════════════════════════════════
+                   TOP BAR
+                   ═══════════════════════════════════════════ */
         .top-bar {
             background: #490D59;
             color: #fff;
@@ -91,14 +361,27 @@
             color: #FFD600;
             text-decoration: none;
             margin-left: 8px;
+            transition: color 0.3s ease;
+        }
+        .top-bar a:hover {
+            color: #fff;
         }
         .top-bar i {
             margin-right: 6px;
+            transition: transform 0.3s ease, color 0.3s ease;
         }
+        .top-bar i:hover {
+            transform: rotate(8deg) scale(1.1);
+            color: #FFD600;
+        }
+
+        /* ═══════════════════════════════════════════
+                   HEADER
+                   ═══════════════════════════════════════════ */
         .main-header {
             padding: 20px 0;
             background: #fff;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -121,16 +404,40 @@
             text-decoration: none;
             font-weight: 500;
             color: #222;
+            transition: color 0.3s ease, transform 0.3s ease;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2.5px;
+            background: #E8063C;
+            transition: width 0.3s ease;
         }
         .nav-links a:hover {
             color: #E8063C;
+            transform: translateY(-1px);
+        }
+        .nav-links a:hover::after {
+            width: 100%;
         }
         .mobile-menu {
             display: none;
             font-size: 28px;
             cursor: pointer;
+            transition: transform 0.3s ease;
         }
-        /* Hero Swiper Slider with zoom effect */
+        .mobile-menu:hover {
+            transform: rotate(90deg);
+            color: #E8063C;
+        }
+
+        /* ═══════════════════════════════════════════
+                   HERO SWIPER
+                   ═══════════════════════════════════════════ */
         .hero-swiper {
             width: 100%;
             height: 85vh;
@@ -143,7 +450,6 @@
             background-position: center;
             overflow: hidden;
         }
-        /* Ken Burns Zoom Effect */
         .hero-swiper .swiper-slide::before {
             content: '';
             position: absolute;
@@ -151,11 +457,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(73,13,89,0.7), rgba(73,13,89,0.85));
+            background: linear-gradient(rgba(73, 13, 89, 0.7), rgba(73, 13, 89, 0.85));
             z-index: 1;
         }
         .hero-swiper .swiper-slide-active .slide-bg {
-            animation: kenBurnsZoom 12s ease-in-out infinite alternate;
+            animation: kenBurnsZoom 14s ease-in-out infinite alternate;
         }
         .slide-bg {
             position: absolute;
@@ -170,7 +476,7 @@
         }
         @keyframes kenBurnsZoom {
             0% { transform: scale(1); }
-            100% { transform: scale(1.08); }
+            100% { transform: scale(1.1); }
         }
         .hero-content {
             position: relative;
@@ -194,7 +500,7 @@
         }
         .swiper-button-next, .swiper-button-prev {
             color: #FFD600;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0, 0, 0, 0.3);
             width: 45px;
             height: 45px;
             border-radius: 50%;
@@ -203,15 +509,25 @@
         .swiper-button-next:hover, .swiper-button-prev:hover {
             background: #E8063C;
             color: white;
+            transform: scale(1.1);
         }
         .swiper-pagination-bullet {
             background: #fff;
             opacity: 0.7;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        .swiper-pagination-bullet:hover {
+            transform: scale(1.3);
+            background: #FFD600;
         }
         .swiper-pagination-bullet-active {
             background: #FFD600;
+            transform: scale(1.2);
         }
-        /* About */
+
+        /* ═══════════════════════════════════════════
+                   ABOUT
+                   ═══════════════════════════════════════════ */
         .about {
             padding: 80px 0;
         }
@@ -224,7 +540,7 @@
         .about-img img {
             width: 100%;
             border-radius: 20px;
-            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.1);
         }
         .features {
             display: flex;
@@ -237,6 +553,12 @@
             border-radius: 20px;
             text-align: center;
             flex: 1;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.3s ease;
+        }
+        .feature-item:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+            background: #fff;
         }
         .feature-item i {
             font-size: 40px;
@@ -244,8 +566,17 @@
             background: #490D59;
             padding: 12px;
             border-radius: 50%;
+            transition: transform 0.5s ease, background 0.3s ease, color 0.3s ease;
         }
-        /* Services */
+        .feature-item:hover i {
+            transform: rotate(12deg) scale(1.08);
+            background: #E8063C;
+            color: #fff;
+        }
+
+        /* ═══════════════════════════════════════════
+                   SERVICES
+                   ═══════════════════════════════════════════ */
         .services {
             background: #F9F9F9;
             padding: 80px 0;
@@ -260,15 +591,28 @@
             padding: 30px 20px;
             text-align: center;
             border-radius: 24px;
-            transition: 0.3s;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.01);
+            box-shadow: 0 20px 40px rgba(232, 6, 60, 0.12);
+            background: #fff;
         }
         .service-card i {
             font-size: 50px;
             color: #E8063C;
             margin-bottom: 20px;
+            transition: transform 0.5s ease, color 0.3s ease;
         }
-        /* Activities - 3 columns 2 rows grid */
+        .service-card:hover i {
+            transform: rotate(12deg) scale(1.1);
+            color: #490D59;
+        }
+
+        /* ═══════════════════════════════════════════
+                   ACTIVITIES
+                   ═══════════════════════════════════════════ */
         .activities {
             padding: 80px 0;
         }
@@ -283,46 +627,72 @@
             padding: 30px 20px;
             border-radius: 30px;
             text-align: center;
-            transition: transform 0.3s;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.3s ease;
         }
         .activity-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 16px 40px rgba(73, 13, 89, 0.3);
+            background: #5c1a70;
         }
         .activity-card i {
             font-size: 2.5rem;
             margin-bottom: 15px;
             color: #FFD600;
+            transition: transform 0.5s ease, color 0.3s ease;
+        }
+        .activity-card:hover i {
+            transform: rotate(20deg) scale(1.15);
+            color: #fff;
         }
         .activity-card h4 {
             color: #FFD600;
             margin: 10px 0;
             font-size: 1.2rem;
+            transition: color 0.3s ease;
         }
-        /* blog */
+        .activity-card:hover h4 {
+            color: #fff;
+        }
+
+        /* ═══════════════════════════════════════════
+                   BLOG
+                   ═══════════════════════════════════════════ */
         .blog {
             background: #F0F6FA;
             padding: 80px 0;
         }
         .blog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
         }
         .blog-card {
             background: white;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
         .blog-card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .blog-card:hover img {
+            transform: scale(1.05);
         }
         .blog-card .content {
             padding: 20px;
         }
-        /* Special Classes - 6 items grid */
+
+        /* ═══════════════════════════════════════════
+                   CLASSES
+                   ═══════════════════════════════════════════ */
         .classes {
             padding: 80px 0;
         }
@@ -335,13 +705,21 @@
             background: #fff;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            transition: 0.2s;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .class-item:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 20px 40px rgba(232, 6, 60, 0.13);
         }
         .class-item img {
             width: 100%;
             height: 200px;
             object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .class-item:hover img {
+            transform: scale(1.04);
         }
         .class-info {
             padding: 20px;
@@ -350,8 +728,15 @@
             color: #E8063C;
             font-weight: bold;
             font-size: 1.3rem;
+            transition: color 0.3s ease;
         }
-        /* Testimonials - 2 columns */
+        .class-item:hover .price {
+            color: #490D59;
+        }
+
+        /* ═══════════════════════════════════════════
+                   TESTIMONIALS
+                   ═══════════════════════════════════════════ */
         .testimonials {
             background: #490D59;
             color: white;
@@ -365,18 +750,39 @@
             margin: 0 auto;
         }
         .testi-card {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             padding: 30px;
             border-radius: 30px;
             text-align: center;
             backdrop-filter: blur(2px);
+            transition: transform 0.4s ease, background 0.3s ease, box-shadow 0.4s ease;
+        }
+        .testi-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            background: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
         }
         .testi-card i {
             font-size: 40px;
             color: #FFD600;
             margin-bottom: 20px;
+            transition: transform 0.5s ease, color 0.3s ease;
         }
-        /* footer */
+        .testi-card:hover i {
+            transform: scale(1.15) rotate(-6deg);
+            color: #fff;
+        }
+        .testi-card .fa-star {
+            color: #FFD600;
+            transition: transform 0.3s ease;
+        }
+        .testi-card:hover .fa-star {
+            transform: scale(1.1);
+        }
+
+        /* ═══════════════════════════════════════════
+                   FOOTER
+                   ═══════════════════════════════════════════ */
         footer {
             background: #111;
             color: #ccc;
@@ -395,16 +801,25 @@
         .footer-grid a {
             color: #ccc;
             text-decoration: none;
-            transition: 0.2s;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
         .footer-grid a:hover {
             color: #FFD600;
+            transform: translateX(4px);
         }
         .footer-links {
             list-style: none;
         }
         .footer-links li {
             margin-bottom: 10px;
+        }
+        .footer-links a {
+            display: inline-block;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .footer-links a:hover {
+            transform: translateX(6px);
+            color: #FFD600;
         }
         .copyright {
             text-align: center;
@@ -413,36 +828,18 @@
             margin-top: 20px;
             font-size: 14px;
         }
-        /* Footer logo fix */
         .footer-logo img {
             max-width: 160px;
             filter: brightness(0) invert(1);
+            transition: transform 0.4s ease;
         }
-        @media (max-width: 992px) {
-            .class-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .activities-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
+        .footer-logo img:hover {
+            transform: scale(1.04);
         }
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .mobile-menu { display: block; }
-            .about-grid { grid-template-columns: 1fr; }
-            .hero-content h1 { font-size: 2rem; }
-            .hero-swiper { height: 70vh; min-height: 450px; }
-            .section-title h2 { font-size: 1.8rem; }
-            .class-grid {
-                grid-template-columns: 1fr;
-            }
-            .activities-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+
+        /* ═══════════════════════════════════════════
+                   WHATSAPP FLOAT
+                   ═══════════════════════════════════════════ */
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
@@ -454,21 +851,145 @@
             text-decoration: none;
             font-weight: bold;
             z-index: 99;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.4s ease, background 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.08) translateY(-4px);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4);
+            background: #1da851;
+            color: #fff;
+        }
+        .whatsapp-float i {
+            transition: transform 0.4s ease;
+        }
+        .whatsapp-float:hover i {
+            transform: rotate(8deg) scale(1.1);
+        }
+
+        /* ═══════════════════════════════════════════
+                   SECTION TITLE
+                   ═══════════════════════════════════════════ */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-title span {
+            color: #E8063C;
+            font-weight: 500;
+            letter-spacing: 1px;
+            display: block;
+            font-size: 1rem;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-top: 10px;
+        }
+
+        /* ═══════════════════════════════════════════
+                   FAQ / DETAILS
+                   ═══════════════════════════════════════════ */
+        details {
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        details:hover {
+            background: #eee !important;
+            transform: translateX(4px);
+        }
+        details summary {
+            transition: color 0.3s ease;
+        }
+        details:hover summary {
+            color: #E8063C;
+        }
+
+        /* ═══════════════════════════════════════════
+                   SESSION TIMES
+                   ═══════════════════════════════════════════ */
+        .session-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 25px;
+            border-bottom: 1px solid #eee;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .session-row:last-child {
+            border-bottom: none;
+        }
+        .session-row:hover {
+            background: #f9f9f9;
+            transform: translateX(4px);
+        }
+
+        /* ═══════════════════════════════════════════
+                   RESPONSIVE
+                   ═══════════════════════════════════════════ */
+        @media (max-width: 992px) {
+            .class-grid { grid-template-columns: repeat(2, 1fr); }
+            .activities-grid { grid-template-columns: repeat(2, 1fr); }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .blog-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu { display: block; }
+            .about-grid { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 2rem; }
+            .hero-swiper { height: 70vh; min-height: 450px; }
+            .section-title h2 { font-size: 1.8rem; }
+            .class-grid { grid-template-columns: 1fr; }
+            .activities-grid { grid-template-columns: 1fr; }
+            .blog-grid { grid-template-columns: 1fr; }
+            .loader-baby { width: 90px; height: 90px; }
+            .loader-baby .baby-face { width: 55px; height: 55px; font-size: 28px; }
+            .loader-text { font-size: 1rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="container">
-            <div><i class="fas fa-envelope"></i> Email: <a href="mailto:smartkids0025@gmail.com">smartkids0025@gmail.com</a></div>
-            <div><i class="fas fa-phone-alt"></i> Phone: <a href="https://wa.me/94775511818">+94 77 5511 818</a></div>
-            <div><i class="fas fa-clock"></i> Mon-Fri: 7:00am – 6:00pm | Sat-Sun: Closed</div>
+
+    <!-- ═══════════════════════════════════════════
+    LOADER – BABY ROUND SPINNER
+    ═══════════════════════════════════════════ -->
+    <div id="loader-wrapper">
+        <div class="loader-baby">
+            <div class="ring"></div>
+            <div class="ring"></div>
+            <div class="ring"></div>
+            <div class="baby-face">
+                <i class="fas fa-baby"></i>
+            </div>
+        </div>
+        <div class="loader-text">
+            <span>S</span><span>m</span><span>a</span><span>r</span><span>t</span>
+            <span> </span>
+            <span>K</span><span>i</span><span>d</span><span>s</span>
         </div>
     </div>
 
-    <!-- Header -->
+    <!-- ═══════════════════════════════════════════
+    TOP BAR
+    ═══════════════════════════════════════════ -->
+    <div class="top-bar">
+        <div class="container">
+            <div>
+                <i class="fas fa-envelope icon-lift"></i> Email:
+                <a href="mailto:smartkids0025@gmail.com">smartkids0025@gmail.com</a>
+            </div>
+            <div>
+                <i class="fas fa-phone-alt icon-lift"></i> Phone:
+                <a href="https://wa.me/94775511818">+94 77 5511 818</a>
+            </div>
+            <div>
+                <i class="fas fa-clock icon-lift"></i> Mon-Fri: 7:00am – 6:00pm | Sat-Sun: Closed
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+    HEADER
+    ═══════════════════════════════════════════ -->
     <header class="main-header">
         <div class="container">
             <div class="logo">
@@ -487,7 +1008,9 @@
         </div>
     </header>
 
-    <!-- Hero Swiper Slider -->
+    <!-- ═══════════════════════════════════════════
+    HERO SWIPER SLIDER (6 Slides)
+    ═══════════════════════════════════════════ -->
     <div class="hero-swiper swiper">
         <div class="swiper-wrapper">
             <!-- Slide 1 -->
@@ -526,175 +1049,427 @@
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSebGk4MIHP9v4Wda9Ap1GONbSbELKMC0Apw4gGXzGjABeMPSA/viewform" class="btn">Join Our Family</a>
                 </div>
             </div>
+            <!-- Slide 5 (New) -->
+            <div class="swiper-slide">
+                <div class="slide-bg" style="background-image: url('https://placehold.co/1200x800/FFD600/490D59?text=Creative+Learning');"></div>
+                <div class="hero-content">
+                    <h1>Creative Learning Activities</h1>
+                    <p>Encouraging imagination and creativity through arts, crafts, and interactive play.</p>
+                    <a href="#" class="btn">Explore Activities</a>
+                </div>
+            </div>
+            <!-- Slide 6 (New) -->
+            <div class="swiper-slide">
+                <div class="slide-bg" style="background-image: url('https://placehold.co/1200x800/25D366/FFFFFF?text=Outdoor+Play');"></div>
+                <div class="hero-content">
+                    <h1>Outdoor Play & Exploration</h1>
+                    <p>Physical development and teamwork in a safe, fun outdoor environment.</p>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
         </div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
         <div class="swiper-pagination"></div>
     </div>
 
-    <!-- About Section -->
+    <!-- ═══════════════════════════════════════════
+    ABOUT SECTION
+    ═══════════════════════════════════════════ -->
     <section id="about" class="about">
         <div class="container">
             <div class="about-grid">
-                <div class="about-img">
+                <div class="about-img img-hover reveal-left">
                     <img src="https://smartkids.org.lk/wp-content/uploads/2026/04/DSC04746-scaled.jpg" alt="Kids playing">
+                    <div class="img-overlay"><i class="fas fa-play-circle"></i></div>
                 </div>
-                <div class="about-content">
+                <div class="about-content reveal-right">
                     <span style="color:#E8063C; font-weight:600;">PART OF THE FAMILY</span>
                     <h2>Your Child Will Take The Lead Learning</h2>
                     <p>We are delighted to have you join our vibrant community. At Smart Kids, we believe in fostering a love for learning through a fun, safe, and supportive environment. Our dedicated team provides personalised attention to each child.</p>
                     <div class="features">
-                        <div class="feature-item"><i class="fas fa-tree"></i><h4>15+</h4><p>Outdoor Activities</p></div>
-                        <div class="feature-item"><i class="fas fa-chalkboard-user"></i><h4>08</h4><p>Loving Teachers</p></div>
+                        <div class="feature-item">
+                            <i class="fas fa-tree icon-rotate"></i>
+                            <h4>15+</h4>
+                            <p>Outdoor Activities</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-chalkboard-user icon-rotate"></i>
+                            <h4>08</h4>
+                            <p>Loving Teachers</p>
+                        </div>
                     </div>
-                    <a href="#" class="btn" style="margin-top:20px">Learn More</a>
+                    <a href="#" class="btn" style="margin-top:20px;">Learn More</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services (Daycare) -->
+    <!-- ═══════════════════════════════════════════
+    SERVICES (Daycare)
+    ═══════════════════════════════════════════ -->
     <section id="daycare" class="services">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title reveal">
                 <span>WHAT WE OFFER</span>
                 <h2>Enrol Your Child In A Session Now!</h2>
-                <p>Pre-school has an ‘open door policy’ and also offers a free trial session to all children.</p>
+                <p>Pre-school has an 'open door policy' and also offers a free trial session to all children.</p>
             </div>
-            <div class="services-grid">
-                <div class="service-card"><i class="fas fa-puzzle-piece"></i><h3>Active Learning</h3><p>Children learn through fun activities and play experiences. This develops creativity and confidence.</p></div>
-                <div class="service-card"><i class="fas fa-hands"></i><h3>Child Care</h3><p>Safe, loving care for every child throughout the day. Trained staff ensure comfort and emotional support.</p></div>
-                <div class="service-card"><i class="fas fa-apple-alt"></i><h3>Healthy Meals</h3><p>Nutritious and balanced meals provided daily, focusing on hygiene and healthy eating habits.</p></div>
-                <div class="service-card"><i class="fas fa-shield-alt"></i><h3>Safety Environment</h3><p>Center designed with safety as top priority – CCTV, constant supervision, child-friendly spaces.</p></div>
+            <div class="services-grid stagger-children">
+                <div class="service-card">
+                    <i class="fas fa-puzzle-piece icon-rotate"></i>
+                    <h3>Active Learning</h3>
+                    <p>Children learn through fun activities and play experiences. This develops creativity and confidence.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-hands icon-rotate"></i>
+                    <h3>Child Care</h3>
+                    <p>Safe, loving care for every child throughout the day. Trained staff ensure comfort and emotional support.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-apple-alt icon-rotate"></i>
+                    <h3>Healthy Meals</h3>
+                    <p>Nutritious and balanced meals provided daily, focusing on hygiene and healthy eating habits.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-shield-alt icon-rotate"></i>
+                    <h3>Safety Environment</h3>
+                    <p>Center designed with safety as top priority – CCTV, constant supervision, child-friendly spaces.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Smart Activities - 3 columns, 2 lines (6 items) -->
+    <!-- ═══════════════════════════════════════════
+    SMART ACTIVITIES – 3 columns, 2 rows (6 items)
+    ═══════════════════════════════════════════ -->
     <section class="activities">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title reveal">
                 <span>Learning Through Fun and Creativity</span>
                 <h2>Smart Activities</h2>
             </div>
-            <div class="activities-grid">
-                <div class="activity-card"><i class="fas fa-puzzle-piece"></i><h4>🧩 Puzzle Solving</h4><p>Problem-solving skills</p></div>
-                <div class="activity-card"><i class="fas fa-palette"></i><h4>🎨 Coloring & Drawing</h4><p>Creativity boost</p></div>
-                <div class="activity-card"><i class="fas fa-font"></i><h4>🔤 Alphabet Tracing</h4><p>Early writing</p></div>
-                <div class="activity-card"><i class="fas fa-calculator"></i><h4>🔢 Number Counting</h4><p>Math foundation</p></div>
-                <div class="activity-card"><i class="fas fa-book-open"></i><h4>📖 Storytelling</h4><p>Language skills</p></div>
-                <div class="activity-card"><i class="fas fa-brain"></i><h4>🧠 Memory Games</h4><p>Concentration</p></div>
+            <div class="activities-grid stagger-children">
+                <div class="activity-card">
+                    <i class="fas fa-puzzle-piece icon-rotate"></i>
+                    <h4>🧩 Puzzle Solving</h4>
+                    <p>Problem-solving skills</p>
+                </div>
+                <div class="activity-card">
+                    <i class="fas fa-palette icon-rotate"></i>
+                    <h4>🎨 Coloring & Drawing</h4>
+                    <p>Creativity boost</p>
+                </div>
+                <div class="activity-card">
+                    <i class="fas fa-font icon-rotate"></i>
+                    <h4>🔤 Alphabet Tracing</h4>
+                    <p>Early writing</p>
+                </div>
+                <div class="activity-card">
+                    <i class="fas fa-calculator icon-rotate"></i>
+                    <h4>🔢 Number Counting</h4>
+                    <p>Math foundation</p>
+                </div>
+                <div class="activity-card">
+                    <i class="fas fa-book-open icon-rotate"></i>
+                    <h4>📖 Storytelling</h4>
+                    <p>Language skills</p>
+                </div>
+                <div class="activity-card">
+                    <i class="fas fa-brain icon-rotate"></i>
+                    <h4>🧠 Memory Games</h4>
+                    <p>Concentration</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Special Classes (Montessori) - 6 items -->
+    <!-- ═══════════════════════════════════════════
+    SPECIAL CLASSES (Montessori) – 6 items (One by One Scroll)
+    ═══════════════════════════════════════════ -->
     <section id="montessori" class="classes">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title reveal">
                 <span>EXTRA CURRICULAR</span>
                 <h2>Special Classes</h2>
                 <p>🌟 Smart Kids starts following special classes 🌟</p>
             </div>
-            <div class="class-grid">
-                <div class="class-item"><img src="https://smartkids.org.lk/wp-content/uploads/2023/09/2-360x306.jpg" alt="chess"><div class="class-info"><h3>♟️ Chess Class</h3><p>Age 4-10 years | 20 seats</p><p class="price">Rs. 3000 / month</p><a href="#" class="btn-outline btn" style="padding:6px 18px;">Enquire</a></div></div>
-                <div class="class-item"><img src="https://smartkids.org.lk/wp-content/uploads/2023/09/3-360x306.jpg" alt="elocution"><div class="class-info"><h3>🎤 Elocution Class</h3><p>Age 5-10 years | 25 seats</p><p class="price">Rs. 1200 / month</p><a href="#" class="btn-outline btn" style="padding:6px 18px;">Enquire</a></div></div>
-                <div class="class-item"><img src="https://smartkids.org.lk/wp-content/uploads/2023/09/4-360x306.jpg" alt="writing"><div class="class-info"><h3>✍️ Writing Class</h3><p>English, Tamil & Sinhala | Age 3-6</p><p class="price">Rs. 1000 / month</p><a href="#" class="btn-outline btn" style="padding:6px 18px;">Enquire</a></div></div>
-                <div class="class-item"><img src="https://smartkids.org.lk/wp-content/uploads/2023/09/5-360x306.jpg" alt="robotics"><div class="class-info"><h3>🤖 Robotic Class</h3><p>Age 6-10 years | 15 seats</p><p class="price">Rs. 2000 / month</p><a href="#" class="btn-outline btn" style="padding:6px 18px;">Enquire</a></div></div>
-                <!-- Two new classes added -->
-                <div class="class-item"><img src="https://smartkids.org.lk/wp-content/uploads/2023/09/3-360x306.jpg" alt="dance"><div class="class-info"><h3>💃 Dance & Movement</h3><p>Age 3-8 years | 20 seats</p><p class="price">Rs. 1500 / month</p><a href="#" class="btn-outline btn" style="padding:6px 18px;">Enquire</a></div></div>
-                <div class="class-item"><img src="https://smartkids.org.lk/wp-content/uploads/2023/09/4-360x306.jpg" alt="art"><div class="class-info"><h3>🎨 Creative Art</h3><p>Age 3-10 years | 15 seats</p><p class="price">Rs. 1200 / month</p><a href="#" class="btn-outline btn" style="padding:6px 18px;">Enquire</a></div></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog / Events -->
-    <section id="blog" class="blog">
-        <div class="container">
-            <div class="section-title">
-                <span>RECENT EVENTS</span>
-                <h2>Smart Kids - Events and Activities</h2>
-            </div>
-            <div class="blog-grid">
-                <div class="blog-card"><img src="https://smartkids.org.lk/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-24-at-21.10.51-1-300x225.jpeg" alt="New Year"><div class="content"><span>April 24, 2026</span><h4>Tamil & Sinhala New Year Celebration 2026</h4><p>Joyful celebration with traditional outfits, games, and cultural activities.</p><a href="#" style="color:#E8063C">Read more →</a></div></div>
-                <div class="blog-card"><img src="https://smartkids.org.lk/wp-content/uploads/2024/06/galler1-4.jpg" alt="Hiring"><div class="content"><span>April 12, 2026</span><h4>Hiring – Trainee Care Givers</h4><p>We are looking for caring individuals to join our team. Apply now!</p><a href="#" style="color:#E8063C">Read more →</a></div></div>
-                <div class="blog-card"><img src="https://smartkids.org.lk/wp-content/uploads/2026/04/652585970_122188586138798840_8114648965250885701_n-1-1-300x225.jpg" alt="Anniversary"><div class="content"><span>March 17, 2026</span><h4>1st Anniversary of SmartKids Center</h4><p>A year of love, learning, and joyful growth. Celebrated with cake cutting and fun.</p><a href="#" style="color:#E8063C">Read more →</a></div></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Session Times -->
-    <section style="background:#E8063C10; padding:60px 0;">
-        <div class="container">
-            <div class="section-title">
-                <h2>Daycare - Session Times</h2>
-                <p>We provide full-day care from 7:00 AM to 6:00 PM for children</p>
-            </div>
-            <div style="max-width:600px; margin:auto; background:white; border-radius:30px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.1);">
-                <div style="display:flex; justify-content:space-between; padding:15px 25px; border-bottom:1px solid #eee;"><span>Full-day Care</span><strong>7:00am – 6:00pm</strong></div>
-                <div style="display:flex; justify-content:space-between; padding:15px 25px; border-bottom:1px solid #eee;"><span>Half-day Care</span><strong>7:00am – 2:00pm</strong></div>
-                <div style="display:flex; justify-content:space-between; padding:15px 25px; border-bottom:1px solid #eee;"><span>Morning Care</span><strong>7:00am – 12:00noon</strong></div>
-                <div style="display:flex; justify-content:space-between; padding:15px 25px;"><span>After Care</span><strong>12:00pm – 6:00pm</strong></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials - 2 columns -->
-    <section class="testimonials">
-        <div class="container">
-            <div class="section-title" style="color:white">
-                <span style="color:#FFD600">TESTIMONIALS</span>
-                <h2 style="color:white">Parents Reviews</h2>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testi-card">
-                    <i class="fas fa-quote-left"></i>
-                    <p>"Smart Kids Day Care offers a safe and nurturing environment. My child has grown so much in confidence and skills. The teachers are amazing!"</p>
-                    <h4 style="color:#FFD600">- Praveena Thanistan</h4>
-                    <div><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <div class="class-grid stagger-children">
+                <div class="class-item">
+                    <div class="img-hover">
+                        <img src="https://smartkids.org.lk/wp-content/uploads/2023/09/2-360x306.jpg" alt="chess">
+                        <div class="img-overlay"><i class="fas fa-chess-king"></i></div>
+                    </div>
+                    <div class="class-info">
+                        <h3>♟️ Chess Class</h3>
+                        <p>Age 4-10 years | 20 seats</p>
+                        <p class="price">Rs. 3000 / month</p>
+                        <a href="#" class="btn-outline btn" style="padding:6px 18px;">Enquire</a>
+                    </div>
                 </div>
-                <div class="testi-card">
-                    <i class="fas fa-quote-left"></i>
-                    <p>"என் மகன் மகள் டேகேர் வாழ்க்கையைத் தொடங்கி, இன்று அவன்/அவள் காட்டும் வளர்ச்சியும் மகிழ்ச்சியும் எங்களை மிகவும் பெருமைப்படுத்துகிறது. Smart Kids is a second home!"</p>
-                    <h4 style="color:#FFD600">- Thanu Disha</h4>
-                    <div><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <div class="class-item">
+                    <div class="img-hover">
+                        <img src="https://smartkids.org.lk/wp-content/uploads/2023/09/3-360x306.jpg" alt="elocution">
+                        <div class="img-overlay"><i class="fas fa-microphone"></i></div>
+                    </div>
+                    <div class="class-info">
+                        <h3>🎤 Elocution Class</h3>
+                        <p>Age 5-10 years | 25 seats</p>
+                        <p class="price">Rs. 1200 / month</p>
+                        <a href="#" class="btn-outline btn" style="padding:6px 18px;">Enquire</a>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ / Montessori Guide -->
-    <section id="contact" style="padding:80px 0">
-        <div class="container">
-            <div class="about-grid">
-                <div><img src="https://smartkids.org.lk/wp-content/uploads/2026/04/IMG_3994-1024x683.jpg" alt="classroom" style="width:100%; border-radius:28px;"></div>
-                <div>
-                    <h2>Guide To Montessori</h2>
-                    <div style="margin-top:20px">
-                        <details style="margin-bottom:15px; background:#f5f5f5; padding:15px; border-radius:16px;"><summary style="font-weight:bold; cursor:pointer;">What is Montessori education?</summary><p>Child-centered learning that encourages independence and hands-on learning at their own pace.</p></details>
-                        <details style="margin-bottom:15px; background:#f5f5f5; padding:15px; border-radius:16px;"><summary style="font-weight:bold; cursor:pointer;">What age group is suitable for preschool?</summary><p>Ideal for children aged 2.5 to 5 years – focusing on early development and social skills.</p></details>
-                        <details style="margin-bottom:15px; background:#f5f5f5; padding:15px; border-radius:16px;"><summary style="font-weight:bold; cursor:pointer;">What do children learn?</summary><p>Letters, numbers, colors, communication, motor and emotional skills through play.</p></details>
-                        <details style="background:#f5f5f5; padding:15px; border-radius:16px;"><summary style="font-weight:bold; cursor:pointer;">Is safety important?</summary><p>Absolutely – secure, clean, supervised environment with CCTV and trained staff.</p></details>
+                <div class="class-item">
+                    <div class="img-hover">
+                        <img src="https://smartkids.org.lk/wp-content/uploads/2023/09/4-360x306.jpg" alt="writing">
+                        <div class="img-overlay"><i class="fas fa-pen-fancy"></i></div>
+                    </div>
+                    <div class="class-info">
+                        <h3>✍️ Writing Class</h3>
+                        <p>English, Tamil & Sinhala | Age 3-6</p>
+                        <p class="price">Rs. 1000 / month</p>
+                        <a href="#" class="btn-outline btn" style="padding:6px 18px;">Enquire</a>
+                    </div>
+                </div>
+                <div class="class-item">
+                    <div class="img-hover">
+                        <img src="https://smartkids.org.lk/wp-content/uploads/2023/09/5-360x306.jpg" alt="robotics">
+                        <div class="img-overlay"><i class="fas fa-robot"></i></div>
+                    </div>
+                    <div class="class-info">
+                        <h3>🤖 Robotic Class</h3>
+                        <p>Age 6-10 years | 15 seats</p>
+                        <p class="price">Rs. 2000 / month</p>
+                        <a href="#" class="btn-outline btn" style="padding:6px 18px;">Enquire</a>
+                    </div>
+                </div>
+                <div class="class-item">
+                    <div class="img-hover">
+                        <img src="https://smartkids.org.lk/wp-content/uploads/2023/09/3-360x306.jpg" alt="dance">
+                        <div class="img-overlay"><i class="fas fa-music"></i></div>
+                    </div>
+                    <div class="class-info">
+                        <h3>💃 Dance & Movement</h3>
+                        <p>Age 3-8 years | 20 seats</p>
+                        <p class="price">Rs. 1500 / month</p>
+                        <a href="#" class="btn-outline btn" style="padding:6px 18px;">Enquire</a>
+                    </div>
+                </div>
+                <div class="class-item">
+                    <div class="img-hover">
+                        <img src="https://smartkids.org.lk/wp-content/uploads/2023/09/4-360x306.jpg" alt="art">
+                        <div class="img-overlay"><i class="fas fa-paint-brush"></i></div>
+                    </div>
+                    <div class="class-info">
+                        <h3>🎨 Creative Art</h3>
+                        <p>Age 3-10 years | 15 seats</p>
+                        <p class="price">Rs. 1200 / month</p>
+                        <a href="#" class="btn-outline btn" style="padding:6px 18px;">Enquire</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer with all menu links and fixed logo -->
+    <!-- ═══════════════════════════════════════════
+    BLOG / EVENTS – 6 Posts
+    ═══════════════════════════════════════════ -->
+    <section id="blog" class="blog">
+        <div class="container">
+            <div class="section-title reveal">
+                <span>RECENT EVENTS</span>
+                <h2>Smart Kids - Events and Activities</h2>
+            </div>
+            <div class="blog-grid stagger-children">
+                <!-- Post 1 -->
+                <div class="blog-card">
+                    <div class="img-hover">
+                        <img src="https://smartkids.org.lk/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-24-at-21.10.51-1-300x225.jpeg" alt="New Year">
+                        <div class="img-overlay"><i class="fas fa-calendar-check"></i></div>
+                    </div>
+                    <div class="content">
+                        <span>April 24, 2026</span>
+                        <h4>Tamil & Sinhala New Year Celebration 2026</h4>
+                        <p>Joyful celebration with traditional outfits, games, and cultural activities.</p>
+                        <a href="#" style="color:#E8063C; font-weight:500;">Read more →</a>
+                    </div>
+                </div>
+                <!-- Post 2 -->
+                <div class="blog-card">
+                    <div class="img-hover">
+                        <img src="https://smartkids.org.lk/wp-content/uploads/2024/06/galler1-4.jpg" alt="Hiring">
+                        <div class="img-overlay"><i class="fas fa-user-plus"></i></div>
+                    </div>
+                    <div class="content">
+                        <span>April 12, 2026</span>
+                        <h4>Hiring – Trainee Care Givers</h4>
+                        <p>We are looking for caring individuals to join our team. Apply now!</p>
+                        <a href="#" style="color:#E8063C; font-weight:500;">Read more →</a>
+                    </div>
+                </div>
+                <!-- Post 3 -->
+                <div class="blog-card">
+                    <div class="img-hover">
+                        <img src="https://smartkids.org.lk/wp-content/uploads/2026/04/652585970_122188586138798840_8114648965250885701_n-1-1-300x225.jpg" alt="Anniversary">
+                        <div class="img-overlay"><i class="fas fa-birthday-cake"></i></div>
+                    </div>
+                    <div class="content">
+                        <span>March 17, 2026</span>
+                        <h4>1st Anniversary of SmartKids Center</h4>
+                        <p>A year of love, learning, and joyful growth. Celebrated with cake cutting and fun.</p>
+                        <a href="#" style="color:#E8063C; font-weight:500;">Read more →</a>
+                    </div>
+                </div>
+                <!-- Post 4 (New) -->
+                <div class="blog-card">
+                    <div class="img-hover">
+                        <img src="https://placehold.co/300x200/FFD600/490D59?text=Summer+Camp" alt="Summer Camp">
+                        <div class="img-overlay"><i class="fas fa-campground"></i></div>
+                    </div>
+                    <div class="content">
+                        <span>June 1, 2026</span>
+                        <h4>Summer Camp 2026 Registration Open</h4>
+                        <p>Fun-filled summer activities including swimming, arts, and team sports.</p>
+                        <a href="#" style="color:#E8063C; font-weight:500;">Read more →</a>
+                    </div>
+                </div>
+                <!-- Post 5 (New) -->
+                <div class="blog-card">
+                    <div class="img-hover">
+                        <img src="https://placehold.co/300x200/E8063C/FFFFFF?text=Art+Exhibition" alt="Art Exhibition">
+                        <div class="img-overlay"><i class="fas fa-paint-brush"></i></div>
+                    </div>
+                    <div class="content">
+                        <span>May 15, 2026</span>
+                        <h4>Annual Art Exhibition</h4>
+                        <p>Showcasing our little artists' masterpieces. Parents are cordially invited.</p>
+                        <a href="#" style="color:#E8063C; font-weight:500;">Read more →</a>
+                    </div>
+                </div>
+                <!-- Post 6 (New) -->
+                <div class="blog-card">
+                    <div class="img-hover">
+                        <img src="https://placehold.co/300x200/490D59/FFD600?text=Graduation+Day" alt="Graduation">
+                        <div class="img-overlay"><i class="fas fa-graduation-cap"></i></div>
+                    </div>
+                    <div class="content">
+                        <span>May 30, 2026</span>
+                        <h4>Graduation Day Ceremony</h4>
+                        <p>Celebrating our Pre-K graduates as they step into the next chapter.</p>
+                        <a href="#" style="color:#E8063C; font-weight:500;">Read more →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+    SESSION TIMES
+    ═══════════════════════════════════════════ -->
+    <section style="background:#E8063C10; padding:60px 0;">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Daycare - Session Times</h2>
+                <p>We provide full-day care from 7:00 AM to 6:00 PM for children</p>
+            </div>
+            <div style="max-width:600px; margin:auto; background:white; border-radius:30px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.1); transition: transform 0.4s ease, box-shadow 0.4s ease;" class="reveal">
+                <div class="session-row"><span>Full-day Care</span><strong>7:00am – 6:00pm</strong></div>
+                <div class="session-row"><span>Half-day Care</span><strong>7:00am – 2:00pm</strong></div>
+                <div class="session-row"><span>Morning Care</span><strong>7:00am – 12:00noon</strong></div>
+                <div class="session-row"><span>After Care</span><strong>12:00pm – 6:00pm</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+    TESTIMONIALS – 2 columns
+    ═══════════════════════════════════════════ -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title" style="color:white;">
+                <span style="color:#FFD600;">TESTIMONIALS</span>
+                <h2 style="color:white;">Parents Reviews</h2>
+            </div>
+            <div class="testimonials-grid stagger-children">
+                <div class="testi-card">
+                    <i class="fas fa-quote-left icon-rotate"></i>
+                    <p>"Smart Kids Day Care offers a safe and nurturing environment. My child has grown so much in confidence and skills. The teachers are amazing!"</p>
+                    <h4 style="color:#FFD600;">- Praveena Thanistan</h4>
+                    <div>
+                        <i class="fas fa-star icon-bounce"></i>
+                        <i class="fas fa-star icon-bounce"></i>
+                        <i class="fas fa-star icon-bounce"></i>
+                        <i class="fas fa-star icon-bounce"></i>
+                        <i class="fas fa-star icon-bounce"></i>
+                    </div>
+                </div>
+                <div class="testi-card">
+                    <i class="fas fa-quote-left icon-rotate"></i>
+                    <p>"என் மகன் மகள் டேகேர் வாழ்க்கையைத் தொடங்கி, இன்று அவன்/அவள் காட்டும் வளர்ச்சியும் மகிழ்ச்சியும் எங்களை மிகவும் பெருமைப்படுத்துகிறது. Smart Kids is a second home!"</p>
+                    <h4 style="color:#FFD600;">- Thanu Disha</h4>
+                    <div>
+                        <i class="fas fa-star icon-bounce"></i>
+                        <i class="fas fa-star icon-bounce"></i>
+                        <i class="fas fa-star icon-bounce"></i>
+                        <i class="fas fa-star icon-bounce"></i>
+                        <i class="fas fa-star icon-bounce"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+    FAQ / MONTESSORI GUIDE
+    ═══════════════════════════════════════════ -->
+    <section id="contact" style="padding:80px 0;">
+        <div class="container">
+            <div class="about-grid">
+                <div class="img-hover reveal-left">
+                    <img src="https://smartkids.org.lk/wp-content/uploads/2026/04/IMG_3994-1024x683.jpg" alt="classroom" style="width:100%; border-radius:28px;">
+                    <div class="img-overlay"><i class="fas fa-graduation-cap"></i></div>
+                </div>
+                <div class="reveal-right">
+                    <h2>Guide To Montessori</h2>
+                    <div style="margin-top:20px;">
+                        <details style="margin-bottom:15px; background:#f5f5f5; padding:15px; border-radius:16px;">
+                            <summary style="font-weight:bold; cursor:pointer;">What is Montessori education?</summary>
+                            <p>Child-centered learning that encourages independence and hands-on learning at their own pace.</p>
+                        </details>
+                        <details style="margin-bottom:15px; background:#f5f5f5; padding:15px; border-radius:16px;">
+                            <summary style="font-weight:bold; cursor:pointer;">What age group is suitable for preschool?</summary>
+                            <p>Ideal for children aged 2.5 to 5 years – focusing on early development and social skills.</p>
+                        </details>
+                        <details style="margin-bottom:15px; background:#f5f5f5; padding:15px; border-radius:16px;">
+                            <summary style="font-weight:bold; cursor:pointer;">What do children learn?</summary>
+                            <p>Letters, numbers, colors, communication, motor and emotional skills through play.</p>
+                        </details>
+                        <details style="background:#f5f5f5; padding:15px; border-radius:16px;">
+                            <summary style="font-weight:bold; cursor:pointer;">Is safety important?</summary>
+                            <p>Absolutely – secure, clean, supervised environment with CCTV and trained staff.</p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+    FOOTER
+    ═══════════════════════════════════════════ -->
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-logo">
-                    <img src="https://smartkids.org.lk/wp-content/uploads/2025/03/Web-Banner-SK-SVG.svg" alt="Smart Kids Logo" style="max-width:160px; filter: brightness(0) invert(1);">
-                    <p style="margin-top:15px">Giving your child the best start in life. Safe, fun, and educational environment.</p>
+                    <img src="https://smartkids.org.lk/wp-content/uploads/2025/03/Web-Banner-SK-SVG.svg" alt="Smart Kids Logo">
+                    <p style="margin-top:15px;">Giving your child the best start in life. Safe, fun, and educational environment.</p>
                 </div>
                 <div>
                     <h3>Get In Touch</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> No 61 A, Lake Road - 1, Batticaloa.</p>
-                    <p><i class="fas fa-phone"></i> <a href="tel:+94775511818">+94 77 5511 818</a></p>
-                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@smartkids.org.lk">info@smartkids.org.lk</a></p>
-                    <p><i class="fas fa-clock"></i> Mon-Fri: 7am – 6pm | Sat-Sun: Closed</p>
+                    <p><i class="fas fa-map-marker-alt icon-color"></i> No 61 A, Lake Road - 1, Batticaloa.</p>
+                    <p><i class="fas fa-phone icon-color"></i> <a href="tel:+94775511818">+94 77 5511 818</a></p>
+                    <p><i class="fas fa-envelope icon-color"></i> <a href="mailto:info@smartkids.org.lk">info@smartkids.org.lk</a></p>
+                    <p><i class="fas fa-clock icon-color"></i> Mon-Fri: 7am – 6pm | Sat-Sun: Closed</p>
                 </div>
                 <div>
                     <h3>Quick Links</h3>
@@ -710,9 +1485,9 @@
                 </div>
                 <div>
                     <h3>Follow Us</h3>
-                    <a href="https://web.facebook.com/profile.php?id=61573965225366" style="margin-right:15px; font-size:24px;"><i class="fab fa-facebook"></i></a>
-                    <a href="https://www.youtube.com/@SmartKids0025" style="margin-right:15px; font-size:24px;"><i class="fab fa-youtube"></i></a>
-                    <a href="http://wa.me/+94775511818" style="font-size:24px;"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://web.facebook.com/profile.php?id=61573965225366" style="margin-right:15px; font-size:24px; display:inline-block;" class="icon-rotate"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.youtube.com/@SmartKids0025" style="margin-right:15px; font-size:24px; display:inline-block;" class="icon-rotate"><i class="fab fa-youtube"></i></a>
+                    <a href="http://wa.me/+94775511818" style="font-size:24px; display:inline-block;" class="icon-rotate"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
             <div class="copyright">
@@ -721,19 +1496,35 @@
         </div>
     </footer>
 
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/94775511818" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i> Chat with us</a>
+    <!-- ═══════════════════════════════════════════
+    WHATSAPP FLOAT
+    ═══════════════════════════════════════════ -->
+    <a href="https://wa.me/94775511818" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i> Chat with us
+    </a>
 
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- ═══════════════════════════════════════════
+    SWIPER JS
+    ═══════════════════════════════════════════ -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js">
+    </script>
+
+    <!-- ═══════════════════════════════════════════
+    MAIN SCRIPTS
+    ═══════════════════════════════════════════ -->
     <script>
-        // Initialize Swiper Slider
+        // ─── LOADER ──────────────────────────────────────
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('loader-wrapper');
+            setTimeout(function() {
+                loader.classList.add('hidden');
+            }, 800);
+        });
+
+        // ─── SWIPER ──────────────────────────────────────
         const swiper = new Swiper('.hero-swiper', {
             loop: true,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-            },
+            autoplay: { delay: 5000, disableOnInteraction: false },
             effect: 'slide',
             speed: 1000,
             navigation: {
@@ -745,48 +1536,66 @@
                 clickable: true,
             },
             on: {
-                init: function () {
+                init: function() {
                     document.querySelectorAll('.hero-swiper .swiper-slide .slide-bg').forEach(bg => {
                         bg.style.animation = 'none';
                     });
-                    const activeSlide = document.querySelector('.hero-swiper .swiper-slide-active');
-                    if (activeSlide) {
-                        const bg = activeSlide.querySelector('.slide-bg');
-                        if (bg) bg.style.animation = 'kenBurnsZoom 12s ease-in-out infinite alternate';
+                    const active = document.querySelector('.hero-swiper .swiper-slide-active');
+                    if (active) {
+                        const bg = active.querySelector('.slide-bg');
+                        if (bg) bg.style.animation = 'kenBurnsZoom 14s ease-in-out infinite alternate';
                     }
                 },
-                slideChangeTransitionEnd: function () {
+                slideChangeTransitionEnd: function() {
                     document.querySelectorAll('.hero-swiper .swiper-slide .slide-bg').forEach(bg => {
                         bg.style.animation = 'none';
                     });
-                    const activeSlide = document.querySelector('.hero-swiper .swiper-slide-active');
-                    if (activeSlide) {
-                        const bg = activeSlide.querySelector('.slide-bg');
-                        if (bg) bg.style.animation = 'kenBurnsZoom 12s ease-in-out infinite alternate';
+                    const active = document.querySelector('.hero-swiper .swiper-slide-active');
+                    if (active) {
+                        const bg = active.querySelector('.slide-bg');
+                        if (bg) bg.style.animation = 'kenBurnsZoom 14s ease-in-out infinite alternate';
                     }
                 }
             }
         });
 
-        // Mobile menu toggle
+        // ─── MOBILE MENU ──────────────────────────────
         const mobileBtn = document.querySelector('.mobile-menu');
         const nav = document.querySelector('.nav-links');
-        if(mobileBtn) {
+        if (mobileBtn) {
             mobileBtn.addEventListener('click', () => {
-                if(nav.style.display === 'flex') nav.style.display = 'none';
+                if (nav.style.display === 'flex') nav.style.display = 'none';
                 else nav.style.display = 'flex';
             });
         }
-        // Smooth scroll
+
+        // ─── SMOOTH ANCHOR SCROLL ──────────────────────
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const target = document.querySelector(this.getAttribute('href'));
-                if(target) {
+                if (target) {
                     e.preventDefault();
                     target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });
+
+        // ─── SCROLL REVEAL (Intersection Observer) ─────
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .stagger-children');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -30px 0px'
+        });
+
+        revealElements.forEach(el => observer.observe(el));
     </script>
+
 </body>
 </html>

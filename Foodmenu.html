@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Smart Kids – Meal Studio | Weekly Food Menu</title>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#490D59">
+    <meta name="description" content="Smart Kids' weekly meal planner for daycare — see this week's menu, print a copy, or download it to share.">
+    <link rel="icon" href="https://smartkids25.vercel.app/SK-Logo.svg" type="image/svg+xml">
+    <style>
+        /* ── BRAND TOKENS ──────────────────────────────── */
+        :root {
+            --purple-deep:   #490D59;
+            --purple-mid:    #6B2180;
+            --purple-soft:   #9B59B6;
+            --purple-pale:   #F3E8FF;
+            --purple-light:  #EDD9FF;
+            --coral:         #FF6B35;
+            --coral-light:   #FFE8DF;
+            --gold:          #F4C430;
+            --gold-light:    #FFF9E6;
+            --green:         #27AE60;
+            --teal:          #1ABC9C;
+            --white:         #FFFFFF;
+            --text-dark:     #1A0A25;
+            --text-mid:      #4A2C6E;
+            --text-soft:     #7B5EA7;
+            --border:        #E4D0F5;
+            --shadow-purple: rgba(73, 13, 89, 0.15);
+            --radius-xl:     2rem;
+            --radius-lg:     1.5rem;
+            --radius-md:     1rem;
+            --radius-pill:   60px;
+        }
+
+        /* ── RESET & BASE ──────────────────────────────── */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: linear-gradient(155deg, #F3E8FF 0%, #EDD9FF 35%, #FFE8DF 70%, #FFF9E6 100%);
+            font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif;
+            padding: 1.2rem;
+            color: var(--text-dark);
+            min-height: 100vh;
+        }
+
+        /* ── TOP NAV ───────────────────────────────────── */
+        .utility-topnav {
+            background: var(--purple-deep);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            font-size: 0.82rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .utility-topnav a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+        .utility-topnav a:hover { color: var(--gold); }
+        .crumbs { opacity: 0.7; font-size: 0.78rem; }
+        .nav-links { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+        .nav-links a { font-size: 0.78rem; opacity: 0.85; font-weight: 600; }
+        .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+        /* ── MAIN CONTAINER ────────────────────────────── */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+            box-shadow: 0 30px 60px var(--shadow-purple);
+            overflow: hidden;
+        }
+
+        /* ── HEADER ────────────────────────────────────── */
+        header {
+            background: linear-gradient(135deg, var(--purple-deep) 0%, #6B1080 50%, #8B2FC0 100%);
+            padding: 0 0 1.5rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 220px; height: 220px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 50%;
+        }
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -40px; left: -40px;
+            width: 160px; height: 160px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+        .logo-container {
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(8px);
+            padding: 1.1rem 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .logo-img {
+            width: 100%;
+            max-height: 120px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+        }
+        .header-title {
+            font-size: clamp(1.7rem, 5vw, 2.8rem);
+            font-weight: 900;
+            margin: 0.8rem 1rem 0.4rem;
+            text-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            letter-spacing: -0.5px;
+        }
+        .subtitle {
+            font-size: 1.05rem;
+            opacity: 0.92;
+            margin: 0.4rem 1rem 0;
+            font-weight: 600;
+        }
+        .header-pills {
+            margin-top: 1rem;
+            padding: 0.8rem 1rem 0.2rem;
+            border-top: 2px solid rgba(255,255,255,0.2);
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .header-pill {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.25);
+            padding: 0.35rem 1rem;
+            border-radius: var(--radius-pill);
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        /* ── BIRTHDAY SECTION ──────────────────────────── */
+        .birthday-week-section {
+            background: linear-gradient(90deg, #FFF9E6 0%, #FFE8DF 50%, #FFF9E6 100%);
+            margin: 1.5rem 2rem;
+            padding: 1.2rem 2rem;
+            border-radius: var(--radius-pill);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            box-shadow: 0 8px 20px rgba(244,196,48,0.2);
+            border: 2px solid #FFD580;
+        }
+        .birthday-week-section.has-birthday {
+            background: linear-gradient(90deg, #FF6B35 0%, #FF8C42 40%, #FFB347 70%, #FF8C42 100%);
+            border-color: #FF5722;
+            animation: pulseGlow 2.5s ease-in-out infinite;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 8px 20px rgba(255,107,53,0.3); }
+            50%       { box-shadow: 0 12px 32px rgba(255,107,53,0.55); }
+        }
+        .bday-icon { font-size: 2.2rem; animation: bounce 1.5s ease-in-out infinite; }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(-6px); }
+        }
+        .birthday-label {
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: var(--text-mid);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .birthday-week-section.has-birthday .birthday-label { color: white; }
+        .birthday-list {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-mid);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .birthday-week-section.has-birthday .birthday-list { color: white; }
+        .birthday-chip {
+            background: var(--purple-deep);
+            color: white;
+            padding: 0.3rem 1.1rem;
+            border-radius: var(--radius-pill);
+            font-size: 0.9rem;
+            font-weight: 800;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .birthday-week-section.has-birthday .birthday-chip {
+            background: rgba(255,255,255,0.25);
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+        .no-birthday {
+            color: var(--text-soft);
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        /* ── CONTROLS ──────────────────────────────────── */
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 2rem;
+            background: var(--purple-pale);
+            border-top: 3px solid var(--purple-light);
+            border-bottom: 3px solid var(--purple-light);
+        }
+        .date-picker {
+            background: white;
+            padding: 0.6rem 1.4rem;
+            border-radius: var(--radius-pill);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 700;
+            border: 2px solid var(--border);
+            color: var(--purple-deep);
+            box-shadow: 0 4px 10px var(--shadow-purple);
+        }
+        .date-picker i { color: var(--purple-mid); font-size: 1.1rem; }
+        input[type="date"] {
+            border: none;
+            font-family: inherit;
+            font-weight: 700;
+            background: transparent;
+            padding: 0.4rem 0;
+            font-size: 0.95rem;
+            color: var(--purple-deep);
+            cursor: pointer;
+        }
+        .autosave-badge {
+            font-size: 0.68rem;
+            background: var(--green);
+            color: white;
+            border-radius: var(--radius-pill);
+            padding: 2px 10px;
+            font-weight: 800;
+        }
+
+        /* ── BUTTON GROUP ──────────────────────────────── */
+        .btn-group { display: flex; gap: 0.65rem; flex-wrap: wrap; }
+        .btn {
+            border: none;
+            padding: 0.65rem 1.25rem;
+            border-radius: var(--radius-pill);
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            white-space: nowrap;
+            letter-spacing: 0.2px;
+        }
+        .btn:hover  { transform: translateY(-3px); filter: brightness(1.08); }
+        .btn:active { transform: translateY(0); }
+        .btn-image    { background: linear-gradient(120deg,var(--coral),#E84C0A);        color:white; box-shadow:0 6px 16px rgba(255,107,53,0.3); }
+        .btn-wa       { background: linear-gradient(120deg,#25D366,#128C7E);             color:white; box-shadow:0 6px 16px rgba(37,211,102,0.3); }
+        .btn-copy     { background: linear-gradient(120deg,var(--purple-mid),var(--purple-deep)); color:white; box-shadow:0 6px 16px var(--shadow-purple); }
+        .btn-html     { background: linear-gradient(120deg,#E67E22,#CA6F1E);             color:white; box-shadow:0 6px 16px rgba(230,126,34,0.3); }
+        .btn-download { background: linear-gradient(120deg,#2980B9,#1A5276);             color:white; box-shadow:0 6px 16px rgba(41,128,185,0.3); }
+        .btn-print    { background: linear-gradient(120deg,#2C3E50,#1A252F);             color:white; box-shadow:0 6px 16px rgba(44,62,80,0.3); }
+        .btn-share    { background: linear-gradient(120deg,#8E44AD,var(--purple-deep));  color:white; box-shadow:0 6px 16px var(--shadow-purple); }
+        .btn-reset    { background: white; color:var(--purple-mid); border:2px solid var(--border); box-shadow:0 4px 10px var(--shadow-purple); }
+        .btn-reset:hover { background: var(--purple-pale); }
+        .btn-copy-text { background: linear-gradient(120deg,var(--teal),#16A085);        color:white; box-shadow:0 6px 16px rgba(26,188,156,0.3); }
+
+        /* ── MEAL PLANNER ──────────────────────────────── */
+        .meal-planner { padding: 1.8rem 1.5rem; overflow-x: auto; }
+        .meal-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 0.9rem;
+            min-width: 900px;
+        }
+        .meal-table th {
+            background: linear-gradient(135deg,var(--purple-deep),var(--purple-mid));
+            color: white;
+            padding: 0.9rem 0.6rem;
+            font-weight: 900;
+            font-size: 0.95rem;
+            border-radius: 1.2rem 1.2rem 0.6rem 0.6rem;
+            text-align: center;
+            letter-spacing: 0.3px;
+        }
+        .meal-table th:first-child {
+            background: linear-gradient(135deg,var(--coral),#E84C0A);
+        }
+        .holiday-toggle {
+            margin-top: 8px;
+            background: rgba(255,255,255,0.18);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: var(--radius-pill);
+            padding: 4px 12px;
+            font-size: 0.68rem;
+            font-weight: 800;
+            cursor: pointer;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+        .holiday-toggle:hover { background: rgba(255,255,255,0.3); }
+        .holiday-toggle.active { background: var(--gold); color: #2d2b1f; border-color: var(--gold); }
+
+        /* ── TIME CELL ─────────────────────────────────── */
+        .time-cell {
+            background: linear-gradient(135deg,var(--gold-light),#FFF3C8);
+            font-weight: 900;
+            text-align: center;
+            padding: 1.1rem 0.6rem;
+            border-radius: var(--radius-lg);
+            color: #8B5E0A;
+            font-size: 0.82rem;
+            width: 105px;
+            border: 2px solid #FFD580;
+            box-shadow: 0 4px 10px rgba(244,196,48,0.2);
+        }
+        .time-cell .time-num   { font-size: 1.2rem; font-weight: 900; display: block; color: var(--coral); }
+        .time-cell .time-label { font-size: 0.7rem; font-weight: 800; color: #8B5E0A; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* ── MEAL CARD ─────────────────────────────────── */
+        .meal-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 1rem;
+            min-height: 190px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.25s ease;
+            box-shadow: 0 6px 16px rgba(73,13,89,0.07);
+            border: 2px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+        .meal-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        }
+        .meal-card.type-breakfast::before { background: linear-gradient(90deg,#F39C12,#E67E22); }
+        .meal-card.type-juice::before     { background: linear-gradient(90deg,#27AE60,#1ABC9C); }
+        .meal-card.type-lunch::before     { background: linear-gradient(90deg,var(--purple-mid),var(--purple-deep)); }
+        .meal-card.type-dessert::before   { background: linear-gradient(90deg,#E91E8C,#C0392B); }
+        .meal-card.type-snack::before     { background: linear-gradient(90deg,var(--coral),#E84C0A); }
+        .meal-card:hover:not(.holiday-card) {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 32px rgba(73,13,89,0.18);
+            border-color: var(--purple-soft);
+        }
+        .holiday-card {
+            background: linear-gradient(135deg,#FFF4E6,#FFE8CC);
+            border: 2px dashed #FFA726;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .holiday-card::before { display: none; }
+        .meal-icon {
+            font-size: 2.2rem;
+            width: 52px; height: 52px;
+            background: var(--purple-pale);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.8rem;
+            flex-shrink: 0;
+        }
+        .meal-header { display: flex; align-items: center; margin-bottom: 0.5rem; }
+        .meal-name   { font-weight: 900; font-size: 0.95rem; color: var(--purple-deep); line-height: 1.3; }
+        .meal-desc   { font-size: 0.75rem; color: var(--text-soft); margin: 0.4rem 0 0.8rem; flex: 1; line-height: 1.5; font-weight: 600; }
+        .meal-select {
+            width: 100%;
+            padding: 0.55rem 0.8rem;
+            border-radius: var(--radius-pill);
+            border: 2px solid var(--border);
+            background: var(--purple-pale);
+            font-size: 0.73rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            color: var(--purple-deep);
+            transition: border-color 0.2s;
+        }
+        .meal-select:focus { outline: none; border-color: var(--purple-soft); }
+
+        /* ── NUTRITION ─────────────────────────────────── */
+        .nutrition-section {
+            background: linear-gradient(135deg,var(--purple-pale),#EDD9FF);
+            border-top: 3px solid var(--border);
+            padding: 1.4rem 1.5rem;
+        }
+        .nutrition-title {
+            text-align: center;
+            font-size: 0.78rem;
+            font-weight: 900;
+            color: var(--text-soft);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.9rem;
+        }
+        .nutrition-badge { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; }
+        .badge-item {
+            background: white;
+            padding: 0.4rem 1.1rem;
+            border-radius: var(--radius-pill);
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--purple-deep);
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            box-shadow: 0 3px 8px var(--shadow-purple);
+        }
+        .badge-item i { color: var(--coral); }
+
+        /* ── FOOTER ────────────────────────────────────── */
+        .footer {
+            background: linear-gradient(135deg,var(--purple-deep),#2D0A38);
+            color: rgba(255,255,255,0.8);
+            text-align: center;
+            padding: 1.8rem 1.5rem;
+            font-size: 0.84rem;
+            line-height: 1.8;
+        }
+        .footer a { color: var(--gold); text-decoration: none; font-weight: 700; }
+        .footer a:hover { color: white; }
+        .footer-logo { margin-bottom: 0.8rem; }
+        .footer-logo img { max-height: 50px; opacity: 0.85; }
+        .footer-links { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; margin-top: 0.8rem; }
+
+        /* ── TOAST ─────────────────────────────────────── */
+        .notification {
+            position: fixed;
+            bottom: 24px; right: 24px;
+            background: linear-gradient(120deg,var(--purple-mid),var(--purple-deep));
+            color: white;
+            padding: 1rem 1.6rem;
+            border-radius: var(--radius-pill);
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 12px 24px var(--shadow-purple);
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+            z-index: 1200;
+            pointer-events: none;
+            font-family: inherit;
+            font-size: 0.9rem;
+        }
+        .notification.show { opacity: 1; transform: translateY(0) scale(1); }
+
+        /* ── BIRTHDAY MODAL ────────────────────────────── */
+        .bday-modal-overlay {
+            position: fixed; inset: 0;
+            background: rgba(73,13,89,0.6);
+            backdrop-filter: blur(6px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .bday-modal-overlay.show { display: flex; }
+        .bday-modal {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 2.5rem 2rem;
+            max-width: 520px; width: 90%;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(73,13,89,0.3);
+            animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        @keyframes popIn {
+            from { transform: scale(0.7); opacity: 0; }
+            to   { transform: scale(1);   opacity: 1; }
+        }
+        .bday-modal .confetti { font-size: 3.5rem; margin-bottom: 0.4rem; }
+        .bday-modal h2 { color: var(--purple-deep); font-size: 1.8rem; font-weight: 900; margin: 0.6rem 0 0.3rem; }
+        .bday-modal p  { color: var(--text-soft); font-weight: 600; margin-bottom: 1rem; }
+        .bday-names { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin: 1rem 0 1.5rem; }
+        .bday-name-chip {
+            background: linear-gradient(120deg,var(--coral),#E84C0A);
+            color: white;
+            padding: 0.6rem 1.6rem;
+            border-radius: var(--radius-pill);
+            font-weight: 900; font-size: 1rem;
+            box-shadow: 0 6px 14px rgba(255,107,53,0.35);
+        }
+        .bday-close-btn {
+            background: linear-gradient(120deg,var(--purple-mid),var(--purple-deep));
+            color: white; border: none;
+            padding: 0.8rem 2.4rem;
+            border-radius: var(--radius-pill);
+            font-weight: 900; font-size: 1rem;
+            cursor: pointer; font-family: inherit; transition: all 0.2s;
+        }
+        .bday-close-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+        /* ── PRINT ─────────────────────────────────────── */
+        .print-header { display: none; text-align: center; padding: 1.2rem; }
+        @media print {
+            body { background: white; padding: 0; }
+            .utility-topnav, .controls, .notification, .select-wrapper,
+            .btn-group, .holiday-toggle, .birthday-week-section,
+            .bday-modal-overlay { display: none !important; }
+            .print-header { display: block !important; }
+            .meal-card { box-shadow: none !important; border: 1px solid #ddd !important; }
+            .container  { border-radius: 0 !important; box-shadow: none !important; }
+        }
+
+        /* ── RESPONSIVE ────────────────────────────────── */
+        @media (max-width: 768px) {
+            body { padding: 0.5rem; }
+            .controls { padding: 1rem; }
+            .birthday-week-section { margin: 1rem; border-radius: var(--radius-lg); }
+            .meal-card { padding: 0.8rem; min-height: 165px; }
+            .btn { padding: 0.6rem 1rem; font-size: 0.77rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ── TOP NAV ─────────────────────────────────────────────── -->
+<nav class="utility-topnav">
+    <a href="https://www.smartkids.org.lk/index.html">
+        <i class="fas fa-arrow-left"></i> Back to Smart Kids
+    </a>
+    <div class="nav-links">
+        <a href="https://www.smartkids.org.lk/About.html">About</a>
+        <a href="https://www.smartkids.org.lk/Daycare.html">Daycare</a>
+        <a href="https://www.smartkids.org.lk/Contact.html">Contact</a>
+    </div>
+    <span class="crumbs">Home / Food Menu</span>
+</nav>
+
+<div class="container">
+
+    <!-- ── HEADER ──────────────────────────────────────────── -->
+    <header>
+        <div class="logo-container">
+            <img src="https://smartkids25.vercel.app/SK-Banner.svg"
+                 alt="Smart Kids – Little One, Big Dreams"
+                 class="logo-img"
+                 onerror="this.src='https://smartkids.org.lk/wp-content/uploads/2025/03/Web-Banner-SK-SVG.svg'">
+        </div>
+        <h1 class="header-title">
+            <i class="fa-solid fa-children" style="color:var(--gold);"></i>
+            Smart Kids – Meal Studio
+            <i class="fa-solid fa-child-reaching" style="color:var(--gold);"></i>
+        </h1>
+        <p class="subtitle">Little One, Big Dreams &nbsp;|&nbsp; Nutrient-rich weekly menu &nbsp;|&nbsp; Brain &amp; body boost</p>
+        <div class="header-pills">
+            <span class="header-pill">🌱 Fuel for Growing Bodies</span>
+            <span class="header-pill">🥗 Wholesome &amp; Tasty</span>
+            <span class="header-pill">✅ Kid-Approved</span>
+            <span class="header-pill">🧠 Brain Boost</span>
+        </div>
+    </header>
+
+    <!-- ── BIRTHDAY BANNER ──────────────────────────────────── -->
+    <div class="birthday-week-section" id="birthdayWeekSection">
+        <span class="bday-icon">🎂</span>
+        <div>
+            <div class="birthday-label">🎉 This Week's Birthdays</div>
+            <div class="birthday-list" id="birthdayListContainer">
+                <span class="no-birthday"><i class="fa-solid fa-spinner fa-pulse"></i>&nbsp; Loading birthdays…</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── CONTROLS ─────────────────────────────────────────── -->
+    <div class="controls">
+        <div class="date-picker">
+            <i class="fas fa-calendar-alt"></i>
+            <label for="start-date" style="font-size:0.82rem;">Week start (Monday):</label>
+            <input type="date" id="start-date">
+            <span class="autosave-badge">💾 Auto-saved</span>
+        </div>
+        <div class="btn-group">
+            <button class="btn btn-image"     id="download-btn">            <i class="fas fa-camera"></i>       Save as Image</button>
+            <button class="btn btn-copy-text" id="copy-text-btn">           <i class="fas fa-copy"></i>          Copy Menu Text</button>
+            <button class="btn btn-wa"        id="copy-whatsapp-btn">       <i class="fab fa-whatsapp"></i>      WhatsApp</button>
+            <button class="btn btn-html"      id="copy-html-btn">           <i class="fas fa-code"></i>          Copy HTML</button>
+            <button class="btn btn-download"  id="download-html-file-btn">  <i class="fas fa-download"></i>      Download HTML</button>
+            <button class="btn btn-print"     id="print-btn">               <i class="fas fa-print"></i>         Print</button>
+            <button class="btn btn-share"     id="share-btn">               <i class="fas fa-share-alt"></i>     Share</button>
+            <button class="btn btn-reset"     id="reset-default-btn">       <i class="fas fa-undo-alt"></i>      Reset Week</button>
+        </div>
+    </div>
+
+    <!-- ── MEAL PLANNER ─────────────────────────────────────── -->
+    <div class="meal-planner" id="meal-schedule">
+        <div class="print-header" id="print-header">
+            <img src="https://smartkids25.vercel.app/SK-Banner.svg" alt="Smart Kids" style="max-height:80px; margin-bottom:0.6rem; display:block; margin-left:auto; margin-right:auto;">
+            <h2 style="color:var(--purple-deep); font-size:1.6rem; font-weight:900;">Smart Kids Daycare – Weekly Meal Plan</h2>
+            <p style="color:var(--text-soft); font-weight:600; margin-top:0.3rem;">Balanced nutrition for growing minds &amp; bodies</p>
+            <hr style="border-color:var(--border); margin:1rem 0;">
+        </div>
+        <table class="meal-table" id="dynamic-meal-table">
+            <thead>
+                <tr>
+                    <th>⏰ Time</th>
+                    <th id="mon-header">Monday</th>
+                    <th id="tue-header">Tuesday</th>
+                    <th id="wed-header">Wednesday</th>
+                    <th id="thu-header">Thursday</th>
+                    <th id="fri-header">Friday</th>
+                </tr>
+            </thead>
+            <tbody id="meal-tbody"></tbody>
+        </table>
+    </div>
+
+    <!-- ── NUTRITION BADGES ──────────────────────────────────── -->
+    <div class="nutrition-section">
+        <div class="nutrition-title">Key Nutrients in Every Meal</div>
+        <div class="nutrition-badge">
+            <span class="badge-item"><i class="fas fa-apple-alt"></i>  Vitamins</span>
+            <span class="badge-item"><i class="fas fa-dumbbell"></i>   Protein</span>
+            <span class="badge-item"><i class="fas fa-brain"></i>      Omega‑3</span>
+            <span class="badge-item"><i class="fas fa-carrot"></i>     Fiber</span>
+            <span class="badge-item"><i class="fas fa-bone"></i>       Calcium</span>
+            <span class="badge-item"><i class="fas fa-tint"></i>       Hydration</span>
+            <span class="badge-item"><i class="fas fa-leaf"></i>       Iron</span>
+            <span class="badge-item"><i class="fas fa-sun"></i>        Vitamin D</span>
+            <span class="badge-item"><i class="fas fa-shield-alt"></i> Antioxidants</span>
+        </div>
+    </div>
+
+    <!-- ── FOOTER ───────────────────────────────────────────── -->
+    <footer class="footer">
+        <div class="footer-logo">
+            <img src="https://smartkids25.vercel.app/SK-Logo.svg" alt="Smart Kids Logo">
+        </div>
+        <p>🍎 Smart Kids Meal Planner &nbsp;•&nbsp; Wholesome, allergy‑aware &amp; kid‑approved 🌟</p>
+        <p style="margin-top:0.3rem; opacity:0.75;">📋 Meals are automatically saved for the selected week in your browser.</p>
+        <div class="footer-links">
+            <a href="https://www.smartkids.org.lk/">Home</a>
+            <a href="https://www.smartkids.org.lk/About.html">About</a>
+            <a href="https://www.smartkids.org.lk/Daycare.html">Daycare</a>
+            <a href="https://web.facebook.com/profile.php?id=61573965225366" target="_blank">Facebook</a>
+            <a href="https://wa.me/94775511818" target="_blank">WhatsApp</a>
+        </div>
+        <p style="margin-top:1rem; opacity:0.5; font-size:0.76rem;">Copyright © 2026 Smart Kids, Batticaloa. All Rights Reserved.</p>
+    </footer>
+</div>
+
+<!-- ── BIRTHDAY MODAL ───────────────────────────────────────── -->
+<div class="bday-modal-overlay" id="bdayModalOverlay">
+    <div class="bday-modal" id="bdayModal">
+        <div class="confetti">🎉🎂🎈</div>
+        <h2>Happy Birthday!</h2>
+        <p>Wishing lots of love &amp; cake to our special little ones! 💜</p>
+        <div class="bday-names" id="bdayModalNames"></div>
+        <button class="bday-close-btn" onclick="closeBdayModal()">
+            <i class="fas fa-heart"></i>&nbsp; Celebrate!
+        </button>
+    </div>
+</div>
+
+<!-- ── NOTIFICATION TOAST ───────────────────────────────────── -->
+<div class="notification" id="notification">
+    <i class="fas fa-check-circle"></i> Done!
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   SMART KIDS – MEAL STUDIO  |  Full Script
+   Brand: #490D59 purple | #FF6B35 coral | Nunito font
+═══════════════════════════════════════════════════════════ */
+
+// ── MEAL LIBRARY ────────────────────────────────────────────
+const MEAL_LIBRARY = {
+    breakfast: {
+        pongal:         { icon:"🍚🥥", name:"Pongal",           desc:"Rice & moong dal · Protein, iron" },
+        uppuma:         { icon:"🥘🌾", name:"Uppuma",           desc:"Semolina with veggies · Carbs, fiber" },
+        ulunthu_kali:   { icon:"🥣💪", name:"Ulunthu Kali",    desc:"Urad dal porridge · High protein" },
+        string_hoppers: { icon:"🍝🥔", name:"String Hoppers",  desc:"Steamed rice noodles · Carbs" },
+        green_gram:     { icon:"☘️🌱", name:"Green Gram",       desc:"Whole moong · Plant protein" },
+        milk_rice:      { icon:"🍚🥛", name:"Milk Rice",        desc:"Iron-fortified rice + milk" },
+        ilai_kanji:     { icon:"🍃🍚", name:"Ilai Kanji",       desc:"Herbal rice porridge · Soothing" },
+        thosai:         { icon:"🥞🥄", name:"Thosai & Sambar",  desc:"Fermented lentils · Probiotics" },
+        kadalai:        { icon:"🥣🌱", name:"Kadalai",          desc:"Roasted chickpeas · Fiber" },
+        pittu:          { icon:"🥖🥘", name:"Pittu & Sothi",    desc:"Coconut rice flour · Calcium" },
+        kowpi:          { icon:"🌾🥣", name:"Kowpi",            desc:"Millet based · Iron" },
+        noodles:        { icon:"🍜🥕", name:"Veg Noodles",      desc:"Whole wheat & veggies · Fiber" },
+        pumpkin_rotty:  { icon:"🎃🥞", name:"Pumpkin Rotty",   desc:"Pumpkin + wholewheat · Vitamin A" },
+        iddly:          { icon:"🍡🥥", name:"Iddly & Chutney",  desc:"Steamed rice cakes · Light" },
+        aval_porridge:  { icon:"🥣🍯", name:"Aval Porridge",   desc:"Flattened rice + jaggery · Energy" }
+    },
+    juice: {
+        mango:          { icon:"🍑🥃", name:"Mango Magic",       desc:"Vitamin A & C · Immune boost" },
+        wood_apple:     { icon:"🍨🍷", name:"Wood Apple",        desc:"Fiber, vitamin C · Digestive" },
+        passion_fruit:  { icon:"🍈🍸", name:"Passion Fruit",     desc:"Antioxidants · Calming" },
+        guava:          { icon:"🍐🍵", name:"Guava Delight",     desc:"Lycopene, vitamin C" },
+        watermelon:     { icon:"🍉🥤", name:"Watermelon Splash", desc:"Hydration · Electrolytes" },
+        papaya:         { icon:"🏉🌞", name:"Papaya Nectar",     desc:"Papain enzyme · Digestion" },
+        lemon:          { icon:"🍋⚡", name:"Lemon Zinger",     desc:"Immune vitamin C · Refreshing" },
+        orange:         { icon:"🍊☀️", name:"Orange Sunrise",    desc:"Vitamin C + folate · Brain" },
+        avocado:        { icon:"🥑🍹", name:"Avocado Smoothie",  desc:"Healthy fats · Brain boost" },
+        banana_milk:    { icon:"🍌🥛", name:"Banana Milk",       desc:"Potassium + calcium · Bones" }
+    },
+    lunch: {
+        rice_fish:      { icon:"🍚🐟", name:"Fish Rice Bowl",    desc:"Omega-3, iron · Brain food" },
+        rice_egg:       { icon:"🍚🥚", name:"Egg Rice Bowl",     desc:"Choline, protein · Growth" },
+        rice_chicken:   { icon:"🍚🍗", name:"Chicken Rice Bowl", desc:"Lean protein, iron · Muscles" },
+        soya_rice:      { icon:"🌱🍚", name:"Soya Rice",         desc:"Plant protein · Fiber" },
+        biryani:        { icon:"🍲🌿", name:"Veg Biryani",       desc:"Complete grains · Wholesome" },
+        dhal_rice:      { icon:"🍚🫘", name:"Dhal Rice",         desc:"Lentils + rice · Complete protein" },
+        kottu:          { icon:"🥘🍞", name:"Veg Kottu",         desc:"Whole wheat roti · Fiber" },
+        noodle_bowl:    { icon:"🍜🥦", name:"Veg Noodle Bowl",   desc:"Stir-fried veggies · Vitamins" }
+    },
+    dessert: {
+        banana:         { icon:"🍌💛", name:"Banana",            desc:"Potassium · Energy" },
+        yoghurt:        { icon:"🥛🍶", name:"Yoghurt",           desc:"Probiotics · Gut health" },
+        pudding:        { icon:"🍮🥄", name:"Pudding",           desc:"Calcium · Bone strength" },
+        fruit_salad:    { icon:"🍎🥗", name:"Fruit Salad",       desc:"Mixed vitamins · Colourful" },
+        jelly:          { icon:"🍮🌈", name:"Jelly",             desc:"Low-calorie · Fun treat" },
+        smoothy:        { icon:"🥤🏉", name:"Smoothie",          desc:"Vitamin C, calcium · Tasty" },
+        papaya:         { icon:"🏉❤️", name:"Papaya",            desc:"Digestive enzymes · Vitamin A" },
+        payasam:        { icon:"🥣🍬", name:"Payasam",           desc:"Jaggery + milk · Traditional" },
+        watermelon:     { icon:"🍉😊", name:"Watermelon",        desc:"Hydrating · Summer favourite" },
+        custard:        { icon:"🍮🟡", name:"Custard",           desc:"Eggs + milk · Creamy protein" }
+    },
+    snack: {
+        tea_samaposha:  { icon:"☕🥟", name:"Tea + Patties",     desc:"Wholegrain cereal · Energy" },
+        tea_vadai:      { icon:"☕🍪", name:"Tea + P. Vadai",    desc:"Urad dal · Protein snack" },
+        tea_lattu:      { icon:"☕🌰", name:"Tea + Lattu",       desc:"Roasted gram · Crunchy" },
+        tea_aval:       { icon:"☕🍯", name:"Tea + Aval",        desc:"Flattened rice · Light" },
+        tea_kesari:     { icon:"☕🍞", name:"Tea + Kesari",      desc:"Semolina sweet · Tasty" },
+        tea_kolukkaddai:{ icon:"☕🥟", name:"Tea + Kolukkaddai", desc:"Steamed rice dumpling · Soft" },
+        tea_suruttappam:{ icon:"☕🥖", name:"Tea + Suruttappam", desc:"Crispy pancake · Crunchy" },
+        tea_cutlet:     { icon:"☕🍘", name:"Tea + Fish Cutlet", desc:"Omega-3 · Brain boost" },
+        tea_uvadai:     { icon:"☕🍩", name:"Tea + U. Vadai",    desc:"Lentil snack · Protein" },
+        tea_cake:       { icon:"☕🍰", name:"Tea + Cake",        desc:"Soft treat · Celebration" },
+        bread:          { icon:"☕🍞", name:"Bread & Jam",       desc:"Wholewheat · Carbs" },
+        biscuits_milk:  { icon:"🍪🥛", name:"Biscuits & Milk",  desc:"Calcium · Bone strength" }
+    }
+};
+
+const SLOT_CSS = { breakfast:'type-breakfast', juice:'type-juice', lunch:'type-lunch', dessert:'type-dessert', snack:'type-snack' };
+
+const DEFAULT_PLAN = {
+    mon: { breakfast:"ulunthu_kali",   juice:"mango",      lunch:"rice_fish",    dessert:"banana",      snack:"tea_cutlet" },
+    tue: { breakfast:"string_hoppers", juice:"watermelon", lunch:"rice_chicken", dessert:"yoghurt",     snack:"tea_samaposha" },
+    wed: { breakfast:"green_gram",     juice:"papaya",     lunch:"rice_egg",     dessert:"pudding",     snack:"tea_uvadai" },
+    thu: { breakfast:"thosai",         juice:"lemon",      lunch:"soya_rice",    dessert:"fruit_salad", snack:"tea_cake" },
+    fri: { breakfast:"pongal",         juice:"orange",     lunch:"biryani",      dessert:"jelly",       snack:"tea_samaposha" }
+};
+
+const MEAL_TIMES = [
+    { id:"breakfast", timeLabel:"8:30",  slotLabel:"Breakfast" },
+    { id:"juice",     timeLabel:"10:30", slotLabel:"Juice / Snack" },
+    { id:"lunch",     timeLabel:"12:00", slotLabel:"Lunch" },
+    { id:"dessert",   timeLabel:"12:30", slotLabel:"Dessert" },
+    { id:"snack",     timeLabel:"3:30",  slotLabel:"Tea & Snack" }
+];
+
+const DAYS      = ["mon","tue","wed","thu","fri"];
+const DAY_NAMES = ["Monday","Tuesday","Wednesday","Thursday","Friday"];
+
+let currentSelections = JSON.parse(JSON.stringify(DEFAULT_PLAN));
+let holidays          = { mon:false, tue:false, wed:false, thu:false, fri:false };
+let currentBirthdays  = { names:[], dates:[] };
+
+/* ── LOCAL STORAGE ─────────────────────────────────────────── */
+function getMondayKey(d) {
+    const dt = new Date(d);
+    const day = dt.getDay();
+    dt.setDate(dt.getDate() + (day === 0 ? -6 : 1) - day);
+    return dt.toISOString().slice(0,10);
+}
+function getCurrentMondayKey() {
+    return getMondayKey(document.getElementById('start-date').valueAsDate || new Date());
+}
+function savePlan() {
+    localStorage.setItem(`mealPlan_${getCurrentMondayKey()}`, JSON.stringify({ selections:currentSelections, holidays }));
+}
+function loadPlan() {
+    const raw = localStorage.getItem(`mealPlan_${getCurrentMondayKey()}`);
+    if (raw) {
+        try { const d = JSON.parse(raw); currentSelections = d.selections || cloneDefault(); holidays = d.holidays || freshHolidays(); }
+        catch { resetDefaults(); }
+    } else { resetDefaults(); }
+}
+const cloneDefault  = () => JSON.parse(JSON.stringify(DEFAULT_PLAN));
+const freshHolidays = () => ({ mon:false, tue:false, wed:false, thu:false, fri:false });
+function resetDefaults() { currentSelections = cloneDefault(); holidays = freshHolidays(); }
+
+/* ── TOAST ─────────────────────────────────────────────────── */
+function showNotif(msg, bg) {
+    const n = document.getElementById('notification');
+    n.innerHTML = `<i class="fas fa-check-circle"></i> ${msg}`;
+    if (bg) n.style.background = bg;
+    n.classList.add('show');
+    setTimeout(() => { n.classList.remove('show'); n.style.background = ''; }, 3200);
+}
+
+/* ── BUILD TABLE ───────────────────────────────────────────── */
+function buildMealTable() {
+    const tbody = document.getElementById('meal-tbody');
+    tbody.innerHTML = '';
+    for (const time of MEAL_TIMES) {
+        const row = document.createElement('tr');
+
+        // Time cell
+        const tdTime = document.createElement('td');
+        tdTime.className = 'time-cell';
+        tdTime.innerHTML = `<span class="time-num">${time.timeLabel}</span><span class="time-label">${time.slotLabel}</span>`;
+        row.appendChild(tdTime);
+
+        // Day cells
+        for (const day of DAYS) {
+            const td = document.createElement('td');
+            if (holidays[day]) {
+                td.innerHTML = `<div class="meal-card holiday-card">
+                    <div style="font-size:3rem;margin-bottom:0.5rem;">🌴</div>
+                    <div style="font-weight:900;color:#E67E22;font-size:1rem;">Holiday</div>
+                    <div style="font-size:0.8rem;color:#B7770D;margin-top:0.4rem;font-weight:600;">No meals today</div>
+                </div>`;
+            } else {
+                const key  = currentSelections[day][time.id];
+                const meal = MEAL_LIBRARY[time.id]?.[key] || { icon:"🍽️", name:"Select meal", desc:"Pick a healthy option" };
+                td.innerHTML = `
+                <div class="meal-card ${SLOT_CSS[time.id]}" id="card-${day}-${time.id}">
+                    <div class="meal-header">
+                        <div class="meal-icon"><span style="font-size:1.9rem;">${meal.icon}</span></div>
+                        <div class="meal-name">${meal.name}</div>
+                    </div>
+                    <div class="meal-desc">${meal.desc}</div>
+                    <div class="select-wrapper">
+                        <select class="meal-select" data-day="${day}" data-time="${time.id}" id="sel-${day}-${time.id}"></select>
+                    </div>
+                </div>`;
+            }
+            row.appendChild(td);
+        }
+        tbody.appendChild(row);
+    }
+
+    // Populate selects
+    for (const time of MEAL_TIMES) {
+        for (const day of DAYS) {
+            if (holidays[day]) continue;
+            const sel = document.getElementById(`sel-${day}-${time.id}`);
+            if (!sel) continue;
+            sel.innerHTML = '';
+            for (const [k, v] of Object.entries(MEAL_LIBRARY[time.id])) {
+                const opt = document.createElement('option');
+                opt.value = k;
+                opt.textContent = `${v.icon} ${v.name}`;
+                if (k === currentSelections[day][time.id]) opt.selected = true;
+                sel.appendChild(opt);
+            }
+            sel.addEventListener('change', e => {
+                const d = e.target.dataset.day, t = e.target.dataset.time;
+                if (!holidays[d]) {
+                    currentSelections[d][t] = e.target.value;
+                    updateCard(d, t, e.target.value);
+                    savePlan();
+                    showNotif(`🍽️ ${MEAL_LIBRARY[t][e.target.value]?.name || 'Meal'} saved!`);
+                }
+            });
+        }
+    }
+}
+
+function updateCard(day, timeKey, mealKey) {
+    const card = document.getElementById(`card-${day}-${timeKey}`);
+    if (!card || holidays[day]) return;
+    const meal = MEAL_LIBRARY[timeKey]?.[mealKey];
+    if (meal) {
+        card.querySelector('.meal-icon').innerHTML = `<span style="font-size:1.9rem;">${meal.icon}</span>`;
+        card.querySelector('.meal-name').textContent = meal.name;
+        card.querySelector('.meal-desc').textContent = meal.desc;
+    }
+}
+
+/* ── HOLIDAY TOGGLES ───────────────────────────────────────── */
+function toggleHoliday(day) {
+    holidays[day] = !holidays[day];
+    buildMealTable();
+    savePlan();
+    const btn = document.getElementById(`hbtn-${day}`);
+    if (btn) {
+        btn.innerHTML = holidays[day] ? '<i class="fas fa-palm-tree"></i> Holiday ON' : '<i class="fas fa-sun"></i> Set Holiday';
+        btn.classList.toggle('active', holidays[day]);
+    }
+    const name = DAY_NAMES[DAYS.indexOf(day)];
+    showNotif(holidays[day] ? `🌴 ${name} set as holiday` : `✅ ${name} meals restored`);
+}
+
+function addHolidayToggles() {
+    DAYS.forEach(day => {
+        const th = document.getElementById(`${day}-header`);
+        if (!th || th.querySelector('.holiday-toggle')) return;
+        const btn = document.createElement('button');
+        btn.id = `hbtn-${day}`;
+        btn.className = `holiday-toggle ${holidays[day] ? 'active' : ''}`;
+        btn.innerHTML = holidays[day] ? '<i class="fas fa-palm-tree"></i> Holiday ON' : '<i class="fas fa-sun"></i> Set Holiday';
+        btn.addEventListener('click', e => { e.stopPropagation(); toggleHoliday(day); });
+        th.appendChild(document.createElement('br'));
+        th.appendChild(btn);
+    });
+}
+
+/* ── BIRTHDAY – GOOGLE SHEETS CSV ──────────────────────────────
+   Sheet columns: Name | DOB (YYYY-MM-DD) | BirthdayThisYear (opt)
+   Replace the CSV_URL below with your published Google Sheet CSV link.
+──────────────────────────────────────────────────────────────── */
+function parseCSV(line) {
+    const result = []; let cur = '', inQ = false;
+    for (const c of line) {
+        if (c === '"') { inQ = !inQ; }
+        else if (c === ',' && !inQ) { result.push(cur.trim()); cur = ''; }
+        else { cur += c; }
+    }
+    result.push(cur.trim());
+    return result.map(f => f.replace(/^"|"$/g, '').trim());
+}
+
+async function fetchBirthdaysForWeek(mondayDate) {
+    const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR6bpUOOZbWm9dkrktGhlmuMkeUbF0LXNJtwglr_yUK5XQ8U7kBJ9-Ia18uH0pcGOCUWLJx66v6vRAq/pub?output=csv';
+    try {
+        const resp = await fetch(CSV_URL, { cache:'no-cache' });
+        if (!resp.ok) throw new Error('network');
+        const text  = await resp.text();
+        const lines = text.split('\n').filter(l => l.trim());
+        if (lines.length < 2) throw new Error('empty');
+
+        const start = new Date(mondayDate);
+        const end   = new Date(start); end.setDate(start.getDate() + 6);
+        const year  = new Date().getFullYear();
+        const names = [], dates = [];
+
+        for (let i = 1; i < lines.length; i++) {
+            const f = parseCSV(lines[i]);
+            if (f.length < 2 || !f[0]) continue;
+            const name = f[0]; let bday;
+            if (f[2]) { bday = new Date(f[2]); }
+            else if (f[1]) { const dob = new Date(f[1]); if (!isNaN(dob)) bday = new Date(year, dob.getMonth(), dob.getDate()); }
+            if (bday && !isNaN(bday) && bday >= start && bday <= end) {
+                names.push(name);
+                dates.push(bday.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' }));
+            }
+        }
+        displayBirthdays({ names, dates });
+    } catch {
+        displayBirthdays({ names: [], dates: [] }); // No fallback sample in production
+    }
+}
+
+function displayBirthdays({ names, dates }) {
+    currentBirthdays = { names, dates };
+    const container = document.getElementById('birthdayListContainer');
+    const section   = document.getElementById('birthdayWeekSection');
+
+    if (!names.length) {
+        section.classList.remove('has-birthday');
+        container.innerHTML = '<span class="no-birthday"><i class="fa-regular fa-calendar"></i>&nbsp; No birthdays this week</span>';
+    } else {
+        section.classList.add('has-birthday');
+        container.innerHTML = names.map((n, i) =>
+            `<span class="birthday-chip"><i class="fa-solid fa-gift"></i> ${n} <small style="opacity:0.8;font-size:0.8em;">(${dates[i]})</small></span>`
+        ).join('');
+        showBdayModal(names, dates);
+    }
+}
+
+/* ── BIRTHDAY MODAL ─────────────────────────────────────────── */
+function showBdayModal(names, dates) {
+    document.getElementById('bdayModalNames').innerHTML = names.map((n, i) =>
+        `<div class="bday-name-chip">🎂 ${n}<br><span style="font-size:0.78rem;opacity:0.85;">${dates[i]}</span></div>`
+    ).join('');
+    const overlay = document.getElementById('bdayModalOverlay');
+    overlay.classList.add('show');
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeBdayModal(); }, { once:true });
+}
+function closeBdayModal() {
+    document.getElementById('bdayModalOverlay').classList.remove('show');
+}
+
+/* ── DATE HEADERS ───────────────────────────────────────────── */
+function getMondayFromInput() {
+    const d = new Date(document.getElementById('start-date').valueAsDate || new Date());
+    const day = d.getDay();
+    d.setDate(d.getDate() + (day === 0 ? -6 : 1) - day);
+    return d;
+}
+function getFormattedHeaders() {
+    const mon = getMondayFromInput();
+    return DAYS.map((_, i) => {
+        const d = new Date(mon); d.setDate(mon.getDate() + i);
+        return `${DAY_NAMES[i].slice(0,3)} (${d.getDate().toString().padStart(2,'0')}/${(d.getMonth()+1).toString().padStart(2,'0')})`;
+    });
+}
+function updateDateHeaders() {
+    const mon = getMondayFromInput();
+    DAYS.forEach((day, i) => {
+        const th = document.getElementById(`${day}-header`);
+        if (!th) return;
+        const d = new Date(mon); d.setDate(mon.getDate() + i);
+        const label = `${DAY_NAMES[i]} (${d.getDate().toString().padStart(2,'0')}/${(d.getMonth()+1).toString().padStart(2,'0')})`;
+        const existingBtn = th.querySelector('.holiday-toggle');
+        const existingBr  = th.querySelector('br');
+        // Clear text nodes
+        Array.from(th.childNodes).filter(n => n.nodeType === Node.TEXT_NODE).forEach(n => n.nodeValue = '');
+        th.insertBefore(document.createTextNode(label), th.firstChild);
+        if (!existingBr)  th.appendChild(document.createElement('br'));
+        if (!existingBtn) addHolidayToggles();
+    });
+}
+
+async function refreshWeek() {
+    updateDateHeaders();
+    loadPlan();
+    buildMealTable();
+    addHolidayToggles();
+    await fetchBirthdaysForWeek(getMondayFromInput());
+    showNotif('📅 Week loaded');
+}
+
+/* ── EXPORT: GENERATE HTML DOC ──────────────────────────────── */
+function generateHTMLDoc() {
+    const headers = getFormattedHeaders();
+    let rows = '';
+    for (const time of MEAL_TIMES) {
+        rows += `<tr><td class="tc">${time.timeLabel}<br><small>${time.slotLabel}</small></td>`;
+        for (let i = 0; i < DAYS.length; i++) {
+            const day = DAYS[i];
+            if (holidays[day]) {
+                rows += `<td style="background:#FFF4E6;text-align:center;padding:14px;border:1px solid #E4D0F5;">🌴<br><b>Holiday</b><br><small>No meals</small></td>`;
+            } else {
+                const key  = currentSelections[day][time.id];
+                const meal = MEAL_LIBRARY[time.id]?.[key];
+                rows += meal
+                    ? `<td style="padding:12px 10px;border:1px solid #E4D0F5;vertical-align:top;"><b>${meal.icon} ${meal.name}</b><br><small style="color:#7B5EA7;">${meal.desc}</small></td>`
+                    : `<td style="padding:12px;border:1px solid #E4D0F5;">—</td>`;
+            }
+        }
+        rows += '</tr>';
+    }
+    const bdaySec = currentBirthdays.names.length
+        ? `<div style="background:#FFF9E6;padding:14px 20px;border-radius:30px;margin:16px 0;text-align:center;border:2px solid #FFD580;">
+            <b>🎂 Birthdays this week:</b><br>
+            ${currentBirthdays.names.map((n,i)=>`<span style="display:inline-block;margin:4px 6px;background:#FF6B35;color:white;padding:4px 14px;border-radius:30px;font-weight:700;">${n} (${currentBirthdays.dates[i]})</span>`).join('')}
+           </div>` : '';
+    const ws = getMondayFromInput().toLocaleDateString('en-GB');
+    return `<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><title>Smart Kids Meal Plan – ${ws}</title>
+<style>body{font-family:'Segoe UI',Arial,sans-serif;max-width:1100px;margin:0 auto;padding:24px;background:#F3E8FF}
+.w{background:white;border-radius:24px;padding:28px;box-shadow:0 16px 40px rgba(73,13,89,.15)}
+h1{color:#490D59;border-bottom:4px solid #FF6B35;padding-bottom:8px;margin-bottom:8px;font-size:1.6rem}
+p.sub{color:#7B5EA7;font-size:.9rem;margin-bottom:18px}
+table{width:100%;border-collapse:collapse;margin:20px 0}
+th{background:#490D59;color:white;padding:12px 8px;font-weight:800;text-align:center;border:1px solid #3A0A47}
+th:first-child{background:#FF6B35}.tc{background:#FFF9E6;font-weight:800;padding:12px 8px;border:1px solid #E4D0F5;text-align:center}
+.ft{margin-top:20px;font-size:.82rem;color:#7B5EA7;text-align:center;border-top:2px solid #E4D0F5;padding-top:14px}
+</style></head><body><div class="w">
+<img src="https://smartkids25.vercel.app/SK-Banner.svg" alt="Smart Kids" style="max-height:80px;margin-bottom:14px;display:block">
+<h1>🍽️ Smart Kids – Weekly Meal Plan</h1>
+<p class="sub">Week starting ${ws} &nbsp;|&nbsp; Wholesome, allergy-aware &amp; kid-approved</p>
+${bdaySec}
+<table><thead><tr><th>Time</th>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
+<tbody>${rows}</tbody></table>
+<div class="ft">💪 Nutrients: Protein · Omega-3 · Iron · Calcium · Fiber · Vitamins<br>
+📅 Week starting ${ws} | 🌟 Smart Kids Daycare, Batticaloa<br>
+📞 +94 77 5511 818 &nbsp;|&nbsp; <a href="https://www.smartkids.org.lk">www.smartkids.org.lk</a></div>
+</div></body></html>`;
+}
+
+/* ── COPY PLAIN TEXT ────────────────────────────────────────── */
+async function copyPlainText() {
+    const headers = getFormattedHeaders();
+    let txt = `🌟 Smart Kids Daycare | Weekly Meal Plan 🌟\n`;
+    txt += `📅 Week: ${getMondayFromInput().toLocaleDateString('en-GB')}\n\n`;
+    if (currentBirthdays.names.length) {
+        txt += `🎂 Birthdays this week:\n`;
+        currentBirthdays.names.forEach((n,i) => { txt += `  🎈 ${n} (${currentBirthdays.dates[i]})\n`; });
+        txt += '\n';
+    }
+    for (let i = 0; i < DAYS.length; i++) {
+        const day = DAYS[i];
+        txt += `📅 ${headers[i]}\n`;
+        if (holidays[day]) { txt += `  🌴 Holiday – No meals\n\n`; continue; }
+        for (const time of MEAL_TIMES) {
+            const meal = MEAL_LIBRARY[time.id]?.[currentSelections[day][time.id]];
+            if (meal) txt += `  ${time.timeLabel} → ${meal.icon} ${meal.name}\n`;
+        }
+        txt += '\n';
+    }
+    txt += `💪 Nutrients: Protein • Omega-3 • Iron • Calcium • Fiber • Vitamins\n❤️ Smart Kids, Batticaloa | +94 77 5511 818`;
+    try { await navigator.clipboard.writeText(txt); showNotif('📋 Menu copied!', 'linear-gradient(120deg,#16A085,#1ABC9C)'); }
+    catch { const ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); showNotif('📋 Copied (fallback)'); }
+}
+
+/* ── COPY HTML ──────────────────────────────────────────────── */
+async function copyHTML() {
+    const html = generateHTMLDoc();
+    try { await navigator.clipboard.writeText(html); showNotif('📋 Full HTML copied!', 'linear-gradient(120deg,#E67E22,#CA6F1E)'); }
+    catch { const ta=document.createElement('textarea'); ta.value=html; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); showNotif('📋 HTML copied (fallback)'); }
+}
+
+/* ── DOWNLOAD HTML ──────────────────────────────────────────── */
+function downloadHTML() {
+    const blob = new Blob([generateHTMLDoc()], { type:'text/html' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href = url;
+    a.download = `smartkids_mealplan_${getMondayFromInput().toISOString().slice(0,10)}.html`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showNotif('📁 HTML file downloaded!', 'linear-gradient(120deg,#2980B9,#1A5276)');
+}
+
+/* ── SAVE AS IMAGE ──────────────────────────────────────────── */
+function saveAsImage() {
+    const el  = document.getElementById('meal-schedule');
+    const hdr = document.getElementById('print-header');
+    const sels= el.querySelectorAll('.select-wrapper');
+    const tgls= el.querySelectorAll('.holiday-toggle');
+    hdr.style.display = 'block';
+    sels.forEach(s => s.style.visibility = 'hidden');
+    tgls.forEach(t => t.style.visibility = 'hidden');
+    html2canvas(el, { scale:2.5, backgroundColor:'#ffffff', useCORS:true })
+      .then(canvas => {
+        const a = document.createElement('a');
+        a.download = `smartkids_meal_${new Date().toISOString().slice(0,10)}.png`;
+        a.href = canvas.toDataURL('image/png');
+        a.click();
+        hdr.style.display = '';
+        sels.forEach(s => s.style.visibility = 'visible');
+        tgls.forEach(t => t.style.visibility = 'visible');
+        showNotif('📸 Image saved!', 'linear-gradient(120deg,#FF6B35,#E84C0A)');
+      }).catch(() => {
+        hdr.style.display = '';
+        sels.forEach(s => s.style.visibility = 'visible');
+        tgls.forEach(t => t.style.visibility = 'visible');
+        showNotif('⚠️ Screenshot error – try again', 'linear-gradient(120deg,#C0392B,#922B21)');
+      });
+}
+
+/* ── WHATSAPP TEXT ──────────────────────────────────────────── */
+async function shareWhatsApp() {
+    const headers = getFormattedHeaders();
+    let msg = `🌟 *Smart Kids Daycare* 🌟\n🍽️ *Weekly Nutritious Menu*\n\n`;
+    if (currentBirthdays.names.length) {
+        msg += `🎂 *Birthdays This Week* 🎉\n`;
+        currentBirthdays.names.forEach((n,i) => { msg += `  🎈 ${n} (${currentBirthdays.dates[i]})\n`; });
+        msg += '\n';
+    }
+    for (let i = 0; i < DAYS.length; i++) {
+        const day = DAYS[i];
+        msg += `📅 *${headers[i]}*\n`;
+        if (holidays[day]) { msg += `  🌴 Holiday – No meals today.\n\n`; continue; }
+        for (const time of MEAL_TIMES) {
+            const meal = MEAL_LIBRARY[time.id]?.[currentSelections[day][time.id]];
+            if (meal) msg += `  ${time.timeLabel} → ${meal.icon} ${meal.name}\n`;
+        }
+        msg += '\n';
+    }
+    msg += `💪 Nutrients: Protein • Omega-3 • Iron • Calcium • Fiber\n❤️ Balanced meals for happy kids!\n📞 +94 77 5511 818 | www.smartkids.org.lk`;
+    try { await navigator.clipboard.writeText(msg); showNotif('📋 WhatsApp message copied!', 'linear-gradient(120deg,#25D366,#128C7E)'); }
+    catch { const ta=document.createElement('textarea'); ta.value=msg; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); showNotif('📋 Copied (fallback)'); }
+}
+
+/* ── NATIVE SHARE / COPY LINK ───────────────────────────────── */
+async function nativeShare() {
+    if (navigator.share) {
+        try { await navigator.share({ title:'Smart Kids – Weekly Meal Plan', url:'https://www.smartkids.org.lk/Foodmenu.html' }); return; }
+        catch {}
+    }
+    try { await navigator.clipboard.writeText('https://www.smartkids.org.lk/Foodmenu.html'); }
+    catch { const ta=document.createElement('textarea'); ta.value='https://www.smartkids.org.lk/Foodmenu.html'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
+    showNotif('🔗 Link copied!');
+}
+
+/* ── RESET WEEK ─────────────────────────────────────────────── */
+function resetWeek() {
+    if (!confirm('Reset this week to the default meal plan?')) return;
+    localStorage.removeItem(`mealPlan_${getCurrentMondayKey()}`);
+    resetDefaults();
+    buildMealTable();
+    addHolidayToggles();
+    savePlan();
+    showNotif('✨ Reset to default menu.');
+}
+
+/* ── BIND EVENTS ────────────────────────────────────────────── */
+document.getElementById('download-btn')          .addEventListener('click', saveAsImage);
+document.getElementById('copy-text-btn')         .addEventListener('click', copyPlainText);
+document.getElementById('copy-whatsapp-btn')     .addEventListener('click', shareWhatsApp);
+document.getElementById('copy-html-btn')         .addEventListener('click', copyHTML);
+document.getElementById('download-html-file-btn').addEventListener('click', downloadHTML);
+document.getElementById('print-btn')             .addEventListener('click', () => window.print());
+document.getElementById('share-btn')             .addEventListener('click', nativeShare);
+document.getElementById('reset-default-btn')     .addEventListener('click', resetWeek);
+document.getElementById('start-date')            .addEventListener('change', refreshWeek);
+
+/* ── INIT ───────────────────────────────────────────────────── */
+(async () => {
+    document.getElementById('start-date').valueAsDate = new Date();
+    await refreshWeek();
+})();
+</script>
+</body>
+</html>
